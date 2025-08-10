@@ -1,0 +1,6 @@
+@import "~/.config/rofi/base-config.rasi"
+
+inputbar {
+  enabled: false;
+}
+

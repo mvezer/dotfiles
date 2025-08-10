@@ -1,0 +1,38 @@
+[font]
+size=14.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+
+[cursor.style]
+shape = "Beam"
+
+[cursor.vi_mode_style]
+shape = "Block"
+
+[general]
+live_config_reload = true
+import = [
+    "~/.config/alacritty/themes/one_dark.toml",
+]
+
+[window]
+startup_mode = "Maximized"
+decorations = "none"
+option_as_alt = "Both"
+opacity = 0.8
+blur = false
+
+# [terminal.shell]
+# program = "/bin/zsh"
+# args = [
+#   "--login",
+#   "-c",
+#   "tmux attach || tmux new-session -s default"
+# ]
+
+# [keyboard]
+# bindings = [
+# { key = "Tab", mods = "Control", action = "ReceiveChar" },
+# { key = "q", mods = "Alt", action = "Quit" }
+# ]

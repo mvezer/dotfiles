@@ -1,0 +1,14 @@
+#!/bin/bash
+
+MESSAGE_PREFIX="<Esc>i"
+MESSAGE_CR="<CR>"
+MESSAGE_SUFFIX="<Esc>"
+
+message="$MESSAGE_PREFIX"
+while read line; do
+  message="$message$line$MESSAGE_CR"
+done
+
+message="$message$MESSAGE_SUFFIX"
+
+nvim --server $NVIM_LISTEN_ADDRESS --remote-send "$message"

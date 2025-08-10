@@ -1,0 +1,10 @@
+bin/.local/share
+bin/.local/state
+bin/.local/bin/nvr
+nvim/.config/nvim/lazy-lock.json
+bin/.local/bin/config.json
+.DS_Store
+vifm/.config/vifm/vifminfo.json
+vifm/.config/vifm/scripts/README
+bin/.local/bin/op
+bin/.local/lib/vivaldi

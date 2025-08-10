@@ -1,0 +1,18 @@
+@import "~/.config/rofi/base-config.rasi"
+
+* {
+  font: "Hack Nerd Font Mono 14";
+}
+
+window {
+  width: 240px;
+}
+
+inputbar {
+  enabled: false;
+}
+
+entry {
+  width: 218px;
+}
+

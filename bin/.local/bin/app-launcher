@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rofi -modi drun -show drun -config ~/.config/rofi/app-launcher.rasi -monitor primary

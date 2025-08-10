@@ -1,0 +1,250 @@
+#!/usr/bin/env bash
+
+DOTFILES_DIR="$HOME/.dotfiles"
+WORKSPACE_DIR="$HOME/workspace"
+TEMP_DIR="$HOME/temp"
+DOWNLOADS_DIR="$HOME/Downloads"
+EMAIL="vezer.m@gmail.com"
+NAME="Matyas Vezer"
+VOID_PACKAGES="$HOME/.void-packages"
+
+function print_title {
+  figlet -f big $1
+}
+
+function draw_line {
+  printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+}
+
+function print_header {
+  draw_line
+  echo $1
+  draw_line
+}
+
+function clone_repo {
+  if [ -d "$2" ]; then
+    echo "Directory $2 already exists, skipping"
+  else
+    echo "Cloning $1 to $2"
+    git clone $1 $2 > /dev/null
+  fi
+}
+
+function setup_pwfeedback {
+  print_header "Setting up pwfeedback..."
+  pwfeedback="Defaults pwfeedback"
+  if sudo grep -q "$pwfeedback" /etc/sudoers
+  then 
+     echo "/etc/sudoers already patched"
+  else
+    echo "$pwfeedback" | sudo EDITOR='tee -a' visudo
+  fi
+}
+
+function setup_dwm {
+  print_header "Setting up dwm..."
+  clone_repo https://github.com/mvezer/dwm $WORKSPACE_DIR/dwm
+  cd $WORKSPACE_DIR/dwm
+  echo "Building dwm..."
+  git checkout bebop > /dev/null
+  make > /dev/null
+  echo "Installing dwm..."
+  sudo make install > /dev/null
+  cd "$HOME"
+}
+
+function setup_neovim {
+  print_header "Setting up neovim..."
+  clone_repo https://github.com/neovim/neovim $WORKSPACE_DIR/neovim
+  cd $WORKSPACE_DIR/neovim
+  echo "Building neovim..."
+  make CMAKE_BUILD_TYPE=Release > /dev/null
+  echo "Installing neovim..."
+  sudo make install > /dev/null
+  cd "$HOME"
+}
+
+function setup_dotfiles {
+  print_header "Setting up dotfiles..."
+  clone_repo http://github.com/mvezer/dotfiles ~/.dotfiles $DOTFILES_DIR
+  cd $DOTFILES_DIR
+  stow --adopt alacritty
+  stow --adopt bin
+  stow --adopt dunst
+  stow --adopt lazygit
+  stow --adopt nvim-minimal
+  stow --adopt rofi
+  stow --adopt starship
+  stow --adopt tmux
+  stow --adopt vifm
+  stow --adopt zk
+  stow --adopt zsh
+  cd "$HOME"
+}
+
+function install_packages {
+  print_header "Installing packages..."
+  packages=(
+    bat
+    btop
+    bluez
+    blueman
+    cmake
+    curl
+    dbus
+    eza
+    fd
+    fzf
+    git
+    htop
+    jq
+    neovim
+    ripgrep
+    starship
+    stow
+    the_silver_searcher
+    tmux
+    vim
+    vifm
+    wget
+    zsh
+    base-devel
+    clang
+    cmake
+    delta
+    git
+    lazygit
+    llvm
+    luarocks
+    ninja
+    pkgconf
+    rustup
+    nodejs
+    yarn
+    zip
+    zk
+    xorg
+    libX11
+    libX11-devel
+    libXft
+    libXft-devel
+    libXinerama
+    libXinerama-devel
+    arandr
+    alacritty
+    dmenu
+    dunst
+    feh
+    firefox
+    qbittorrent
+    nerd-fonts
+    noto-fonts-emoji
+    xclip
+    xkb-switch
+    pulseaudio
+    alsa-plugins-pulseaudio
+    rofi
+    pulsemixer
+    pavucontrol
+    xtools
+  )
+  for package in "${packages[@]}"; do
+    echo -n "Installing $package..."
+    if [ -z "$(xbps-query $package)" ]; then
+      sudo xbps-install -Syu $package > /dev/null
+      echo " DONE"
+    else
+      echo " (already installed)"
+    fi
+  done
+}
+
+function setup_shell {
+  print_header "Setting up shell..."
+  chsh -s /usr/bin/zsh
+}
+
+function create_dirs {
+  print_header "Creating directories..."
+  mkdir -p "$WORKSPACE_DIR"
+  mkdir -p "$DOWNLOADS_DIR"
+  mkdir -p "$TEMP_DIR"
+}
+
+function setup_services {
+  print_header "Setting up services..."
+  sudo ln -sv /etc/sv/dbus /var/service/
+  sudo sv enable dbus
+  sudo ln -sv /etc/sv/blutoothd /var/service/
+  sudo sv enable blutoothd
+}
+
+function setup_tmux {
+  print_header "Setting up tmux..."
+  clone_repo https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+}
+
+function setup_dropbox {
+  print_header "Setting up dropbox cli..."
+  wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+}
+
+function setup_git {
+  print_header "Setting up git..."
+  git config --global user.name "$NAME"
+  git config --global user.email "$EMAIL"
+}
+
+function setup_ssh_key {
+  print_header "Setting up ssh key..."
+  ssh-keygen -t ed25519 -C "$EMAIL"
+}
+
+function setup_void_packages {
+  print_header "Setting up void packages..."
+  echo "Setting XBPS restricted packages..."
+  if [ -f "/etc/conf" ]; then
+    echo "/etc/conf already exists"
+  else
+    sudo touch /etc/conf
+  fi
+  if sudo grep -q "XBPS_ALLOW_RESTRICTED=yes" /etc/conf; then
+    echo "XBPS restricted packages already set"
+  else
+    echo "XBPS_ALLOW_RESTRICTED=yes" | sudo tee -a /etc/conf > /dev/null
+  fi
+  echo "Cloning XBPS repository..."
+  clone_repo https://github.com/void-linux/void-packages.git $VOID_PACKAGES > /dev/null
+  cd $VOID_PACKAGES
+  ./xbps-src binary-bootstrap
+  print_header "Installing vivaldi..."
+  ./xbps-src pkg vivaldi
+  sudo xi -y vivaldi
+  print_header "Installing zoxide..."
+  ./xbps-src pkg zoxide
+  sudo xi -y zoxide
+}
+
+# Init
+echo "Initializing..."
+set -e
+setup_pwfeedback
+sudo xbps-install -Syu figlet > /dev/null
+cd "$HOME"
+
+print_title "Bebop setup"
+
+install_packages
+setup_shell
+create_dirs
+setup_dwm
+setup_neovim
+setup_dotfiles
+setup_services
+setup_tmux
+setup_dropbox
+setup_git
+setup_ssh_key
+setup_void_packages

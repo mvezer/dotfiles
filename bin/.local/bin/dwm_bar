@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+function memory_use() {
+  MEMORY=$(free -m | grep -i "mem" | tr -s ' ' | cut -d' ' -f2,3)
+  MEM_TOTAL=$(echo $MEMORY | cut -d' ' -f1)
+  MEM_USED=$(echo $MEMORY | cut -d' ' -f2)
+  PERCENTAGE=$(echo "scale=1; $MEM_USED * 100 / $MEM_TOTAL" | bc)
+  echo "$PERCENTAGE%"
+}
+
+function disk_use() {
+  DISK_INFO=$(df -h /)
+  # USAGE_PERCENT=$(echo "$DISK_INFO" | awk 'NR==2 {print $5}' | sed 's/%//')
+  USAGE_PERCENT=$(echo "$DISK_INFO" | awk 'NR==2 {print $5}')
+  echo "$USAGE_PERCENT"
+}
+
+function battery_capacity() {
+  if [[ -f /sys/class/power_supply/BAT0/capacity ]]; then
+    BATTERY_CAPACITY="$(cat /sys/class/power_supply/BAT0/capacity)%"
+  else
+    BATTERY_CAPACITY=""
+  fi
+  if [[ $(cat /sys/class/power_supply/BAT0/status) == "Charging" || $(cat /sys/class/power_supply/BAT0/status) == "Full" ]]; then
+    BATTERY_CAPACITY="$BATTERY_CAPACITY "
+  fi
+
+  echo $BATTERY_CAPACITY
+}
+
+function current_date() {
+  echo "$(date +'%d.%m.%Y %H:%M')"
+}
+
+function keyboard_layout() {
+  echo "$(xkb-switch -p)"
+}
+
+function volume() {
+  volume_percent="$(pulsemixer --get-volume | cut -d' ' -f1)"
+  if [[ "$volume_percent" == "0" ]]; then
+    echo "󰸈"
+  else
+    echo "$volume_percent%"
+  fi
+}
+
+
+function render() {
+  echo "[vol: $(volume) | disk: $(disk_use) | mem: $(memory_use) | bat: $(battery_capacity) | layout: $(keyboard_layout)]  $(current_date)"
+}
+
+if [[ "$1" == "debug" ]]; then
+  render
+else
+  while true; do
+    xsetroot -name " $(render)"
+    sleep 1s
+  done &
+fi
+
+

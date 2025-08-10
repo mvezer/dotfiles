@@ -1,0 +1,5 @@
+#!/usr/bin/zsh
+
+if [[ -z $(nvr --serverlist | grep /tmp/nvimsocket) ]]; then
+	nvim --server /tmp/nvimsocket
+fi

@@ -1,0 +1,15 @@
+@import "~/.config/rofi/base-config.rasi"
+
+window {
+  width: 140px;
+  height: 140;
+}
+
+inputbar {
+  enabled: false;
+}
+
+entry {
+  width: 118px;
+}
+

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+LAYOUT_DIR=~/.screenlayout
+
+if [ ! -d "$LAYOUT_DIR" ]; then
+  notify-send -i /usr/share/icons/Adwaita/symbolic/status/screen-shared-symbolic.svg "Screen config error" "The directory \"$LAYOUT_DIR\" does not exist"
+  exit 0
+fi
+
+profile=$(ls $LAYOUT_DIR -1 | cut -d'.' -f1 | rofi -dpi 1 -dmenu -p "screen config" -config ~/.config/rofi/screens.rasi -monitor primary)
+if [ -n "$profile" ]; then
+  eval $("$LAYOUT_DIR/$profile.sh")
+fi

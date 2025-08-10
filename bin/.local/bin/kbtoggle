@@ -1,0 +1,29 @@
+#/bin/bash
+#######################################
+# Enables or disables laptop keyboard #
+#######################################
+
+# Keyboard name to work with
+KB_NAME="AT Translated Set 2 keyboard"
+
+# Grab keyboard ID
+KB_ID=$(xinput list | grep "$KB_NAME" | awk '{ print $7 }' | sed -r 's/id=//g')
+
+# Grab slave keyboard ID
+KB_SLAVE_ID=$(xinput list | grep "slave  keyboard" | awk -F"[()]" 'NR==1{ print $2 }')
+
+# Check if is in float mode, 1 = float
+KB_IS_DISABLED=$(xinput list | grep "$KB_NAME" | awk '/floating/{ print "1" }')
+
+# If is in float, reattach
+if [ "$KB_IS_DISABLED" = "1" ]; then
+    xinput reattach "$KB_ID" "$KB_SLAVE_ID"
+    notify-send "Laptop keyboard" "Enabled"
+    echo "Enabled"
+    exit
+fi
+
+# Disable
+xinput float "$KB_ID"
+notify-send "Laptop keyboard" "Disabled"
+echo "Disabled"

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ssh -i /Users/mat/.ssh/bebop -p 2425 'mat@vezer.duckdns.org'

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# ---------------------------------------------------------
+# Typescript debug launcher
+# ---------------------------------------------------------
+#
+# checks the target of the start script in the package.json
+# and starts that target source file with nodemon using
+# ts-node and the --inspect flag
+
+DEFAULT_ENV="testing"
+
+if [[ ! -f "package.json" ]]; then
+    echo "No package json in this directory"
+    exit -1
+fi
+
+start_script=$(cat package.json | jq -r '.scripts.start')
+if [ "$start_script" = "null" ]; then
+	echo "Start script missing"
+	exit -1
+fi
+
+file_to_execute=$(echo $start_script | awk -F ' ' '{ print $NF}')
+if [ "$file_to_execute" = "null" ]; then
+	echo "Could not find file to execute"
+	exit -1
+fi
+
+
+echo "$ENVIRONMENT"
+if [ ! -z $1 ]; then
+	ENV="$1"
+else
+	if [ ! -z "$ENVIRONMENT" ]; then
+		echo "juhuuu"
+		ENV="$ENVIRONMENT"
+	else
+		ENV="$DEFAULT_ENV"
+	fi
+fi
+
+echo "Debugging $file_to_execute... (environment: $ENV)"
+
+ENVIRONMENT="$ENV" nodemon --watch './src' --ext '.ts' --exec node --inspect -r ts-node/register $file_to_execute
+
