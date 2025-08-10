@@ -73,7 +73,7 @@ function setup_dotfiles {
   stow --adopt bin
   stow --adopt dunst
   stow --adopt lazygit
-  stow --adopt nvim-minimal
+  stow --adopt nvim
   stow --adopt rofi
   stow --adopt starship
   stow --adopt tmux
@@ -174,10 +174,16 @@ function create_dirs {
 
 function setup_services {
   print_header "Setting up services..."
-  sudo ln -sv /etc/sv/dbus /var/service/
+  if [ ! -f "/var/service/dbus" ]; then
+    sudo ln -sv /etc/sv/dbus /var/service/
+  fi
   sudo sv enable dbus
-  sudo ln -sv /etc/sv/blutoothd /var/service/
-  sudo sv enable blutoothd
+  sudo sv start dbus
+  if [ ! -f "/var/service/bluetoothd" ]; then
+    sudo ln -sv /etc/sv/bluetoothd /var/service/
+  fi
+  sudo sv enable bluetoothd
+  sudo sv start bluetoothd
 }
 
 function setup_tmux {
