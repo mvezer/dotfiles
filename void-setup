@@ -195,6 +195,7 @@ function setup_tmux {
 function setup_dropbox {
   print_header "Setting up dropbox cli..."
   wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+  sudo ln -s /home/mat/.dropbox-dist/dropboxd /usr/bin/dropboxd
 }
 
 function setup_git {
@@ -233,6 +234,16 @@ function setup_void_packages {
   sudo xi -y zoxide
 }
 
+function setup_srandrd {
+  clone_repo https://github.com/jceb/srandrd $WORKSPACE_DIR/srandr
+  cd $WORKSPACE_DIR/srandrd
+  make
+  sudo make install
+  if [ ! -f "/usr/bin/screen-manager.sh" ]; then
+    sudo ln -s /home/mat/.dotfiles/bin/.local/bin/screen-manager.sh /usr/bin/
+  fi
+}
+
 # Init
 echo "Initializing..."
 set -e
@@ -247,6 +258,7 @@ setup_shell
 create_dirs
 setup_dwm
 setup_neovim
+setup_srandrd
 setup_dotfiles
 setup_services
 setup_tmux
