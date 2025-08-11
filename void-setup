@@ -148,6 +148,10 @@ function install_packages {
     pulsemixer
     pavucontrol
     xtools
+    udisks2
+    udiskie
+    vlc
+    Thunar
   )
   for package in "${packages[@]}"; do
     echo -n "Installing $package..."
@@ -244,6 +248,17 @@ function setup_srandrd {
   fi
 }
 
+function setup_udisks {
+  print_header "Setting up udisks..."
+  sudo mkdir -p /etc/polkit-1/rules.d
+  sudo cp /home/mat/.dotfiles/void-linux/50-usb-mount.rules /etc/polkit-1/rules.d/
+}
+
+function setup_xorg {
+  print_header "Setting up xorg..."
+  cp $HOME/.dotfiles/void-linux/.xinitrc $HOME
+}
+
 # Init
 echo "Initializing..."
 set -e
@@ -265,4 +280,6 @@ setup_tmux
 setup_dropbox
 setup_git
 setup_ssh_key
+setup_udisks
+setup_xorg
 setup_void_packages
