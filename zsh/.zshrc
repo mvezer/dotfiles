@@ -1,6 +1,4 @@
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/mat/.zsh/completions:"* ]]; then export FPATH="/home/mat/.zsh/completions:$FPATH"; fi
-# starship prompt
+if [[ ":$FPATH:" != *":/$HOME/.zsh/completions:"* ]]; then export FPATH="/$HOME/.zsh/completions:$FPATH"; fi
 eval "$(starship init zsh)"
 
 # env vars
@@ -37,10 +35,11 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+export NVM_LAZY_LOAD=true
+zinit light lukechilds/zsh-nvm
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 zinit ice lucid wait'0'
 zinit light joshskidmore/zsh-fzf-history-search
-
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
@@ -49,10 +48,7 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
-# Load completions
 autoload -Uz compinit && compinit
-
-zinit cdreplay -q
 
 zmodload zsh/zprof
 eval "$(zoxide init --cmd cd zsh)"
