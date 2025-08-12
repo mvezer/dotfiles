@@ -259,6 +259,18 @@ function setup_xorg {
   cp $HOME/.dotfiles/void-linux/.xinitrc $HOME
 }
 
+# call the function with the first argument
+function_name="$1"
+if declare -f "$function_name" > /dev/null; then
+    "$function_name" "$@"
+    exit 0
+else
+    echo "Error: Function '$function_name' not found"
+    echo "Available functions:"
+    declare -F | cut -d' ' -f3 | grep -v "^_" | sort
+    exit 1
+fi
+
 # Init
 echo "Initializing..."
 set -e
