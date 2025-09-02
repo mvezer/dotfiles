@@ -48,7 +48,7 @@ vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/olimorris/codecompanion.nvim",
   "https://github.com/j-hui/fidget.nvim",
-  "https://github.com/toppair/peek.nvim"
+  "https://github.com/toppair/peek.nvim",
   -- after installing peek.nvim
   -- cd /home/mat/.local/share/nvim/site/pack/core/opt/peek.nvim
   -- deno task --quiet build:fast
