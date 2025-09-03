@@ -32,7 +32,6 @@ vim.pack.add({
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/navarasu/onedark.nvim",
   "https://github.com/tpope/vim-eunuch",
-  "https://github.com/tpope/vim-fugitive",
   "https://github.com/chentoast/marks.nvim",
   "https://github.com/numToStr/Navigator.nvim",
   "https://github.com/stevearc/oil.nvim",
@@ -44,14 +43,7 @@ vim.pack.add({
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/igorlfs/nvim-dap-view",
-  "https://github.com/toppair/peek.nvim",
-  "https://github.com/nvim-lua/plenary.nvim",
-  "https://github.com/olimorris/codecompanion.nvim",
   "https://github.com/j-hui/fidget.nvim",
-  "https://github.com/toppair/peek.nvim",
-  -- after installing peek.nvim
-  -- cd /home/mat/.local/share/nvim/site/pack/core/opt/peek.nvim
-  -- deno task --quiet build:fast
 })
 
 -- Utils
@@ -128,14 +120,6 @@ local function setup_flash()
   end, { desc = "Flash" })
 end
 
--- Peek (markdown preview)
-local function setup_peek()
-  require("peek").setup({
-    app = { "vivaldi", "--new-window" },
-  })
-  utils.map("n", "<leader>m", require("peek").open, utils.map_opts)
-end
-
 -- Setup colorscheme
 local function setup_colorscheme()
   local onedark = require("onedark")
@@ -156,9 +140,7 @@ setup_fzf()
 setup_oil()
 setup_supermaven()
 setup_flash()
-setup_peek()
 require("setup_conform")()
-require("setup_codecompanion")()
 require("setup_dap")()
 require("setup_lsp")()
 require("setup_statusbar")()
