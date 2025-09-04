@@ -56,8 +56,8 @@ utils.map({ "n", "v" }, "c", '"_c', utils.map_opts)
 utils.map({ "n", "v" }, "C", '"_C', utils.map_opts)
 utils.map("v", "p", "P", utils.map_opts)
 utils.map({ "n", "v", "i" }, "<c-v>", ":vsplit<CR>", utils.map_opts)
-utils.map({ "n", "v", "i" }, "<c-down>", ":bnext<CR>", utils.map_opts)
-utils.map({ "n", "v", "i" }, "<c-up>", ":bprevious<CR>", utils.map_opts)
+utils.map({ "n", "v", "i" }, "<c-down>", ":NavigatorDown<CR>", utils.map_opts)
+utils.map({ "n", "v", "i" }, "<c-up>", ":NavigatorUp<CR>", utils.map_opts)
 utils.map({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>", utils.map_opts)
 utils.map({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>", utils.map_opts)
 utils.map("n", "<leader>bo", ":%bd|e#|bd#<CR>", utils.map_opts) -- close all buffers but the current one
@@ -90,7 +90,7 @@ local function setup_fzf()
   utils.map("n", "<leader>sh", utils.fzf.helptags, utils.map_opts)
   utils.map("n", "<leader>sd", utils.fzf.lsp_document_diagnostics, utils.map_opts)
   utils.map("n", "<leader><leader>", utils.fzf.buffers, utils.map_opts)
-  utils.fzf.setup({ "max-perf", winopts = { height = 1, width = 1 } })
+  utils.fzf.setup({ "max-perf", winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } })
 end
 
 -- Oil
