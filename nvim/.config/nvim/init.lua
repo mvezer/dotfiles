@@ -84,6 +84,7 @@ utils.autocmd("TextYankPost", {
 -- utils.fzf.lua
 local function setup_fzf()
   utils.map("n", "<leader>sf", utils.fzf.files, utils.map_opts)
+  utils.map("n", "<leader>sw", utils.fzf.grep_cword, utils.map_opts)
   utils.map("n", "<leader>sr", utils.fzf.oldfiles, utils.map_opts)
   utils.map("n", "<leader>st", utils.fzf.live_grep, utils.map_opts)
   utils.map("n", "<leader>sh", utils.fzf.helptags, utils.map_opts)
