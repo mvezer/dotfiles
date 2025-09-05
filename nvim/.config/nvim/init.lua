@@ -25,12 +25,12 @@ o.listchars = { tab = "→ ", space = "·" }
 o.cursorline = true
 vim.cmd([[autocmd FileType * set formatoptions-=ro]]) -- disable new line auto comment <3
 vim.cmd([[autocmd TermOpen * startinsert]])
+vim.cmd([[colorscheme habamax]])
 
 -- Plugins
 vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/ibhagwan/fzf-lua",
-  "https://github.com/navarasu/onedark.nvim",
   "https://github.com/tpope/vim-eunuch",
   "https://github.com/chentoast/marks.nvim",
   "https://github.com/numToStr/Navigator.nvim",
@@ -81,7 +81,6 @@ utils.autocmd("TextYankPost", {
   end,
 })
 
--- utils.fzf.lua
 local function setup_fzf()
   utils.map("n", "<leader>sf", utils.fzf.files, utils.map_opts)
   utils.map("n", "<leader>sw", utils.fzf.grep_cword, utils.map_opts)
@@ -121,22 +120,13 @@ local function setup_flash()
   end, { desc = "Flash" })
 end
 
--- Setup colorscheme
-local function setup_colorscheme()
-  local onedark = require("onedark")
-  onedark.setup({ style = "deep", transparent = true })
-  onedark.load()
-end
-
 require("Navigator").setup({})
 require("zk").setup({})
 require("marks").setup({ mappings = { delete_line = "M" } })
 require("render-markdown").setup({ file_types = { "markdown", "codecompanion" } })
 require("mason").setup({})
 require("fidget").setup({})
--- vim.cmd([[colorscheme onedark]])
 
-setup_colorscheme()
 setup_fzf()
 setup_oil()
 setup_supermaven()
