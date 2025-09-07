@@ -25,7 +25,7 @@ o.listchars = { tab = "→ ", space = "·" }
 o.cursorline = true
 vim.cmd([[autocmd FileType * set formatoptions-=ro]]) -- disable new line auto comment <3
 vim.cmd([[autocmd TermOpen * startinsert]])
-vim.cmd([[colorscheme habamax]])
+vim.cmd([[colorscheme industry]])
 
 -- Plugins
 vim.pack.add({
