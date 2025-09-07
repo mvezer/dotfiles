@@ -1,6 +1,6 @@
 [font]
 size = 10
-normal = { family = "jetbrainsmono nerd font", style = "Regular" }
+normal = { family = "hack nerd font mono", style = "Regular" }
 
 [cursor]
 style = { shape = "Beam" }
@@ -29,6 +29,6 @@ blur = false
 
 # [keyboard]
 # bindings = [
-# { key = "Tab", mods = "Control", action = "ReceiveChar" },
-# { key = "q", mods = "Alt", action = "Quit" }
+#   { key = "Tab", mods = "Control", action = "ReceiveChar" },
+#   { key = "q", mods = "Alt", action = "Quit" }
 # ]
