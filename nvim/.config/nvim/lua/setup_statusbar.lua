@@ -1,3 +1,21 @@
+local utils = require("utils")
+
+local branch = "?git"
+
+-- Highlight on yank
+utils.autocmd("BufEnter", {
+  group = utils.augroup,
+  pattern = "*",
+  callback = function()
+    branch = vim.fn.system("git branch --show-current 2>/dev/null"):gsub("\n", "")
+    if branch ~= "" and branch ~= nil then
+      local git_status = vim.fn.system("git status --porcelain 2>/dev/null"):gsub("\n", "")
+      local branch_color = git_status == "" and "%#StatusLineGitClean#" or "%#StatusLineGitDirty#"
+      branch = " on  " .. branch_color .. branch .. "%#StatusLine#"
+    end
+  end,
+})
+
 return function()
   vim.api.nvim_set_hl(0, "StatusLineGitClean", { fg = "#81b29a", bg = "NONE", bold = true })
   vim.api.nvim_set_hl(0, "StatusLineGitDirty", { fg = "#c94f6d", bg = "NONE", bold = true })
@@ -7,12 +25,6 @@ return function()
     local supermaven = pcall(require, "supermaven-nvim.api") and require("supermaven-nvim.api").is_running() and "SMV" or "-"
     local cwd = vim.fn.getcwd() or ""
     local cwd_with_tilde = vim.fn.fnamemodify(cwd, ":~")
-    local branch = vim.fn.system("git branch --show-current 2>/dev/null"):gsub("\n", "")
-    if branch ~= "" and branch ~= nil then
-      local git_status = vim.fn.system("git status --porcelain 2>/dev/null"):gsub("\n", "")
-      local branch_color = git_status == "" and "%#StatusLineGitClean#" or "%#StatusLineGitDirty#"
-      branch = " on  " .. branch_color .. branch .. "%#StatusLine#"
-    end
     local filename = vim.fn.expand("%:p")
     if filename ~= "" and filename ~= nil then
       local filename_color = vim.bo.modified and "%#StatusLineFileChanged#" or "%#StatusLine#"
