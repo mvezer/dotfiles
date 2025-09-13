@@ -117,7 +117,7 @@ local function setup_flash()
   require("flash").setup({ labels = "neioarst" })
   utils.map({ "n", "x", "o" }, "s", function()
     require("flash").jump()
-    vim.api.nvim_feedkeys("zz", "n", false)
+    -- vim.api.nvim_feedkeys("zz", "n", false)
   end, { desc = "Flash" })
 end
 
