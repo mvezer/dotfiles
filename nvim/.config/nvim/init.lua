@@ -44,6 +44,7 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/igorlfs/nvim-dap-view",
   "https://github.com/j-hui/fidget.nvim",
+  "https://github.com/kevinhwang91/nvim-bqf",
 })
 
 -- Utils
@@ -126,6 +127,7 @@ require("marks").setup({ mappings = { delete_line = "M" } })
 require("render-markdown").setup({ file_types = { "markdown", "codecompanion" } })
 require("mason").setup({})
 require("fidget").setup({})
+require("bqf").setup({})
 
 setup_fzf()
 setup_oil()
