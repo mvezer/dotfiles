@@ -11,6 +11,7 @@ vim.pack.add({
   "https://github.com/kevinhwang91/nvim-bqf",
   "https://github.com/matbme/JABS.nvim",
   "https://github.com/gpanders/vim-oldfiles",
+  "https://github.com/folke/flash.nvim",
 })
 
 require("supermaven-nvim").setup({
@@ -22,7 +23,7 @@ require("oil").setup({
   watch_for_changes = true,
   view_options = { show_hidden = true },
 })
-
+require("flash").setup({ labels = "neioarst" })
 require("Navigator").setup({})
 require("zk").setup({})
 require("marks").setup({ mappings = { delete_line = "M" } })

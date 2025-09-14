@@ -31,3 +31,7 @@ utils.map("n", "<leader>c", function()
   end
 end, utils.map_opts)
 utils.map("n", "<leader>o", ":Oldfiles<CR>", utils.map_opts)
+utils.map({ "n", "x", "o" }, "s", function()
+  require("flash").jump()
+  -- vim.api.nvim_feedkeys("zz", "n", false)
+end, { desc = "Flash" })

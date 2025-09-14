@@ -2,7 +2,6 @@ local utils = require("utils")
 
 local branch = "?git"
 
--- Highlight on yank
 utils.autocmd("BufEnter", {
   group = utils.augroup,
   pattern = "*",
