@@ -1,0 +1,30 @@
+local o = vim.opt
+local g = vim.g
+g.mapleader = " "
+o.clipboard = "unnamed,unnamedplus"
+o.cmdheight = 1
+o.number = true
+o.signcolumn = "auto:4"
+o.mouse = "a"
+o.breakindent = true
+o.undofile = true
+o.ignorecase = true
+o.hlsearch = true
+o.smartcase = true
+o.updatetime = 250
+o.timeoutlen = 400
+o.completeopt = "menu,noinsert,popup,fuzzy"
+o.termguicolors = true
+o.hidden = true
+o.shiftwidth = 2
+o.tabstop = 2
+o.expandtab = true
+o.softtabstop = 2
+o.list = true
+o.listchars = { tab = "→ ", space = "·" }
+o.cursorline = true
+o.grepprg = "rg --vimgrep --smart-case --follow"
+o.grepformat = "%f:%l:%c:%m"
+vim.cmd([[autocmd FileType * set formatoptions-=ro]]) -- disable new line auto comment <3
+vim.cmd([[autocmd TermOpen * startinsert]])
+vim.cmd([[colorscheme wildcharm]])

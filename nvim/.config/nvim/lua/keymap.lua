@@ -1,0 +1,33 @@
+local utils = require("utils")
+
+utils.map("v", "<", "<gv", utils.map_opts)
+utils.map("v", ">", ">gv", utils.map_opts)
+utils.map({ "n", "v" }, "c", '"_c', utils.map_opts)
+utils.map({ "n", "v" }, "C", '"_C', utils.map_opts)
+utils.map("v", "p", "P", utils.map_opts)
+utils.map({ "n", "v", "i" }, "<c-down>", ":NavigatorDown<CR>", utils.map_opts)
+utils.map({ "n", "v", "i" }, "<c-up>", ":NavigatorUp<CR>", utils.map_opts)
+utils.map({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>", utils.map_opts)
+utils.map({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>", utils.map_opts)
+utils.map("n", "<leader>bo", ":%bd|e#|bd#<CR>", utils.map_opts) -- close all buffers but the current one
+utils.map({ "n", "v", "i" }, "<C-x>", ":bd<CR>", utils.map_opts)
+utils.map("n", "<leader>by", ":%y<CR>", utils.map_opts)
+utils.map("n", "<leader>bY", ":let @+ = expand('%:p')", utils.map_opts)
+utils.map("n", "<C-u>", "<C-u>zz")
+utils.map("n", "<C-d>", "<C-d>zz")
+utils.map("n", "<Down>", "gj", utils.map_opts)
+utils.map("n", "<Up>", "gk", utils.map_opts)
+utils.map("n", "<Esc>", ":noh<CR>", utils.map_opts)
+utils.map("t", "<Esc>", "<C-\\><C-n>", utils.map_opts)
+utils.map("n", "<Tab>", ":b#<CR>", utils.map_opts)
+utils.map("n", "<leader>e", ":Oil<CR>", utils.map_opts)
+utils.map("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>", utils.map_opts)
+utils.map("n", "<leader><leader>", ":JABSOpen<CR>", utils.map_opts)
+utils.map("n", "<leader>c", function()
+  if vim.bo.buftype == "quickfix" then
+    vim.cmd("cclose")
+  else
+    vim.cmd("copen")
+  end
+end, utils.map_opts)
+utils.map("n", "<leader>o", ":Oldfiles<CR>", utils.map_opts)
