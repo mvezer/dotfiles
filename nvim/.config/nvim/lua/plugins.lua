@@ -25,7 +25,7 @@ require("oil").setup({
 })
 require("flash").setup({ labels = "neioarst" })
 require("Navigator").setup({})
-require("zk").setup({})
+require("zk").setup({ picker = "fzf_lua" })
 require("marks").setup({ mappings = { delete_line = "M" } })
 require("render-markdown").setup({ file_types = { "markdown", "codecompanion" } })
 require("mason").setup({})

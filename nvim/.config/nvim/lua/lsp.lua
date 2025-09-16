@@ -21,18 +21,6 @@ utils.autocmd("LspAttach", {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
     if client:supports_method("textDocument/implementation") then
-      local bufopts = { noremap = true, silent = true, buffer = args.buf }
-      utils.map("n", "gd", vim.lsp.buf.definition, bufopts)
-      utils.map("n", "K", vim.lsp.buf.hover, bufopts)
-      utils.map("n", "gr", vim.lsp.buf.references, bufopts)
-      utils.map("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
-      utils.map("n", "gl", vim.diagnostic.setqflist, bufopts)
-      utils.map({ "n", "i" }, "<S-Down>", function()
-        vim.diagnostic.jump({ count = 1, float = true })
-      end, bufopts)
-      utils.map({ "n", "i" }, "<S-Up>", function()
-        vim.diagnostic.jump({ count = -1, float = true })
-      end, bufopts)
       pumMap("<Down>", "<C-n>")
       pumMap("<Up>", "<C-p>")
       pumMap("<CR>", "<C-y>")
