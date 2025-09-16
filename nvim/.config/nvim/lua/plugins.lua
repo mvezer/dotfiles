@@ -9,9 +9,9 @@ vim.pack.add({
   "https://github.com/zk-org/zk-nvim",
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/kevinhwang91/nvim-bqf",
-  "https://github.com/matbme/JABS.nvim",
   "https://github.com/gpanders/vim-oldfiles",
   "https://github.com/folke/flash.nvim",
+  "https://github.com/ibhagwan/fzf-lua",
 })
 
 require("supermaven-nvim").setup({
@@ -31,19 +31,4 @@ require("render-markdown").setup({ file_types = { "markdown", "codecompanion" } 
 require("mason").setup({})
 require("bqf").setup({})
 require("conform_setup")()
-require("jabs").setup({
-  use_devicons = false,
-  split_filename = true,
-  symbols = {
-    current = "C",
-    split = "S",
-    alternate = "A",
-    hidden = "H",
-    locked = "L",
-    ro = "R",
-    edited = "E",
-    terminal = "T",
-    default_file = "D",
-    terminal_symbol = ">_",
-  },
-})
+require("fzf-lua").setup({ "max-perf", winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } })
