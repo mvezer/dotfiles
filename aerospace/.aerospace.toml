@@ -13,10 +13,10 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 # Run SketchyBar and JankyBorders together with AeroSpace.
-after-startup-command = [
-    'exec-and-forget sketchybar',
-    # 'exec-and-forget borders'
-]
+# after-startup-command = [
+#     'exec-and-forget sketchybar',
+#     'exec-and-forget borders'
+# ]
 
 # Start AeroSpace at login
 start-at-login = true
