@@ -12,6 +12,8 @@ vim.pack.add({
   "https://github.com/gpanders/vim-oldfiles",
   "https://github.com/folke/flash.nvim",
   "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/j-hui/fidget.nvim",
+  "https://github.com/Robitx/gp.nvim",
 })
 
 require("supermaven-nvim").setup({
@@ -32,3 +34,5 @@ require("mason").setup({})
 require("bqf").setup({})
 require("conform_setup")()
 require("fzf-lua").setup({ "max-perf", winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } })
+require("fidget").setup({ progress = { ignore_done_already = true } })
+require("gp_setup")()

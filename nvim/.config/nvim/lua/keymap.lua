@@ -40,6 +40,7 @@ utils.map("n", "<leader>sr", require("fzf-lua").oldfiles, utils.map_opts)
 utils.map("n", "<leader>st", require("fzf-lua").live_grep, utils.map_opts)
 utils.map("n", "<leader>sh", require("fzf-lua").helptags, utils.map_opts)
 utils.map("n", "<leader>sd", require("fzf-lua").lsp_document_diagnostics, utils.map_opts)
+utils.map({ "n", "v" }, "<leader>sa", ":GpChatFinder<CR>", utils.map_opts)
 utils.map("n", "<leader><leader>", require("fzf-lua").buffers, utils.map_opts)
 
 utils.map("n", "gd", vim.lsp.buf.definition, utils.map_opts)
@@ -53,3 +54,10 @@ end, utils.map_opts)
 utils.map({ "n", "i" }, "<S-Up>", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, utils.map_opts)
+
+-- ai stuff
+utils.map({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>", utils.map_opts)
+utils.map({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>", utils.map_opts)
+utils.map({ "n", "v" }, "<leader>an", ":GpChatNew<CR>", utils.map_opts)
+utils.map({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>", utils.map_opts)
+utils.map({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>", utils.map_opts)
