@@ -1,6 +1,6 @@
 [font]
-size = 10
-normal = { family = "hack nerd font mono", style = "Regular" }
+size = 11
+normal = { family = "jetbrainsmono nerd font mono", style = "Regular" }
 
 [cursor]
 style = { shape = "Beam" }
