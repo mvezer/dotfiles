@@ -1,49 +1,68 @@
-vim.pack.add({
-  "https://github.com/nvim-treesitter/nvim-treesitter",
-  "https://github.com/chentoast/marks.nvim",
-  "https://github.com/stevearc/oil.nvim",
-  "https://github.com/numToStr/Navigator.nvim",
-  "https://github.com/supermaven-inc/supermaven-nvim",
-  "https://github.com/stevearc/conform.nvim",
-  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
-  "https://github.com/zk-org/zk-nvim",
-  "https://github.com/mason-org/mason.nvim",
-  "https://github.com/kevinhwang91/nvim-bqf",
-  "https://github.com/gpanders/vim-oldfiles",
-  "https://github.com/folke/flash.nvim",
-  "https://github.com/ibhagwan/fzf-lua",
-  "https://github.com/j-hui/fidget.nvim",
-  "https://github.com/Robitx/gp.nvim",
-  "https://github.com/catppuccin/nvim",
-})
+local plugin_spec = {
+  { "nvim-treesitter/nvim-treesitter" },
+  {
+    "catppuccin/nvim",
+    priority = 1000,
+    config = function () 
+      require("catppuccin").setup({
+        flavour = "mocha",
+        transparent_background = true,
+        term_colors = true
+      })
+    vim.cmd.colorscheme "catppuccin"
+    end
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    opts = { keymaps = { accept_suggestion = "<S-Tab>" }, color = { suggestion_color = "#005f5f", cterm = 23 } }
+  },
+  {
+    "stevearc/oil.nvim",
+    opts = { skip_confirm_for_simple_edits = true, watch_for_changes = true, view_options = { show_hidden = true } }
+  },
+  { "numToStr/Navigator.nvim", opts = {} },
+  {
+    "stevearc/conform.nvim",
+    config = require("plugin_setup/conform")
+  },
+  { "MeanderingProgrammer/render-markdown.nvim", opts = { file_types = { "markdown", "codecompanion" } } },
+  { "mason-org/mason.nvim",                      opts = {} },
+  { "kevinhwang91/nvim-bqf",                     opts = {} },
+  { "zk-org/zk-nvim",                            config = function () require("zk").setup({ picker = "fzf_lua" }) end },
+  { "folke/flash.nvim",                          opts = { labels = "neioarst" } },
+  {
+    "ibhagwan/fzf-lua",
+    opts = { max_perf = true, winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } }
+  },
+  { "j-hui/fidget.nvim",         opts = { progress = { ignore_done_already = true } } },
+  { "Robitx/gp.nvim",            config = require("plugin_setup/gp") },
+  { "nvim-lualine/lualine.nvim", config = require("plugin_setup/lualine"),            dependencies = { "nvim-tree/nvim-web-devicons" } },
+  { "chentoast/marks.nvim",      opts = { mappings = { delete_line = "M" } } },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  }
+}
 
-require("catppuccin").setup({
-  flavour = "mocha",
-  transparent_background = true,
-  term_colors = true,
-})
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out,                            "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
 
-vim.cmd.colorscheme "catppuccin"
-
-require("supermaven-nvim").setup({
-  keymaps = { accept_suggestion = "<S-Tab>" },
-  color = { suggestion_color = "#005f5f", cterm = 23 },
-})
-
-require("oil").setup({
-  skip_confirm_for_simple_edits = true,
-  watch_for_changes = true,
-  view_options = { show_hidden = true },
-})
-
-require("flash").setup({ labels = "neioarst" })
-require("Navigator").setup({})
-require("zk").setup({ picker = "fzf_lua" })
-require("marks").setup({ mappings = { delete_line = "M" } })
-require("render-markdown").setup({ file_types = { "markdown", "codecompanion" } })
-require("mason").setup({})
-require("bqf").setup({})
-require("plugin_setup/conform")()
-require("fzf-lua").setup({ "max-perf", winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } })
-require("fidget").setup({ progress = { ignore_done_already = true } })
-require("plugin_setup/gp")()
+require("lazy").setup(plugin_spec)
