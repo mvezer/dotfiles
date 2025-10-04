@@ -14,17 +14,28 @@ vim.pack.add({
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/j-hui/fidget.nvim",
   "https://github.com/Robitx/gp.nvim",
+  "https://github.com/catppuccin/nvim",
 })
+
+require("catppuccin").setup({
+  flavour = "mocha",
+  transparent_background = true,
+  term_colors = true,
+})
+
+vim.cmd.colorscheme "catppuccin"
 
 require("supermaven-nvim").setup({
   keymaps = { accept_suggestion = "<S-Tab>" },
   color = { suggestion_color = "#005f5f", cterm = 23 },
 })
+
 require("oil").setup({
   skip_confirm_for_simple_edits = true,
   watch_for_changes = true,
   view_options = { show_hidden = true },
 })
+
 require("flash").setup({ labels = "neioarst" })
 require("Navigator").setup({})
 require("zk").setup({ picker = "fzf_lua" })
@@ -32,7 +43,7 @@ require("marks").setup({ mappings = { delete_line = "M" } })
 require("render-markdown").setup({ file_types = { "markdown", "codecompanion" } })
 require("mason").setup({})
 require("bqf").setup({})
-require("conform_setup")()
+require("plugin_setup/conform")()
 require("fzf-lua").setup({ "max-perf", winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } })
 require("fidget").setup({ progress = { ignore_done_already = true } })
-require("gp_setup")()
+require("plugin_setup/gp")()
