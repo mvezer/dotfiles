@@ -36,8 +36,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-export NVM_LAZY_LOAD=true
-zinit light lukechilds/zsh-nvm
+# export NVM_LAZY_LOAD=true
+# zinit light lukechilds/zsh-nvm
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 zinit ice lucid wait'0'
 zinit light joshskidmore/zsh-fzf-history-search
@@ -48,7 +48,7 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
-
+eval "$(fnm env --use-on-cd)"
 autoload -Uz compinit && compinit
 
 zmodload zsh/zprof
@@ -75,6 +75,9 @@ elif [[ "$OS" =~ "linux" ]]; then
   fi
 fi
 
+export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
+export PATH="$PATH:$HOME/.nvm/versions/node/v24.9.0/bin/npm"
+
 # source machine-specific secrets
 if [ -f $SECRETS ]; then source $SECRETS; fi # TODO: use 1password cli instead
 
@@ -85,6 +88,6 @@ source $ZSH_INCLUDES/go.zsh
 source $ZSH_INCLUDES/kubernetes.zsh
 source $ZSH_INCLUDES/rust.zsh
 source $ZSH_INCLUDES/lua.zsh
-source $ZSH_INCLUDES/nodejs.zsh
+# source $ZSH_INCLUDES/nodejs.zsh
 source $ZSH_INCLUDES/tmux.zsh
 source $ZSH_INCLUDES/zk.zsh
