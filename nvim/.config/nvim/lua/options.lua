@@ -27,4 +27,3 @@ o.grepprg = "rg --vimgrep --smart-case --follow"
 o.grepformat = "%f:%l:%c:%m"
 vim.cmd([[autocmd FileType * set formatoptions-=ro]]) -- disable new line auto comment <3
 vim.cmd([[autocmd TermOpen * startinsert]])
--- vim.cmd([[colorscheme wildcharm]])

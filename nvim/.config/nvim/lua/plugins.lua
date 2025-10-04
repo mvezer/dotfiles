@@ -3,13 +3,13 @@ local plugin_spec = {
   {
     "catppuccin/nvim",
     priority = 1000,
-    config = function () 
+    config = function()
       require("catppuccin").setup({
         flavour = "mocha",
         transparent_background = true,
         term_colors = true
       })
-    vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "catppuccin"
     end
   },
   {
@@ -20,16 +20,22 @@ local plugin_spec = {
     "stevearc/oil.nvim",
     opts = { skip_confirm_for_simple_edits = true, watch_for_changes = true, view_options = { show_hidden = true } }
   },
-  { "numToStr/Navigator.nvim", opts = {} },
+  { "numToStr/Navigator.nvim",        opts = {} },
   {
     "stevearc/conform.nvim",
     config = require("plugin_setup/conform")
   },
   { "MeanderingProgrammer/render-markdown.nvim", opts = { file_types = { "markdown", "codecompanion" } } },
   { "mason-org/mason.nvim",                      opts = {} },
-  { "kevinhwang91/nvim-bqf",                     opts = {} },
-  { "zk-org/zk-nvim",                            config = function () require("zk").setup({ picker = "fzf_lua" }) end },
-  { "folke/flash.nvim",                          opts = { labels = "neioarst" } },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = { "clangd", "bash-language-server", "json-lsp", "lua-language-server", "eslint-lsp", "eslint_d", "prettier", "prettierd", "typescript-language-server", "yaml-language-server" }
+    }
+  },
+  { "kevinhwang91/nvim-bqf", opts = {} },
+  { "zk-org/zk-nvim",        config = function() require("zk").setup({ picker = "fzf_lua" }) end },
+  { "folke/flash.nvim",      opts = { labels = "neioarst" } },
   {
     "ibhagwan/fzf-lua",
     opts = { max_perf = true, winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } }
