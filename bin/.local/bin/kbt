@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+#######################################
+# Enables or disables laptop keyboard #
+# for Wayland                         #
+#######################################
+
+KBT_PID_LOCK="$HOME/.local/state/kbt.pid"
+
+if [ -f "$KBT_PID_LOCK" ] && kill -9 $(cat "$KBT_PID_LOCK") >/dev/null 2>&1; then
+  echo "Laptop keyboard is ENABLED"
+  notify-send "Laptop keyboard ENABLED"
+  exit 0
+fi
+
+evtest --grab /dev/input/event3 > /dev/null &
+echo $! > "$KBT_PID_LOCK" # store the pid
+echo "Laptop keyboard is DISABLED"
+notify-send "Laptop keyboard DISABLED"
