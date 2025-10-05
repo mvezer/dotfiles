@@ -1,6 +1,7 @@
 #/bin/bash
 #######################################
 # Enables or disables laptop keyboard #
+# for Xorg                            #
 #######################################
 
 # Keyboard name to work with
