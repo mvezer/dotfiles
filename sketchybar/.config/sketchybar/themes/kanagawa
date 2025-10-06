@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Kanagawa Palette
+black="0xff16161d"
+dark_grey="0xff1e1f28"
+medium_grey="0xff2a2a37"
+medium_lighter="0xff363646"
+light_grey="0xff54546d"
+white="0xffdcd7ba"
+warm_grey="0xff727169"
+dark_blue="0xff223249"
+medium_blue="0xff2d4f67"
+light_purple="0xff938aa9"
+purple="0xff957fb8"
+light blue="0xff7e9cd8"
+teal="0xff7aa89f"
+pink="0xffd27e99"
+baby_blue="0xff7fb4ca"
+red="0xffe82424"
+green="0xff98bb6c"
+salmon_pink="0xffe46876"
+peach="0xffffa066"
+dark_teal="0xff6a9589"
+sand="0xffe6c384"
+light_brown="0xffc0a36e"
+magenta="0xffff5d62"
+pastel_blue="0xff9cabca"
+dark_blue="0xff658594"
+transparent="0x00000000"
+
+# Bar
+## Colors
+BAR_COLOR="$transparent"
+BAR_BLUR_RADIUS=30
+
+## Geometry
+BAR_POSITION="top"
+BAR_HEIGHT=24
+BAR_PADDING=0
+BAR_Y_OFFSET=4
+BAR_CORNER_RADIUS=12
+BAR_MARGIN=10
+
+# Item Defaults
+## Colors
+BACKGROUND_COLOR="$dark_grey"
+BACKGROUND_BORDER_COLOR="$dark_teal"
+BACKGROUND_BORDER_WIDTH=0
+LABEL_ALIGN="center"
+LABEL_COLOR="$purple"
+LABEL_HIGHLIGHT_COLOR="$magenta"
+
+## Fonts
+ICON_BASE_FONT="Hack Nerd Font"
+ICON_FONT="$ICON_BASE_FONT:Bold:12.0"
+LABEL_BASE_FONT="Hack Nerd Font"
+LABEL_FONT="$LABEL_BASE_FONT:Regular:12.0"
+LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Bold:12.0"
+
+## Geometry
+BACKGROUND_CORNER_RADIUS=4
+BACKGROUND_HEIGHT=24
+LABEL_Y_OFFSET=1
+LABEL_PADDING=6
+BRACKET_BACKGROUND_BORDER_WIDTH=2
+BRACKET_BACKGROUND_CORNER_RADIUS=12
