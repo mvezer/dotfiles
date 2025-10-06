@@ -140,10 +140,10 @@ alt-l = 'layout tiles accordion'
 
 # Move windows in the given direction
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-# cmd-alt-ctrl-shift-left = 'move left'
-# cmd-alt-ctrl-shift-down = 'move down'
-# cmd-alt-ctrl-shift-up = 'move up'
-# cmd-alt-ctrl-shift-right = 'move right'
+cmd-shift-left = 'move left'
+cmd-shift-down = 'move down'
+cmd-shift-up = 'move up'
+cmd-shift-right = 'move right'
 
 # Switch display focus
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
