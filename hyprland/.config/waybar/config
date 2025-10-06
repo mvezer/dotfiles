@@ -39,6 +39,7 @@
         //"pulseaudio",
         "wireplumber",
         "custom/screenshot_t",
+        "custom/laptop_keyboard",
         "tray",
         "custom/power"
     ],
@@ -99,6 +100,13 @@
         "max-length": 7,
         "min-length": 7,
         "on-click": "xsensors"
+    },
+
+    "custom/laptop_keyboard": {
+        "format": " {} ",
+        "interval": 1,
+        "on-click": "kbt",
+        "exec": "$HOME/.config/waybar/modules/laptop_keyboard_status.sh"
     },
 
     "memory": {
