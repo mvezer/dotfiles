@@ -64,4 +64,4 @@ utils.map({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>", utils.map_opts)
 
 -- cybu
 utils.map("n", "<tab>", ":CybuNext<CR>", utils.map_opts)
-utils.map("n", "<C-S-tab>", ":CybuPrev<CR>", utils.map_opts)
+utils.map("n", "<S-tab>", ":CybuPrev<CR>", utils.map_opts)

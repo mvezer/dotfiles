@@ -27,10 +27,10 @@ blur = false
 #   "tmux attach || tmux new-session -s default"
 # ]
 
-[keyboard]
-bindings = [
-  # passthrough for ctrl+tab and ctrl+shift+tab
-  { key = "Tab", mods = "Control", chars = "\u001b[27;5;9~" },
-  { key = "Tab", mods = "Control|Shift", chars = "\u001b[27;6;9~" },
-]
-
+# [keyboard]
+# bindings = [
+#   # passthrough for ctrl+tab and ctrl+shift+tab
+#   { key = "Tab", mods = "Control", chars = "\u001b[27;5;9~" },
+#   { key = "Tab", mods = "Control|Shift", chars = "\u001b[27;6;9~" },
+# ]
+#
