@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+####################################################
+# Gets the laptop keyboard enabled/disabled status #
+# for Wayland                                      #
+####################################################
+
+KBT_PID_LOCK="$HOME/.local/state/kbt.pid"
+
+if [ ! -f "$KBT_PID_LOCK" ]; then
+  echo "enabled"
+  exit 0
+fi
+
+if ps ax | grep -i "evtest" | grep -i "$(cat ~/.local/state/kbt.pid)" &>/dev/null; then
+  echo "disabled"
+else
+  echo "enabled"
+fi
+
