@@ -36,6 +36,7 @@
 
     "wireplumber": {
         "format": "\udb81\udd7e {volume}%",
+        "on-click": "pavucontrol",
         "max-volume": 100,
         "scroll-step": 5
     },
@@ -74,6 +75,7 @@
     },
     "network": {
         "format": "",
+        "on-click": "nm-connection-editor",
         "format-ethernet": "\udb83\udc9d",
         "format-wifi": "{icon}",
         "format-disconnected": "\udb83\udc9c",
