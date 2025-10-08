@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 24,
+    "height": 26,
     "spacing": 5,
 
     "modules-left": ["hyprland/workspaces", "temperature"],
@@ -9,13 +9,13 @@
     "modules-right": ["wireplumber", "battery", "custom/laptop_keyboard", "network", "bluetooth", "tray"],
 
     "hyprland/workspaces": {
-        "format": "<span size='larger'>{icon}</span>",
+        "format": "<span size='smaller'>{icon}</span>",
         "on-click": "activate",
         "format-icons": {
             "active": "\uf444",
             "default": "\uf4c3"
         },
-        "icon-size": 10,
+        "icon-size": 8,
         "sort-by-number": true,
         "persistent-workspaces": {
             "1": [],
@@ -98,7 +98,7 @@
     },
 
     "tray": {
-        "icon-size": 16,
+        "icon-size": 12,
         "spacing": 16
     },
 
