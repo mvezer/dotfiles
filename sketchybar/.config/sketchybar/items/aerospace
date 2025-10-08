@@ -59,7 +59,8 @@ create_workspace_bracket_for_monitor() {
              --set         workspaces."$monitor_id" \
                            background.padding_left="50" \
                            background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
-                           background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"
+                           background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH" \
+                            background.padding_right=10
 }
 
 sketchybar --add event aerospace_workspace_change

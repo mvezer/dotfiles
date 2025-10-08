@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+source "$CONFIG_DIR/environment"
+source "$THEME_DIR/catppuccin_mocha"
+
+BATTERY_LABEL_COLOR="$red"
+BATTERY_BACKGROUND_BORDER_COLOR="$blue"
+
+sketchybar --add item battery_spacer_left right \
+           --set      battery_spacer_left \
+                      background.drawing=off
+
+sketchybar --add item battery right \
+           --set      battery \
+                      background.drawing=off \
+                      label.color="$BATTERY_LABEL_COLOR" \
+                      label.padding_left=0 \
+                      label.padding_right=12 \
+                      update_freq=5 \
+                      script="$PLUGIN_DIR/battery"
+
+sketchybar --add item battery_spacer_right right \
+           --set      battery_spacer_right \
+                      background.drawing=off
+
+sketchybar --add bracket battery_bracket battery battery_spacer_right \
+           --set         battery_bracket \
+                         background.border_color="$BATTERY_BACKGROUND_BORDER_COLOR" \
+                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
+                         background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH" \
+                         background.padding_right=6
