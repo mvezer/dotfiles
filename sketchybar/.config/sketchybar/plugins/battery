@@ -1,39 +1,30 @@
 #!/usr/bin/env bash
 
-source "$CONFIG_DIR/environment"
-source "$THEME_DIR/catppuccin_mocha"
-
 BATT_PERCENT=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 CHARGING=$(pmset -g batt | grep 'AC Power')
 
+green="0xff009900"
+yellow="0xffffff00"
+orange="0xffff9900"
+red="0xffff0000"
+
+case ${BATT_PERCENT} in
+    100) label="🟥🟥🟧🟧🟧🟨🟨🟨🟩🟩" COLOR="$green" ;;
+    9[0-9]) label="🟥🟥🟧🟧🟧🟨🟨🟨🟩🟩" ;;
+    8[0-9]) label="🟥🟥🟧🟧🟧🟨🟨🟨🟩" ;;
+    7[0-9]) label="🟥🟥🟧🟧🟧🟨🟨🟨" ;;
+    6[0-9]) label="🟥🟥🟧🟧🟧🟨🟨" ;;
+    5[0-9]) label="🟥🟥🟧🟧🟧🟨" ;;
+    4[0-9]) label="🟥🟥🟧🟧🟧" ;;
+    3[0-9]) label="🟥🟥🟧🟧" ;;
+    2[0-9]) label="🟥🟥🟧" ;;
+    1[0-9]) label="🟥🟥" ;;
+    *) label="🟥" ;;
+esac
 if [[ ${CHARGING} != "" ]]; then
-    case ${BATT_PERCENT} in
-        100) ICON="󰂄" COLOR="$green" ;;
-        9[0-9]) ICON="󰂋" COLOR="$green" ;;
-        8[0-9]) ICON="󰂊" COLOR="$green" ;;
-        7[0-9]) ICON="󰢞" COLOR="$green" ;;
-        6[0-9]) ICON="󰂉" COLOR="$yellow" ;;
-        5[0-9]) ICON="󰢝" COLOR="$yellow" ;;
-        4[0-9]) ICON="󰂈" COLOR="$magenta" ;;
-        3[0-9]) ICON="󰂇" COLOR="$magenta" ;;
-        2[0-9]) ICON="󰂆" COLOR="$red" ;;
-        1[0-9]) ICON="󰢜" COLOR="$red" ;;
-        *) ICON="󰂃"  COLOR="$red" ;;
-    esac
+  icon="🔌"
 else
-    case ${BATT_PERCENT} in
-        100) ICON="󰁹" COLOR="$green" ;;
-        9[0-9]) ICON="󰂂" COLOR="$green" ;;
-        8[0-9]) ICON="󰂁" COLOR="$green" ;;
-        7[0-9]) ICON="󰂀" COLOR="$green" ;;
-        6[0-9]) ICON="󰁿" COLOR="$yellow" ;;
-        5[0-9]) ICON="󰁾" COLOR="$yellow" ;;
-        4[0-9]) ICON="󰁽" COLOR="$magenta" ;;
-        3[0-9]) ICON="󰁼" COLOR="$magenta" ;;
-        2[0-9]) ICON="󰁻" COLOR="$red" ;;
-        1[0-9]) ICON="󰁺" COLOR="$red" ;;
-        *) ICON="󰂎"  COLOR="$red" ;;
-    esac
+  icon=""
 fi
 
-sketchybar --set "${NAME}" label="${ICON} ${BATT_PERCENT}%" label.color="${COLOR}"
+sketchybar --set "${NAME}" icon="${icon}" label="${label}" popup="${BATT_PERCENT}%"

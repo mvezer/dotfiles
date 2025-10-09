@@ -69,12 +69,12 @@ automatically-unhide-macos-hidden-apps = false
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-outer.top = [{ monitor.'built-in.*' = 4 }, 32]
-outer.right = 10
-outer.bottom = 10
-outer.left = 10
-inner.horizontal = 10
-inner.vertical = 10
+outer.top = [{ monitor.'built-in.*' = 0 }, 16]
+outer.right = 6
+outer.bottom = 6
+outer.left = 6
+inner.horizontal = 6
+inner.vertical = 6
 
 # Assign certain workspaces to
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
