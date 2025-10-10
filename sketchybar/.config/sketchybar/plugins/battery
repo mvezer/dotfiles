@@ -27,4 +27,4 @@ else
   icon=""
 fi
 
-sketchybar --set "${NAME}" icon="${icon}" label="${label}" popup="${BATT_PERCENT}%"
+sketchybar --set "${NAME}" icon="${icon}" label="${label}"

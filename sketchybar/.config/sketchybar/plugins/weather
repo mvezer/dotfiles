@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cachedir=~/.local/state/weather
-cachefile=${0##*/}-$1
+cachefile="weather.tmp"
 
 if [ ! -d $cachedir ]; then
     mkdir -p $cachedir
@@ -29,11 +29,10 @@ weather=($(cat $cachedir/$cachefile))
 # Restore IFSClear
 IFS=$SAVEIFS
 
-temperature=$(echo ${weather[2]} | sed -E 's/([[:digit:]])+\.\./\1 to /g')
+temperature=$(echo ${weather[2]} | sed 's/.*(\([0-9]*\))/\1/')
 
-#echo ${weather[1]##*,}
+# echo ${weather[1]##*,}
 
-# https://fontawesome.com/icons?s=solid&c=weather
 case $(echo ${weather[1]##*,} | tr '[:upper:]' '[:lower:]') in
 "clear" | "sunny")
     condition="☀"
@@ -70,10 +69,8 @@ case $(echo ${weather[1]##*,} | tr '[:upper:]' '[:lower:]') in
     ;;
 *)
     condition=""
-    echo -e "{\"text\":\""$condition"\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
     ;;
 esac
 
 sketchybar --set "${NAME}" icon="${condition}" label="${temperature}"
 
-# echo -e "{\"text\":\""$temperature $condition"\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
