@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+jadir="/home/mat/.local/share/Steam/steamapps/compatdata/1084160/pfx/drive_c/users/steamuser/AppData/Roaming/Jagged Alliance 3"
+cp -f "$jadir/LocalStorage.reference.lua" "$jadir/LocalStorage.lua"
