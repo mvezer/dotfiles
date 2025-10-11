@@ -3,10 +3,10 @@
 @define-color background rgba(0, 0, 0, 0.9);
 
 * {
-    font-family: JetBrainsMono Nerd Font;
-    font-size: 14px;
     padding: 0;
     margin: 0;
+    font-size: 12px;
+    font-family: noto sans;
 }
 
 #waybar {
@@ -16,11 +16,20 @@
 
 #workspaces button {
     color: @foreground;
-    padding-left: 0.7em;
+    font-size: 18px;
+    padding-left: 0.5em;
 }
 
 #workspaces button.empty {
     color: @foreground-inactive;
+}
+
+#temperature {
+    padding-left: 3em;
+}
+
+#custom-weather {
+    padding-left: 3em;
 }
 
 #memory,
