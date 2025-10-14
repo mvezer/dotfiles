@@ -2,7 +2,7 @@ local o = vim.opt
 local g = vim.g
 g.mapleader = " "
 o.clipboard = "unnamed,unnamedplus"
-o.cmdheight = 1
+o.cmdheight = 0
 o.number = true
 o.signcolumn = "auto:4"
 o.mouse = "a"
@@ -27,3 +27,4 @@ o.grepprg = "rg --vimgrep --smart-case --follow"
 o.grepformat = "%f:%l:%c:%m"
 vim.cmd([[autocmd FileType * set formatoptions-=ro]]) -- disable new line auto comment <3
 vim.cmd([[autocmd TermOpen * startinsert]])
+vim.cmd([[ hi NotifyBackground guibg = #000000 ]])    -- fix the notification background

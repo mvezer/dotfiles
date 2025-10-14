@@ -1,5 +1,3 @@
-vim.cmd([[ hi NotifyBackground guibg = #000000 ]])
-
 local plugin_spec = {
   { "nvim-treesitter/nvim-treesitter" },
   {
@@ -66,9 +64,8 @@ local plugin_spec = {
       show_unloaded = false,
     }
   },
-  { "j-hui/fidget.nvim",         opts = { progress = { ignore_done_already = true } } },
   { "Robitx/gp.nvim",            config = require("plugin_setup/gp") },
-  { "nvim-lualine/lualine.nvim", config = require("plugin_setup/lualine"),            dependencies = { "nvim-tree/nvim-web-devicons" } },
+  { "nvim-lualine/lualine.nvim", config = require("plugin_setup/lualine"),   dependencies = { "nvim-tree/nvim-web-devicons" } },
   { "chentoast/marks.nvim",      opts = { mappings = { delete_line = "M" } } },
   {
     "folke/noice.nvim",
