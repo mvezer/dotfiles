@@ -1,3 +1,5 @@
+vim.cmd([[ hi NotifyBackground guibg = #000000 ]])
+
 local plugin_spec = {
   { "nvim-treesitter/nvim-treesitter" },
   {
@@ -20,13 +22,13 @@ local plugin_spec = {
     "stevearc/oil.nvim",
     opts = { skip_confirm_for_simple_edits = true, watch_for_changes = true, view_options = { show_hidden = true } },
   },
-  { "numToStr/Navigator.nvim",        opts = {} },
+  { "numToStr/Navigator.nvim", opts = {} },
   {
     "stevearc/conform.nvim",
     config = require("plugin_setup/conform"),
   },
   { "MeanderingProgrammer/render-markdown.nvim", opts = { file_types = { "markdown", "codecompanion" } } },
-  { "mason-org/mason.nvim",                      opts = {} },
+  { "mason-org/mason.nvim", opts = {} },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
@@ -51,15 +53,15 @@ local plugin_spec = {
       require("zk").setup({ picker = "fzf_lua" })
     end,
   },
-  { "folke/flash.nvim",      opts = { labels = "neioarst" } },
+  { "folke/flash.nvim", opts = { labels = "neioarst" } },
   {
     "ibhagwan/fzf-lua",
     opts = { max_perf = true, winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } },
   },
-  { "j-hui/fidget.nvim",         opts = { progress = { ignore_done_already = true } } },
-  { "Robitx/gp.nvim",            config = require("plugin_setup/gp") },
-  { "nvim-lualine/lualine.nvim", config = require("plugin_setup/lualine"),            dependencies = { "nvim-tree/nvim-web-devicons" } },
-  { "chentoast/marks.nvim",      opts = { mappings = { delete_line = "M" } } },
+  { "j-hui/fidget.nvim", opts = { progress = { ignore_done_already = true } } },
+  { "Robitx/gp.nvim", config = require("plugin_setup/gp") },
+  { "nvim-lualine/lualine.nvim", config = require("plugin_setup/lualine"), dependencies = { "nvim-tree/nvim-web-devicons" } },
+  { "chentoast/marks.nvim", opts = { mappings = { delete_line = "M" } } },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -79,7 +81,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
