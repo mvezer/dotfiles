@@ -72,6 +72,7 @@ local plugin_spec = {
     },
   },
   { "ghillb/cybu.nvim", dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" }, opts = { style = { path_abbreviation = "shortened" } } },
+  { "chrisgrieser/nvim-recorder", opts = {} },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
