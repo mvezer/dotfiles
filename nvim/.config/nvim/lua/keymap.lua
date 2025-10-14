@@ -62,6 +62,9 @@ utils.map({ "n", "v" }, "<leader>an", ":GpChatNew<CR>", utils.map_opts)
 utils.map({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>", utils.map_opts)
 utils.map({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>", utils.map_opts)
 
--- cybu
-utils.map("n", "<tab>", ":CybuNext<CR>", utils.map_opts)
-utils.map("n", "<S-tab>", ":CybuPrev<CR>", utils.map_opts)
+-- buffers
+utils.map("n", "<tab>", ":bnext<CR>", utils.map_opts)
+utils.map("n", "<S-tab>", ":bprevious<CR>", utils.map_opts)
+
+-- neo-tree buffers
+utils.map("n", "<leader><leader>", require("fzf-lua").buffers, utils.map_opts)
