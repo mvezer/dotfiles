@@ -9,22 +9,22 @@ orange="0xffff9900"
 red="0xffff0000"
 
 case ${BATT_PERCENT} in
-    100) label="🟥🟥🟧🟧🟧🟨🟨🟨🟩🟩" COLOR="$green" ;;
-    9[0-9]) label="🟥🟥🟧🟧🟧🟨🟨🟨🟩🟩" ;;
-    8[0-9]) label="🟥🟥🟧🟧🟧🟨🟨🟨🟩" ;;
-    7[0-9]) label="🟥🟥🟧🟧🟧🟨🟨🟨" ;;
-    6[0-9]) label="🟥🟥🟧🟧🟧🟨🟨" ;;
-    5[0-9]) label="🟥🟥🟧🟧🟧🟨" ;;
-    4[0-9]) label="🟥🟥🟧🟧🟧" ;;
-    3[0-9]) label="🟥🟥🟧🟧" ;;
-    2[0-9]) label="🟥🟥🟧" ;;
-    1[0-9]) label="🟥🟥" ;;
-    *) label="🟥" ;;
+    100) COLOR="$green" ;;
+    9[0-9]) COLOR="$green" ;;
+    8[0-9]) COLOR="$green" ;;
+    7[0-9]) COLOR="$yellow" ;;
+    6[0-9]) COLOR="$yellow" ;;
+    5[0-9]) COLOR="$yellow" ;;
+    4[0-9]) COLOR="$orange" ;;
+    3[0-9]) COLOR="$orange" ;;
+    2[0-9]) COLOR="$red" ;;
+    1[0-9]) COLOR="$red" ;;
+    *) COLOR="$red" ;;
 esac
 if [[ ${CHARGING} != "" ]]; then
-  icon="🔌"
+  icon="⚡"
 else
-  icon=""
+  icon="🔋"
 fi
 
-sketchybar --set "${NAME}" icon="${icon}" label="${label}"
+sketchybar --set "${NAME}" icon="${icon}" label="${BATT_PERCENT}%" label.color="${COLOR}"

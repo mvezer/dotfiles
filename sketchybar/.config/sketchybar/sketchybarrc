@@ -10,7 +10,7 @@ default=(
   label.font="helvetica"
   label.font.size="12.0"
   label.color="0xffffffff"
-  icon.padding_right="8"
+  icon.padding_right="2"
 )
 sketchybar --default "${default[@]}"
 
@@ -47,15 +47,29 @@ sketchybar --add item spacer right \
 # Battery
 sketchybar --add item battery right \
            --set      battery \
-                      label.font="Apple Color Emoji" \
-                      label.font.size="8" \
-                      label.color="0xffffffff" \
+                      label.font="Helvetica" \
+                      label.font.size="12.0" \
                       icon.font="Apple Color Emoji" \
                       icon.font.size="8" \
                       update_freq=10 \
                       script="$PLUGIN_DIR/battery"
 
 # Spacer
+sketchybar --add item spacer3 right \
+           --set      spacer3 \
+                      label.width="32"\
+                      update_freq=10
+
+# Ferris battery
+sketchybar --add item ferris_battery right \
+           --set      ferris_battery \
+                      label.font="Helvetica" \
+                      label.font.size="12.0" \
+                      icon.font="Apple Color Emoji" \
+                      icon.font.size="8" \
+                      update_freq=10 \
+                      script="$PLUGIN_DIR/bluetooth ferris"
+# Ferris battery
 sketchybar --add item spacer2 right \
            --set      spacer2 \
                       label.width="32"\

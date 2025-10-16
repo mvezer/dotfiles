@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+device="$1"
+
+icon="🦀"
+
+if [[ -z "$device" ]]; then
+  label=""
+else
+  label=$(pmset -g accps | grep -i "ferris bling lp" | grep -o '[0-9]*%' | head -1)
+  green="0xff009900"
+  yellow="0xffffff00"
+  orange="0xffff9900"
+  red="0xffff0000"
+
+  case ${label} in
+      100%) COLOR="$green" ;;
+      9[0-9]%) COLOR="$green" ;;
+      8[0-9]%) COLOR="$green" ;;
+      7[0-9]%) COLOR="$yellow" ;;
+      6[0-9]%) COLOR="$yellow" ;;
+      5[0-9]%) COLOR="$yellow" ;;
+      4[0-9]%) COLOR="$orange" ;;
+      3[0-9]%) COLOR="$orange" ;;
+      2[0-9]%) COLOR="$red" ;;
+      1[0-9]%) COLOR="$red" ;;
+      *) COLOR="$red" ;;
+  esac
+fi
+
+sketchybar --set "${NAME}" icon="${icon}" label="${label}" label.color="${COLOR}"
