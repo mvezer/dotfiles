@@ -12,7 +12,8 @@ function random-session () {
   echo "$adjective-$animal" | sed -e 's/\ /-/g'
 }
 function t () {
-  tmux attach || tmux new -s $(random-session)
+  # tmux attach || tmux new -s $(random-session)
+  tmux attach || tmux new -s default
 }
 function random-rename-current-tmux-session () {
   tmux rename -t $(tmux display-message -p '#S') $(random-session)
