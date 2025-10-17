@@ -70,7 +70,7 @@
         "format-alt": "{alt}: {}",
         "format-alt-click": "click-right",
         "interval": 3600,
-        "exec": "curl -s 'https://wttr.in/?format=1'",
+        "exec": "curl -s 'https://wttr.in/Hamburg?format=1&m'",
         "exec-if": "ping wttr.in -c1"
     },
     "network": {
