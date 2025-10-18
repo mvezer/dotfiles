@@ -77,6 +77,7 @@ local plugin_spec = {
     },
   },
   { "chrisgrieser/nvim-recorder", opts = {} },
+  { "Wansmer/treesj",             dependencies = { "nvim-treesitter/nvim-treesitter" }, opts = {} }
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
