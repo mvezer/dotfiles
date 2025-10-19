@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "temperature"],
     "modules-center": ["clock", "custom/weather" ],
-    "modules-right": ["wireplumber", "battery", "custom/laptop_keyboard", "network", "bluetooth", "tray"],
+    "modules-right": ["wireplumber", "battery", "custom/laptop_keyboard", "network", "bluetooth", "tray", "custom/power"],
 
     "hyprland/workspaces": {
         "format": "<span size='smaller'>{icon}</span>",
@@ -34,7 +34,7 @@
     },
 
     "wireplumber": {
-        "format": "\udb81\udd7e {volume}%",
+        "format": "\udb81\udd7e  {volume}%",
         "on-click": "pavucontrol",
         "max-volume": 100,
         "scroll-step": 5
@@ -42,7 +42,7 @@
 
     "battery": {
         "interval": 60,
-        "format": "{icon} {capacity}%",
+        "format": "{icon}  {capacity}%",
         "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
     },
 
@@ -63,6 +63,12 @@
         "interval": 1,
         "on-click": "kbt",
         "exec": "$HOME/.config/waybar/modules/laptop_keyboard_status.sh"
+    },
+
+    "custom/power": {
+        "format": " 󰐥 ",
+        "tooltip": false,
+        "on-click": "wlogout"
     },
 
     "custom/weather": {
