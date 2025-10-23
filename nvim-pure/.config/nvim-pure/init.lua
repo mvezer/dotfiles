@@ -106,6 +106,7 @@ vim.pack.add({
   "https://github.com/folke/flash.nvim",
   "https://github.com/rebelot/kanagawa.nvim",
   "https://github.com/chrisgrieser/nvim-recorder",
+  "https://github.com/Robitx/gp.nvim",
 })
 
 local setup = function(module, opts)
@@ -124,6 +125,29 @@ setup("oil", {
   skip_confirm_for_simple_edits = true,
   watch_for_changes = true,
   view_options = { show_hidden = true },
+})
+
+setup("gp", {
+  providers = {
+    anthropic = {
+      endpoint = "https://api.anthropic.com/v1/messages",
+      secret = os.getenv("ANTHROPIC_API_KEY"),
+    },
+  },
+  agents = {
+    {
+      provider = "anthropic",
+      name = "ChatClaude-4.5-Sonnet",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "claude-sonnet-4-5-20250929" },
+      -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = require("gp.defaults").chat_system_prompt,
+    },
+  },
+  default_command_agent = "ChatClaude-4.5-Sonnet",
+  default_chat_agent = "ChatClaude-4.5-Sonnet",
 })
 
 setup("flash", { labels = "neioarst" })
@@ -304,6 +328,7 @@ map("n", "<leader>bo", ":%bd|e#|bd#<CR>", map_opts) -- close all buffers but the
 map({ "n", "v", "i" }, "<C-x>", ":bd<CR>", map_opts)
 map("n", "<leader>by", ":%y<CR>", map_opts)
 map("n", "<leader>bY", ":let @+ = expand('%:p')", map_opts)
+map("n", "Y", "y$", { desc = "Yank to end of line" })
 map("n", "<C-u>", "<C-u>zz")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<Down>", "gj", map_opts)
@@ -330,7 +355,6 @@ map("n", "<leader>sr", require("fzf-lua").oldfiles, map_opts)
 map("n", "<leader>st", require("fzf-lua").live_grep, map_opts)
 map("n", "<leader>sh", require("fzf-lua").helptags, map_opts)
 map("n", "<leader>sd", require("fzf-lua").lsp_document_diagnostics, map_opts)
-map({ "n", "v" }, "<leader>sa", ":GpChatFinder<CR>", map_opts)
 map("n", "<leader><leader>", require("fzf-lua").buffers, map_opts)
 
 map("n", "gd", vim.lsp.buf.definition, map_opts)
@@ -344,3 +368,9 @@ end, map_opts)
 map({ "n", "i" }, "<S-Up>", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, map_opts)
+
+map({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>", map_opts)
+map({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>", map_opts)
+map({ "n", "v" }, "<leader>an", ":GpChatNew<CR>", map_opts)
+map({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>", map_opts)
+map({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>", map_opts)
