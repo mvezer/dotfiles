@@ -145,9 +145,7 @@ setup("gp", {
       name = "ChatClaude-4.5-Sonnet",
       chat = true,
       command = true,
-      -- string with model name or table with model name and parameters
       model = { model = "claude-sonnet-4-5-20250929" },
-      -- system prompt (use this to specify the persona/role of the AI)
       system_prompt = require("gp.defaults").chat_system_prompt,
     },
   },
@@ -171,7 +169,16 @@ local formatters_by_ft = {
   rust = { "rustfmt", lsp_format = "fallback" },
   toml = { "taplo" },
 }
-for _, ft in ipairs({ "javascript ", "typescript", "typescriptreact", "javascriptreact ", "json", "jsonc ", "yaml ", "html" }) do
+for _, ft in ipairs({
+  "javascript ",
+  "typescript",
+  "typescriptreact",
+  "javascriptreact ",
+  "json",
+  "jsonc ",
+  "yaml ",
+  "html",
+}) do
   formatters_by_ft[ft] = { "prettier", "eslint_d", stop_after_first = true }
 end
 setup("conform", {
@@ -185,7 +192,11 @@ map("n", "<leader>f", function()
   vim.b.disable_autoformat = not vim.b.disable_autoformat
   vim.cmd("redrawstatus")
 end, map_opts)
-require("fzf-lua").setup({ "max-perf", winopts = { height = 1, width = 1 }, keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } } })
+require("fzf-lua").setup({
+  "max-perf",
+  winopts = { height = 1, width = 1 },
+  keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } },
+})
 
 ---------------------------------------------------------------------------------
 --- Commands
