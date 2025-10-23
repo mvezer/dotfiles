@@ -48,6 +48,11 @@ vim.opt.concealcursor = ""
 vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
+-- Command-line completion
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
+
 -- File handling
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -235,9 +240,34 @@ vim.api.nvim_create_autocmd({ "CmdlineChanged", "CmdlineLeave" }, {
   end,
 })
 
+-- Return to last edit position when opening files
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup,
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
+-- Create directories when saving files
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = augroup,
+  callback = function()
+    local dir = vim.fn.expand("<afile>:p:h")
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, "p")
+    end
+  end,
+})
+
+-- Cd the directory of the current file
 vim.api.nvim_create_user_command("Cdc", function()
   vim.cmd("cd %:p:h")
 end, {})
+-- Edit the neovim config
 vim.api.nvim_create_user_command("Config", function()
   vim.cmd("e $MYVIMRC")
 end, {})
@@ -326,8 +356,7 @@ map({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>", map_opts)
 map({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>", map_opts)
 map("n", "<leader>bo", ":%bd|e#|bd#<CR>", map_opts) -- close all buffers but the current one
 map({ "n", "v", "i" }, "<C-x>", ":bd<CR>", map_opts)
-map("n", "<leader>by", ":%y<CR>", map_opts)
-map("n", "<leader>bY", ":let @+ = expand('%:p')", map_opts)
+map("n", "<leader>by", ":let @+ = expand('%:p')", map_opts)
 map("n", "Y", "y$", { desc = "Yank to end of line" })
 map("n", "<C-u>", "<C-u>zz")
 map("n", "<C-d>", "<C-d>zz")
