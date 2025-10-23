@@ -8,9 +8,7 @@ vi_mode_style = { shape = "Block" }
 
 [general]
 live_config_reload = true
-import = [
-    "~/.config/alacritty/themes/catppuccin_mocha.toml",
-]
+import = ["~/.config/alacritty/themes/kanagawa-dragon.toml"]
 
 [window]
 startup_mode = "Maximized"
