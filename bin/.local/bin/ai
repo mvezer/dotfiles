@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-nv -c "GpChatNew tabnew" -c "tabnext" -c "tabclose"
+nvim -c "GpChatNew tabnew" -c "tabnext" -c "tabclose"

@@ -6,10 +6,11 @@ if hash pbpaste 2>/dev/null; then
   exec pbpaste
 elif hash xclip 2>/dev/null; then
   exec xclip -selection clipboard -o
-if hash wl-paste 2>/dev/null; then
+elif hash wl-paste 2>/dev/null; then
   exec wl-paste
 elif [[ -e /tmp/clipboard ]]; then
   exec cat /tmp/clipboard
 else
   echo ''
 fi
+
