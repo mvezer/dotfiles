@@ -123,6 +123,7 @@ vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/MunifTanjim/nui.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
+  "https://github.com/akinsho/bufferline.nvim",
 })
 
 local setup = function(module, opts)
@@ -173,6 +174,7 @@ setup("neo-tree", {
   filesystem = { filtered_items = { hide_dotfiles = false } },
   window = { position = "float" },
 })
+setup("bufferline")
 setup("marks", { mappings = { delete_line = "M" } })
 
 local formatters_by_ft = {
@@ -438,7 +440,8 @@ map("n", "<Down>", "gj", map_opts)
 map("n", "<Up>", "gk", map_opts)
 map("n", "<Esc>", ":noh<CR>", map_opts)
 map("t", "<Esc>", "<C-\\><C-n>", map_opts)
-map("n", "<Tab>", ":b#<CR>", map_opts)
+map("n", "<S-Tab>", ":bprevious<CR>", map_opts)
+map("n", "<Tab>", ":bnext<CR>", map_opts)
 map("n", "<leader>e", ":Neotree toggle=true source=filesystem<CR>", map_opts)
 map("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>", map_opts)
 map("n", "<leader>c", function()

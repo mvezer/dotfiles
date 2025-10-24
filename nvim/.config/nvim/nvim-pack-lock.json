@@ -1,6 +1,10 @@
 {
   "plugins": {
     "Navigator.nvim": [],
+    "bufferline.nvim": {
+      "rev": "655133c",
+      "src": "https://github.com/akinsho/bufferline.nvim"
+    },
     "conform.nvim": [],
     "flash.nvim": [],
     "fzf-lua": [],
