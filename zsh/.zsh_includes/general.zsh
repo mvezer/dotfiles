@@ -30,6 +30,11 @@ function v() {
   cd "$dst"
 }
 
+mkcd() {
+    mkdir -p "${1}"
+    cd "${1}"
+}
+
 # aliases
 alias "nv"="nvim"
 alias ll="eza --icons -al --time-style=long-iso --git --no-user --no-permissions"
