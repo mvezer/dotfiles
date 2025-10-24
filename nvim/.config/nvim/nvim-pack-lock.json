@@ -1,0 +1,37 @@
+{
+  "plugins": {
+    "Navigator.nvim": [],
+    "conform.nvim": [],
+    "flash.nvim": [],
+    "fzf-lua": [],
+    "gp.nvim": [],
+    "kanagawa.nvim": [],
+    "marks.nvim": [],
+    "mason.nvim": [],
+    "neo-tree.nvim": {
+      "rev": "8cdd6b1",
+      "src": "https://github.com/nvim-neo-tree/neo-tree.nvim",
+      "version": "3.0.0 - 4.0.0"
+    },
+    "nui.nvim": {
+      "rev": "de74099",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-bqf": [],
+    "nvim-recorder": [],
+    "nvim-surround": [],
+    "nvim-treesitter": [],
+    "nvim-web-devicons": {
+      "rev": "b8221e4",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "render-markdown.nvim": [],
+    "supermaven-nvim": [],
+    "treesj": [],
+    "zk-nvim": []
+  }
+}

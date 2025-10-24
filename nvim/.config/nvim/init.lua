@@ -91,13 +91,16 @@ vim.opt.splitright = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 ---------------------------------------------------------------------------------
 --- Plugins
 ---------------------------------------------------------------------------------
 
 vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter",
-  "https://github.com/stevearc/oil.nvim",
   "https://github.com/numToStr/Navigator.nvim",
   "https://github.com/supermaven-inc/supermaven-nvim",
   "https://github.com/stevearc/conform.nvim",
@@ -113,6 +116,13 @@ vim.pack.add({
   "https://github.com/chrisgrieser/nvim-recorder",
   "https://github.com/Robitx/gp.nvim",
   "https://github.com/chentoast/marks.nvim",
+  {
+    src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
+    version = vim.version.range("3"),
+  },
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/MunifTanjim/nui.nvim",
+  "https://github.com/nvim-tree/nvim-web-devicons",
 })
 
 local setup = function(module, opts)
@@ -125,12 +135,6 @@ vim.cmd.colorscheme("kanagawa")
 setup("supermaven-nvim", {
   keymaps = { accept_suggestion = "<S-Tab>" },
   color = { suggestion_color = "#005f5f", cterm = 23 },
-})
-
-setup("oil", {
-  skip_confirm_for_simple_edits = true,
-  watch_for_changes = true,
-  view_options = { show_hidden = true },
 })
 
 setup("gp", {
@@ -164,6 +168,11 @@ setup("bqf")
 setup("treesj")
 setup("nvim-surround")
 setup("recorder")
+setup("neo-tree", {
+  sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+  filesystem = { filtered_items = { hide_dotfiles = false } },
+  window = { position = "float" },
+})
 setup("marks", { mappings = { delete_line = "M" } })
 
 local formatters_by_ft = {
@@ -430,7 +439,7 @@ map("n", "<Up>", "gk", map_opts)
 map("n", "<Esc>", ":noh<CR>", map_opts)
 map("t", "<Esc>", "<C-\\><C-n>", map_opts)
 map("n", "<Tab>", ":b#<CR>", map_opts)
-map("n", "<leader>e", ":Oil<CR>", map_opts)
+map("n", "<leader>e", ":Neotree toggle=true source=filesystem<CR>", map_opts)
 map("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>", map_opts)
 map("n", "<leader>c", function()
   if vim.bo.buftype == "quickfix" then
@@ -456,6 +465,7 @@ map("n", "gd", vim.lsp.buf.definition, map_opts)
 map("n", "K", vim.lsp.buf.hover, map_opts)
 map("n", "gr", vim.lsp.buf.references, map_opts)
 map("n", "<leader>lr", vim.lsp.buf.rename, map_opts)
+map("n", "<leader>ls", ":Neotree toggle=true source=document_symbols<CR>", map_opts)
 map("n", "gl", vim.diagnostic.setqflist, map_opts)
 map({ "n", "i" }, "<S-Down>", function()
   vim.diagnostic.jump({ count = 1, float = true })
