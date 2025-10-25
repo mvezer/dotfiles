@@ -1,0 +1,129 @@
+local core = require("core")
+
+-- basic dependencies
+core.plugins.add("https://github.com/nvim-treesitter/nvim-treesitter")
+core.plugins.add("https://github.com/nvim-lua/plenary.nvim")
+core.plugins.add("https://github.com/MunifTanjim/nui.nvim")
+core.plugins.add("https://github.com/nvim-tree/nvim-web-devicons")
+
+-- kanagawa color scheme
+core.plugins.add("https://github.com/rebelot/kanagawa.nvim", "kanagawa", { transparent = true, theme = "dragon" })
+vim.cmd.colorscheme("kanagawa")
+
+-- tmux-neovim interop.
+core.plugins.add("https://github.com/numToStr/Navigator.nvim", "Navigator")
+
+-- supermaven - AI code completion (https://supermaven.com)
+core.plugins.add("https://github.com/supermaven-inc/supermaven-nvim", "supermaven-nvim", {
+  keymaps = { accept_suggestion = "<S-Tab>" },
+  color = { suggestion_color = "#005f5f", cterm = 23 },
+})
+
+-- GPT prompt
+core.plugins.add("https://github.com/Robitx/gp.nvim", "gp", {
+  providers = {
+    anthropic = {
+      endpoint = "https://api.anthropic.com/v1/messages",
+      secret = os.getenv("ANTHROPIC_API_KEY"),
+    },
+  },
+  agents = {
+    {
+      provider = "anthropic",
+      name = "ChatClaude-4.5-Sonnet",
+      chat = true,
+      command = true,
+      model = { model = "claude-sonnet-4-5-20250929" },
+      system_prompt = [[
+You are a general AI assistant.
+
+The user provided the additional info about how they would like you to respond:
+
+- If you're unsure don't guess and say you don't know instead.
+- Ask question if you need clarification to provide better answer.
+- Think deeply and carefully from first principles step by step.
+- Zoom out first to see the big picture and then zoom in to details.
+- Use Socratic method to improve your thinking and coding skills.
+- Don't elide any code from your output if the answer requires coding.
+- Take a deep breath; You've got this!
+]],
+    },
+  },
+  default_command_agent = "ChatClaude-4.5-Sonnet",
+  default_chat_agent = "ChatClaude-4.5-Sonnet",
+})
+
+-- formatting
+local formatters_by_ft = {
+  lua = { "stylua" },
+  rust = { "rustfmt", lsp_format = "fallback" },
+  toml = { "taplo" },
+}
+for _, ft in ipairs({
+  "javascript ",
+  "typescript",
+  "typescriptreact",
+  "javascriptreact ",
+  "json",
+  "jsonc ",
+  "yaml ",
+  "html",
+}) do
+  formatters_by_ft[ft] = { "prettier", "eslint_d", stop_after_first = true }
+end
+core.plugins.add("https://github.com/stevearc/conform.nvim", "conform", {
+  format_on_save = function(bufnr)
+    local enable_autoformat = not vim.g.disable_autoformat and not vim.b[bufnr].disable_autoformat
+    return enable_autoformat and { timeout_ms = 500, lsp_format = "fallback" } or nil
+  end,
+  formatters_by_ft = formatters_by_ft,
+})
+
+-- file explorer
+core.plugins.add({ {
+  src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
+  version = vim.version.range("3"),
+} }, "neo-tree", {
+  sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+  filesystem = { filtered_items = { hide_dotfiles = false } },
+  window = { position = "float" },
+})
+
+-- Flash navigation
+core.plugins.add("https://github.com/folke/flash.nvim", "flash", { labels = "neioarst" })
+
+-- Zettelkasten note taking
+core.plugins.add("https://github.com/zk-org/zk-nvim", "zk", { picker = "fzf_lua" })
+
+-- Markdown text renderer
+core.plugins.add("https://github.com/MeanderingProgrammer/render-markdown.nvim", "render-markdown", {
+  file_types = { "markdown", "codecompanion" },
+})
+
+-- LSP installer
+core.plugins.add("https://github.com/mason-org/mason.nvim", "mason")
+
+-- Quickfix list enhacements
+core.plugins.add("https://github.com/kevinhwang91/nvim-bqf", "bqf")
+
+-- FZF
+core.plugins.add("https://github.com/ibhagwan/fzf-lua", "fzf-lua", {
+  "max-perf",
+  winopts = { height = 1, width = 1 },
+  keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } },
+})
+
+-- Smart split/join
+core.plugins.add("https://github.com/Wansmer/treesj", "treesj")
+
+-- Neovim surround
+core.plugins.add("https://github.com/kylechui/nvim-surround", "nvim-surround")
+
+-- Macro recording helper
+core.plugins.add("https://github.com/chrisgrieser/nvim-recorder", "nvim-recorder")
+
+-- Fancy bufferline
+core.plugins.add("https://github.com/akinsho/bufferline.nvim", "bufferline")
+
+-- Marks helper
+core.plugins.add("https://github.com/chentoast/marks.nvim", "marks")
