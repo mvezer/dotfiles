@@ -10,6 +10,10 @@
     "fzf-lua": [],
     "gp.nvim": [],
     "kanagawa.nvim": [],
+    "lualine.nvim": {
+      "rev": "3946f01",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
     "marks.nvim": [],
     "mason.nvim": [],
     "neo-tree.nvim": {
