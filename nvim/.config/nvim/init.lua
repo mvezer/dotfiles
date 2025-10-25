@@ -3,9 +3,7 @@ if vim.fn.has("nvim-0.12") == 0 then
   return
 end
 
-local map_opts = { silent = true }
-local map = vim.keymap.set
-local augroup = vim.api.nvim_create_augroup("mat.cfg", {})
+local core = require("core")
 
 ---------------------------------------------------------------------------------
 --- Options
@@ -99,46 +97,27 @@ vim.g.loaded_netrwPlugin = 1
 --- Plugins
 ---------------------------------------------------------------------------------
 
-vim.pack.add({
-  "https://github.com/nvim-treesitter/nvim-treesitter",
-  "https://github.com/numToStr/Navigator.nvim",
-  "https://github.com/supermaven-inc/supermaven-nvim",
-  "https://github.com/stevearc/conform.nvim",
-  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
-  "https://github.com/zk-org/zk-nvim",
-  "https://github.com/mason-org/mason.nvim",
-  "https://github.com/kevinhwang91/nvim-bqf",
-  "https://github.com/ibhagwan/fzf-lua",
-  "https://github.com/Wansmer/treesj",
-  "https://github.com/kylechui/nvim-surround",
-  "https://github.com/folke/flash.nvim",
-  "https://github.com/rebelot/kanagawa.nvim",
-  "https://github.com/chrisgrieser/nvim-recorder",
-  "https://github.com/Robitx/gp.nvim",
-  "https://github.com/chentoast/marks.nvim",
-  {
-    src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
-    version = vim.version.range("3"),
-  },
-  "https://github.com/nvim-lua/plenary.nvim",
-  "https://github.com/MunifTanjim/nui.nvim",
-  "https://github.com/nvim-tree/nvim-web-devicons",
-  "https://github.com/akinsho/bufferline.nvim",
-})
+-- basic dependencies
+core.plugins.add("https://github.com/nvim-treesitter/nvim-treesitter")
+core.plugins.add("https://github.com/nvim-lua/plenary.nvim")
+core.plugins.add("https://github.com/MunifTanjim/nui.nvim")
+core.plugins.add("https://github.com/nvim-tree/nvim-web-devicons")
 
-local setup = function(module, opts)
-  require(module).setup(opts or {})
-end
-
-setup("kanagawa", { transparent = true, theme = "dragon" })
+-- kanagawa color scheme
+core.plugins.add("https://github.com/rebelot/kanagawa.nvim", "kanagawa", { transparent = true, theme = "dragon" })
 vim.cmd.colorscheme("kanagawa")
 
-setup("supermaven-nvim", {
+-- tmux-neovim interop.
+core.plugins.add("https://github.com/numToStr/Navigator.nvim", "Navigator")
+
+-- supermaven - AI code completion (https://supermaven.com)
+core.plugins.add("https://github.com/supermaven-inc/supermaven-nvim", "supermaven-nvim", {
   keymaps = { accept_suggestion = "<S-Tab>" },
   color = { suggestion_color = "#005f5f", cterm = 23 },
 })
 
-setup("gp", {
+-- GPT prompt
+core.plugins.add("https://github.com/Robitx/gp.nvim", "gp", {
   providers = {
     anthropic = {
       endpoint = "https://api.anthropic.com/v1/messages",
@@ -152,31 +131,26 @@ setup("gp", {
       chat = true,
       command = true,
       model = { model = "claude-sonnet-4-5-20250929" },
-      system_prompt = require("gp.defaults").chat_system_prompt,
+      system_prompt = [[
+You are a general AI assistant.
+
+The user provided the additional info about how they would like you to respond:
+
+- If you're unsure don't guess and say you don't know instead.
+- Ask question if you need clarification to provide better answer.
+- Think deeply and carefully from first principles step by step.
+- Zoom out first to see the big picture and then zoom in to details.
+- Use Socratic method to improve your thinking and coding skills.
+- Don't elide any code from your output if the answer requires coding.
+- Take a deep breath; You've got this!
+]],
     },
   },
   default_command_agent = "ChatClaude-4.5-Sonnet",
   default_chat_agent = "ChatClaude-4.5-Sonnet",
 })
 
-setup("flash", { labels = "neioarst" })
-setup("zk", { picker = "fzf_lua" })
-setup("render-markdown", { file_types = { "markdown", "codecompanion" } })
-
-setup("Navigator")
-setup("mason")
-setup("bqf")
-setup("treesj")
-setup("nvim-surround")
-setup("recorder")
-setup("neo-tree", {
-  sources = { "filesystem", "buffers", "git_status", "document_symbols" },
-  filesystem = { filtered_items = { hide_dotfiles = false } },
-  window = { position = "float" },
-})
-setup("bufferline")
-setup("marks", { mappings = { delete_line = "M" } })
-
+-- formatting
 local formatters_by_ft = {
   lua = { "stylua" },
   rust = { "rustfmt", lsp_format = "fallback" },
@@ -194,36 +168,83 @@ for _, ft in ipairs({
 }) do
   formatters_by_ft[ft] = { "prettier", "eslint_d", stop_after_first = true }
 end
-setup("conform", {
+core.plugins.add("https://github.com/stevearc/conform.nvim", "conform", {
   format_on_save = function(bufnr)
     local enable_autoformat = not vim.g.disable_autoformat and not vim.b[bufnr].disable_autoformat
     return enable_autoformat and { timeout_ms = 500, lsp_format = "fallback" } or nil
   end,
   formatters_by_ft = formatters_by_ft,
 })
-map("n", "<leader>f", function()
-  vim.b.disable_autoformat = not vim.b.disable_autoformat
-  vim.cmd("redrawstatus")
-end, map_opts)
-require("fzf-lua").setup({
+
+-- file explorer
+core.plugins.add({ {
+  src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
+  version = vim.version.range("3"),
+} }, "neo-tree", {
+  sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+  filesystem = { filtered_items = { hide_dotfiles = false } },
+  window = { position = "float" },
+})
+
+-- Flash navigation
+core.plugins.add("https://github.com/folke/flash.nvim", "flash", { labels = "neioarst" })
+
+-- Zettelkasten note taking
+core.plugins.add("https://github.com/zk-org/zk-nvim", "zk", { picker = "fzf_lua" })
+
+-- Markdown text renderer
+core.plugins.add("https://github.com/MeanderingProgrammer/render-markdown.nvim", "render-markdown", {
+  file_types = { "markdown", "codecompanion" },
+})
+
+-- LSP installer
+core.plugins.add("https://github.com/mason-org/mason.nvim", "mason")
+
+-- Quickfix list enhacements
+core.plugins.add("https://github.com/kevinhwang91/nvim-bqf", "bqf")
+
+-- FZF
+core.plugins.add("https://github.com/ibhagwan/fzf-lua", "fzf-lua", {
   "max-perf",
   winopts = { height = 1, width = 1 },
   keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } },
 })
 
+-- Smart split/join
+core.plugins.add("https://github.com/Wansmer/treesj", "treesj")
+
+-- Neovim surround
+core.plugins.add("https://github.com/kylechui/nvim-surround", "nvim-surround")
+
+-- Macro recording helper
+core.plugins.add("https://github.com/chrisgrieser/nvim-recorder", "nvim-recorder")
+
+-- Fancy bufferline
+core.plugins.add("https://github.com/akinsho/bufferline.nvim", "bufferline")
+
+-- Marks helper
+core.plugins.add("https://github.com/chentoast/marks.nvim", "marks")
+
 ---------------------------------------------------------------------------------
 --- Commands
 ---------------------------------------------------------------------------------
+-- disable new line auto comment
+vim.api.nvim_create_autocmd("FileType", {
+  group = core.augroup,
+  callback = function()
+    vim.cmd("set formatoptions-=ro")
+  end,
+})
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = augroup,
+  group = core.augroup,
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
--- Grep
+-- Grep with rg
 if vim.fn.executable("rg") == 1 then
   function _G.RgFindFiles(cmdarg, _cmdcomplete)
     local fnames = vim.fn.systemlist('rg --files --hidden --color=never --glob="!.git"')
@@ -245,7 +266,7 @@ end
 
 vim.api.nvim_create_autocmd({ "CmdlineChanged", "CmdlineLeave" }, {
   pattern = { "*" },
-  group = augroup,
+  group = core.augroup,
   callback = function(ev)
     local function should_enable_autocomplete()
       local cmdline_cmd = vim.fn.split(vim.fn.getcmdline(), " ")[1]
@@ -266,7 +287,7 @@ vim.api.nvim_create_autocmd({ "CmdlineChanged", "CmdlineLeave" }, {
 
 -- Return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
-  group = augroup,
+  group = core.augroup,
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -278,7 +299,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Create directories when saving files
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = augroup,
+  group = core.augroup,
   callback = function()
     local dir = vim.fn.expand("<afile>:p:h")
     if vim.fn.isdirectory(dir) == 0 then
@@ -296,10 +317,21 @@ vim.api.nvim_create_user_command("Config", function()
   vim.cmd("e $MYVIMRC")
 end, {})
 
+vim.api.nvim_create_user_command("UpdatePlugins", core.plugins.fzf, {})
+vim.api.nvim_create_user_command("Plugins", core.plugins.fzf, {})
+vim.api.nvim_create_user_command("ListPlugins", function()
+  for _, plugin in ipairs(core.plugins.get_all()) do
+    print(plugin)
+  end
+end, {})
+vim.api.nvim_create_user_command("UpdateAllPlugins", function()
+  vim.pack.update(core.plugins.get_all())
+end, {})
+
 ---------------------------------------------------------------------------------
 --- LSP and completion
 ---------------------------------------------------------------------------------
-map("n", "<leader>ld", vim.diagnostic.open_float, map_opts)
+core.map_key("n", "<leader>ld", vim.diagnostic.open_float)
 vim.lsp.enable({ "clangd", "bashls", "jsonls", "lua_ls", "ts_ls", "yamlls" })
 
 local chars = {}
@@ -307,7 +339,7 @@ for i = 32, 126 do
   table.insert(chars, string.char(i))
 end
 local pumMap = function(insertKmap, pumKmap)
-  map("i", insertKmap, function()
+  core.map_key("i", insertKmap, function()
     if vim.fn.pumvisible() == 0 then
       return insertKmap
     else
@@ -316,7 +348,7 @@ local pumMap = function(insertKmap, pumKmap)
   end, { expr = true })
 end
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = augroup,
+  group = core.augroup,
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
     if client:supports_method("textDocument/implementation") then
@@ -368,7 +400,7 @@ local mode_colors = {
 
 local branch = "?git"
 vim.api.nvim_create_autocmd("BufEnter", {
-  group = augroup,
+  group = core.augroup,
   pattern = "*",
   callback = function()
     branch = vim.fn.system("git branch --show-current 2>/dev/null"):gsub("\n", "")
@@ -421,64 +453,68 @@ vim.o.statusline = "%{%v:lua.RENDER_STATUSBAR()%}"
 ---------------------------------------------------------------------------------
 --- Keymap
 ---------------------------------------------------------------------------------
-map("v", "<", "<gv", map_opts)
-map("v", ">", ">gv", map_opts)
-map({ "n", "v" }, "c", '"_c', map_opts)
-map({ "n", "v" }, "C", '"_C', map_opts)
-map("v", "p", "P", map_opts)
-map({ "n", "v", "i" }, "<c-down>", ":NavigatorDown<CR>", map_opts)
-map({ "n", "v", "i" }, "<c-up>", ":NavigatorUp<CR>", map_opts)
-map({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>", map_opts)
-map({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>", map_opts)
-map("n", "<leader>bo", ":%bd|e#|bd#<CR>", map_opts) -- close all buffers but the current one
-map({ "n", "v", "i" }, "<C-x>", ":bd<CR>", map_opts)
-map("n", "<leader>by", ":let @+ = expand('%:p')", map_opts)
-map("n", "Y", "y$", { desc = "Yank to end of line" })
-map("n", "<C-u>", "<C-u>zz")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<Down>", "gj", map_opts)
-map("n", "<Up>", "gk", map_opts)
-map("n", "<Esc>", ":noh<CR>", map_opts)
-map("t", "<Esc>", "<C-\\><C-n>", map_opts)
-map("n", "<S-Tab>", ":bprevious<CR>", map_opts)
-map("n", "<Tab>", ":bnext<CR>", map_opts)
-map("n", "<leader>e", ":Neotree toggle=true source=filesystem<CR>", map_opts)
-map("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>", map_opts)
-map("n", "<leader>c", function()
+core.map_key("v", "<", "<gv")
+core.map_key("v", ">", ">gv")
+core.map_key({ "n", "v" }, "c", '"_c')
+core.map_key({ "n", "v" }, "C", '"_C')
+core.map_key("v", "p", "P")
+core.map_key({ "n", "v", "i" }, "<c-down>", ":NavigatorDown<CR>")
+core.map_key({ "n", "v", "i" }, "<c-up>", ":NavigatorUp<CR>")
+core.map_key({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>")
+core.map_key({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>")
+core.map_key("n", "<leader>bo", ":%bd|e#|bd#<CR>") -- close all buffers but the current one
+core.map_key({ "n", "v", "i" }, "<C-x>", ":bd<CR>")
+core.map_key("n", "<leader>by", ":let @+ = expand('%:p')")
+core.map_key("n", "Y", "y$", { desc = "Yank to end of line" })
+core.map_key("n", "<C-u>", "<C-u>zz")
+core.map_key("n", "<C-d>", "<C-d>zz")
+core.map_key("n", "<Down>", "gj")
+core.map_key("n", "<Up>", "gk")
+core.map_key("n", "<Esc>", ":noh<CR>")
+core.map_key("t", "<Esc>", "<C-\\><C-n>")
+core.map_key("n", "<S-Tab>", ":bprevious<CR>")
+core.map_key("n", "<Tab>", ":bnext<CR>")
+core.map_key("n", "<leader>e", ":Neotree toggle=true source=filesystem<CR>")
+core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
+core.map_key("n", "<leader>f", function()
+  vim.b.disable_autoformat = not vim.b.disable_autoformat
+  vim.cmd("redrawstatus")
+end)
+core.map_key("n", "<leader>c", function()
   if vim.bo.buftype == "quickfix" then
     vim.cmd("cclose")
   else
     vim.cmd("copen")
   end
-end, map_opts)
-map({ "n", "x", "o" }, "s", function()
+end)
+core.map_key({ "n", "x", "o" }, "s", function()
   require("flash").jump()
 end, { desc = "Flash" })
 
-map("n", "<leader>sf", require("fzf-lua").files, map_opts)
-map("n", "<leader>sw", require("fzf-lua").grep_cword, map_opts)
-map("n", "<leader>sr", require("fzf-lua").oldfiles, map_opts)
-map("n", "<leader>st", require("fzf-lua").live_grep, map_opts)
-map("n", "<leader>sh", require("fzf-lua").helptags, map_opts)
-map("n", "<leader>sd", require("fzf-lua").lsp_document_diagnostics, map_opts)
-map("n", "<leader>sm", require("fzf-lua").marks, map_opts)
-map("n", "<leader><leader>", require("fzf-lua").buffers, map_opts)
+core.map_key("n", "<leader>sf", require("fzf-lua").files)
+core.map_key("n", "<leader>sw", require("fzf-lua").grep_cword)
+core.map_key("n", "<leader>sr", require("fzf-lua").oldfiles)
+core.map_key("n", "<leader>st", require("fzf-lua").live_grep)
+core.map_key("n", "<leader>sh", require("fzf-lua").helptags)
+core.map_key("n", "<leader>sd", require("fzf-lua").lsp_document_diagnostics)
+core.map_key("n", "<leader>sm", require("fzf-lua").marks)
+core.map_key("n", "<leader><leader>", require("fzf-lua").buffers)
 
-map("n", "gd", vim.lsp.buf.definition, map_opts)
-map("n", "K", vim.lsp.buf.hover, map_opts)
-map("n", "gr", vim.lsp.buf.references, map_opts)
-map("n", "<leader>lr", vim.lsp.buf.rename, map_opts)
-map("n", "<leader>ls", ":Neotree toggle=true source=document_symbols<CR>", map_opts)
-map("n", "gl", vim.diagnostic.setqflist, map_opts)
-map({ "n", "i" }, "<S-Down>", function()
+core.map_key("n", "gd", vim.lsp.buf.definition)
+core.map_key("n", "K", vim.lsp.buf.hover)
+core.map_key("n", "gr", vim.lsp.buf.references)
+core.map_key("n", "<leader>lr", vim.lsp.buf.rename)
+core.map_key("n", "<leader>ls", ":Neotree toggle=true source=document_symbols<CR>")
+core.map_key("n", "gl", vim.diagnostic.setqflist)
+core.map_key({ "n", "i" }, "<S-Down>", function()
   vim.diagnostic.jump({ count = 1, float = true })
-end, map_opts)
-map({ "n", "i" }, "<S-Up>", function()
+end)
+core.map_key({ "n", "i" }, "<S-Up>", function()
   vim.diagnostic.jump({ count = -1, float = true })
-end, map_opts)
+end)
 
-map({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>", map_opts)
-map({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>", map_opts)
-map({ "n", "v" }, "<leader>an", ":GpChatNew<CR>", map_opts)
-map({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>", map_opts)
-map({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>", map_opts)
+core.map_key({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>")
+core.map_key({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>")
+core.map_key({ "n", "v" }, "<leader>an", ":GpChatNew<CR>")
+core.map_key({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>")
+core.map_key({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>")
