@@ -1,0 +1,24 @@
+local formatters_by_ft = {
+  lua = { "stylua" },
+  rust = { "rustfmt", lsp_format = "fallback" },
+  toml = { "taplo" },
+}
+for _, ft in ipairs({
+  "javascript ",
+  "typescript",
+  "typescriptreact",
+  "javascriptreact ",
+  "json",
+  "jsonc ",
+  "yaml ",
+  "html",
+}) do
+  formatters_by_ft[ft] = { "prettier", "eslint_d", stop_after_first = true }
+end
+require("core").plugins.add("https://github.com/stevearc/conform.nvim", "conform", {
+  format_on_save = function(bufnr)
+    local enable_autoformat = not vim.g.disable_autoformat and not vim.b[bufnr].disable_autoformat
+    return enable_autoformat and { timeout_ms = 500, lsp_format = "fallback" } or nil
+  end,
+  formatters_by_ft = formatters_by_ft,
+})
