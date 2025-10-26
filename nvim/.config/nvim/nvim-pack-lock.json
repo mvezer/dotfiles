@@ -8,6 +8,10 @@
     "conform.nvim": [],
     "flash.nvim": [],
     "fzf-lua": [],
+    "gitsigns.nvim": {
+      "rev": "20ad441",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "gp.nvim": [],
     "kanagawa.nvim": [],
     "lualine.nvim": {
@@ -32,6 +36,10 @@
     "nvim-web-devicons": {
       "rev": "b8221e4",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "onedark.nvim": {
+      "rev": "de495fa",
+      "src": "https://github.com/navarasu/onedark.nvim"
     },
     "plenary.nvim": {
       "rev": "b9fd522",

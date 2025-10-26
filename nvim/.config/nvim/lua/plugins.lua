@@ -7,8 +7,12 @@ core.plugins.add("https://github.com/MunifTanjim/nui.nvim")
 core.plugins.add("https://github.com/nvim-tree/nvim-web-devicons")
 
 -- kanagawa color scheme
-core.plugins.add("https://github.com/rebelot/kanagawa.nvim", "kanagawa", { transparent = true, theme = "dragon" })
-vim.cmd.colorscheme("kanagawa")
+-- core.plugins.add("https://github.com/rebelot/kanagawa.nvim", "kanagawa", { transparent = true, theme = "dragon" })
+-- vim.cmd.colorscheme("kanagawa")
+
+-- onedark color scheme
+core.plugins.add("https://github.com/navarasu/onedark.nvim", "onedark", { transparent = true, style = "darker" })
+vim.cmd.colorscheme("onedark")
 
 -- tmux-neovim interop.
 core.plugins.add("https://github.com/numToStr/Navigator.nvim", "Navigator")
@@ -121,6 +125,8 @@ core.plugins.add("https://github.com/kylechui/nvim-surround", "nvim-surround")
 
 -- Macro recording helper
 core.plugins.add("https://github.com/chrisgrieser/nvim-recorder", "nvim-recorder")
+
+core.plugins.add("https://github.com/lewis6991/gitsigns.nvim", "gitsigns")
 
 -- Fancy bufferline
 core.plugins.add("https://github.com/akinsho/bufferline.nvim", "bufferline", {
