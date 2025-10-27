@@ -100,6 +100,12 @@ vim.api.nvim_create_user_command("UpdateAllPlugins", function()
   vim.pack.update(core.plugins.get_all())
 end, {})
 
+vim.api.nvim_create_user_command("NNew", function()
+  local title = vim.fn.input("Note title: ")
+  if title ~= nil or title ~= "" then
+    require("zk").new({ title = title })
+  end
+end, {})
 -- Auto-chaange root dir
 local root_names = { ".git", "Makefile", "package.json" }
 local root_cache = {}
@@ -122,7 +128,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
       root_cache[path] = root
     end
 
-    -- Set current directory
     vim.fn.chdir(root)
   end,
 })
