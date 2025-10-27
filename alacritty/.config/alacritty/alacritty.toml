@@ -17,6 +17,9 @@ option_as_alt = "Both"
 opacity = 0.85
 blur = false
 
+[terminal.shell]
+program = "tmux"
+
 # [terminal.shell]
 # program = "/bin/zsh"
 # args = [
