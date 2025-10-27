@@ -99,3 +99,30 @@ end, {})
 vim.api.nvim_create_user_command("UpdateAllPlugins", function()
   vim.pack.update(core.plugins.get_all())
 end, {})
+
+-- Auto-chaange root dir
+local root_names = { ".git", "Makefile", "package.json" }
+local root_cache = {}
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = core.augroup,
+  callback = function()
+    local path = vim.api.nvim_buf_get_name(0)
+    if path == "" then
+      return
+    end
+    path = vim.fs.dirname(path)
+
+    local root = root_cache[path]
+    if root == nil then
+      local root_file = vim.fs.find(root_names, { path = path, upward = true })[1]
+      if root_file == nil then
+        return
+      end
+      root = vim.fs.dirname(root_file)
+      root_cache[path] = root
+    end
+
+    -- Set current directory
+    vim.fn.chdir(root)
+  end,
+})

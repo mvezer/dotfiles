@@ -97,7 +97,21 @@ core.plugins.add({ {
 core.plugins.add("https://github.com/folke/flash.nvim", "flash", { labels = "neioarst" })
 
 -- Zettelkasten note taking
-core.plugins.add("https://github.com/zk-org/zk-nvim", "zk", { picker = "fzf_lua" })
+core.plugins.add("https://github.com/zk-org/zk-nvim", "zk", {
+  picker = "fzf_lua",
+  lsp = {
+    config = {
+      name = "zk",
+      cmd = { "zk", "lsp" },
+      filetypes = { "markdown" },
+    },
+
+    -- automatically attach buffers in a zk notebook that match the given filetypes
+    auto_attach = {
+      enabled = true,
+    },
+  },
+})
 
 -- Markdown text renderer
 core.plugins.add("https://github.com/MeanderingProgrammer/render-markdown.nvim", "render-markdown", {
