@@ -5,6 +5,8 @@ core.plugins.add("https://github.com/nvim-treesitter/nvim-treesitter")
 core.plugins.add("https://github.com/nvim-lua/plenary.nvim")
 core.plugins.add("https://github.com/MunifTanjim/nui.nvim")
 core.plugins.add("https://github.com/nvim-tree/nvim-web-devicons")
+core.plugins.add("https://github.com/neovim/nvim-lspconfig")
+core.plugins.add("https://github.com/folke/lazydev.nvim", "lazydev")
 
 -- kanagawa color scheme
 -- core.plugins.add("https://github.com/rebelot/kanagawa.nvim", "kanagawa", { transparent = true, theme = "dragon" })
@@ -67,10 +69,10 @@ for _, ft in ipairs({
   "javascript ",
   "typescript",
   "typescriptreact",
-  "javascriptreact ",
+  "javascriptreact",
   "json",
-  "jsonc ",
-  "yaml ",
+  "jsonc",
+  "yaml",
   "html",
 }) do
   formatters_by_ft[ft] = { "prettier", "eslint_d", stop_after_first = true }

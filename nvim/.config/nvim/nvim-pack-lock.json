@@ -14,6 +14,10 @@
     },
     "gp.nvim": [],
     "kanagawa.nvim": [],
+    "lazydev.nvim": {
+      "rev": "c2dfe35",
+      "src": "https://github.com/folke/lazydev.nvim"
+    },
     "lualine.nvim": {
       "rev": "3946f01",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -30,6 +34,10 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-bqf": [],
+    "nvim-lspconfig": {
+      "rev": "2b52bc2",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
     "nvim-recorder": [],
     "nvim-surround": [],
     "nvim-treesitter": [],

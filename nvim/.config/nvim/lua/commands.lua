@@ -107,7 +107,7 @@ vim.api.nvim_create_user_command("NNew", function()
   end
 end, {})
 -- Auto-chaange root dir
-local root_names = { ".git", "Makefile", "package.json" }
+local root_names = { ".git", "Makefile", "package.json", "init.lua" }
 local root_cache = {}
 vim.api.nvim_create_autocmd("BufEnter", {
   group = core.augroup,
