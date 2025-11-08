@@ -1,6 +1,8 @@
 #!/user/bin/env zsh
 
 export ZK_DIR="$HOME/notes"
+alias pn="zk --working-dir $HOME/notes"
+alias wn="zk --working-dir $HOME/work-notes"
 
 alias n="pushd &> /dev/null && cd $ZK_DIR && zk edit quick-note && popd &> /dev/null"
 
