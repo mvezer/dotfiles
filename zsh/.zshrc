@@ -68,7 +68,7 @@ fi
 export ZSH_INCLUDES="$HOME/.zsh_includes"
 if [[ "$OS" == "macos" ]]; then
   source $ZSH_INCLUDES/macos.zsh
-  source $ZSH_INCLUDES/promaton.zsh
+  source $ZSH_INCLUDES/work.zsh
 elif [[ "$OS" =~ "linux" ]]; then
   source $ZSH_INCLUDES/linux.zsh
   if [[ "$OS" == "void-linux" ]]; then 
@@ -89,6 +89,7 @@ source $ZSH_INCLUDES/go.zsh
 source $ZSH_INCLUDES/kubernetes.zsh
 source $ZSH_INCLUDES/rust.zsh
 source $ZSH_INCLUDES/lua.zsh
+source $ZSH_INCLUDES/work.zsh
 # source $ZSH_INCLUDES/nodejs.zsh
 source $ZSH_INCLUDES/tmux.zsh
 source $ZSH_INCLUDES/zk.zsh

@@ -1,18 +1,33 @@
 {
   "plugins": {
-    "Navigator.nvim": [],
+    "Navigator.nvim": {
+      "rev": "91d8650",
+      "src": "https://github.com/numToStr/Navigator.nvim"
+    },
     "bufferline.nvim": {
       "rev": "655133c",
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
-    "conform.nvim": [],
-    "flash.nvim": [],
-    "fzf-lua": [],
+    "conform.nvim": {
+      "rev": "26c02e1",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "flash.nvim": {
+      "rev": "fcea7ff",
+      "src": "https://github.com/folke/flash.nvim"
+    },
+    "fzf-lua": {
+      "rev": "a8458b7",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
     "gitsigns.nvim": {
       "rev": "20ad441",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
-    "gp.nvim": [],
+    "gp.nvim": {
+      "rev": "c37f154",
+      "src": "https://github.com/Robitx/gp.nvim"
+    },
     "kanagawa.nvim": [],
     "lazydev.nvim": {
       "rev": "c2dfe35",
@@ -22,8 +37,14 @@
       "rev": "3946f01",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "marks.nvim": [],
-    "mason.nvim": [],
+    "marks.nvim": {
+      "rev": "f353e8c",
+      "src": "https://github.com/chentoast/marks.nvim"
+    },
+    "mason.nvim": {
+      "rev": "ad7146a",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
     "neo-tree.nvim": {
       "rev": "8cdd6b1",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim",
@@ -33,14 +54,26 @@
       "rev": "de74099",
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
-    "nvim-bqf": [],
+    "nvim-bqf": {
+      "rev": "a77b17e",
+      "src": "https://github.com/kevinhwang91/nvim-bqf"
+    },
     "nvim-lspconfig": {
       "rev": "2b52bc2",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
-    "nvim-recorder": [],
-    "nvim-surround": [],
-    "nvim-treesitter": [],
+    "nvim-recorder": {
+      "rev": "5e72567",
+      "src": "https://github.com/chrisgrieser/nvim-recorder"
+    },
+    "nvim-surround": {
+      "rev": "fcfa7e0",
+      "src": "https://github.com/kylechui/nvim-surround"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
     "nvim-web-devicons": {
       "rev": "b8221e4",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
@@ -53,9 +86,21 @@
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
-    "render-markdown.nvim": [],
-    "supermaven-nvim": [],
-    "treesj": [],
-    "zk-nvim": []
+    "render-markdown.nvim": {
+      "rev": "10126ef",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
+    "supermaven-nvim": {
+      "rev": "07d20fc",
+      "src": "https://github.com/supermaven-inc/supermaven-nvim"
+    },
+    "treesj": {
+      "rev": "4770492",
+      "src": "https://github.com/Wansmer/treesj"
+    },
+    "zk-nvim": {
+      "rev": "575c3e8",
+      "src": "https://github.com/zk-org/zk-nvim"
+    }
   }
 }
