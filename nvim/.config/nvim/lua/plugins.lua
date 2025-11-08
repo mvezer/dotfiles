@@ -6,7 +6,7 @@ local plugin_spec = {
   { "MunifTanjim/nui.nvim" },
   { "nvim-tree/nvim-web-devicons" },
   { "neovim/nvim-lspconfig" },
-  { "folke/lazydev.nvim",             opts = {} },
+  { "folke/lazydev.nvim", opts = {} },
   {
     "navarasu/onedark.nvim",
     config = function()
@@ -16,7 +16,7 @@ local plugin_spec = {
       })
 
       vim.cmd.colorscheme("onedark")
-    end
+    end,
   },
   { "https://github.com/numToStr/Navigator.nvim", opts = {} },
   {
@@ -24,7 +24,7 @@ local plugin_spec = {
     opts = {
       keymaps = { accept_suggestion = "<S-Tab>" },
       color = { suggestion_color = "#005f5f", cterm = 23 },
-    }
+    },
   },
   {
     "Robitx/gp.nvim",
@@ -59,8 +59,7 @@ The user provided the additional info about how they would like you to respond:
       },
       default_command_agent = "ChatClaude-4.5-Sonnet",
       default_chat_agent = "ChatClaude-4.5-Sonnet",
-    }
-
+    },
   },
   {
     "stevearc/conform.nvim",
@@ -89,7 +88,7 @@ The user provided the additional info about how they would like you to respond:
         end,
         formatters_by_ft = formatters_by_ft,
       })
-    end
+    end,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -104,11 +103,11 @@ The user provided the additional info about how they would like you to respond:
       sources = { "filesystem", "buffers", "git_status", "document_symbols" },
       filesystem = { filtered_items = { hide_dotfiles = false } },
       window = { position = "float" },
-    }
+    },
   },
   {
     "folke/flash.nvim",
-    opts = { labels = "neioarst" }
+    opts = { labels = "neioarst" },
   },
   {
     "zk-org/zk-nvim",
@@ -120,13 +119,15 @@ The user provided the additional info about how they would like you to respond:
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
       file_types = { "markdown", "codecompanion" },
-    }
+    },
   },
   {
-    "kevinhwang91/nvim-bqf", opts = {}
+    "kevinhwang91/nvim-bqf",
+    opts = {},
   },
   {
-    "mason-org/mason.nvim", opts = {}
+    "mason-org/mason.nvim",
+    opts = {},
   },
   {
     "ibhagwan/fzf-lua",
@@ -134,16 +135,19 @@ The user provided the additional info about how they would like you to respond:
       "max-perf",
       winopts = { height = 1, width = 1 },
       keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } },
-    }
+    },
   },
   {
-    "Wansmer/treesj", opts = {}
+    "Wansmer/treesj",
+    opts = {},
   },
   {
-    "chrisgrieser/nvim-recorder", opts = {}
+    "chrisgrieser/nvim-recorder",
+    opts = {},
   },
   {
-    "lewis6991/gitsigns.nvim", opts = {}
+    "lewis6991/gitsigns.nvim",
+    opts = {},
   },
   {
     "akinsho/bufferline.nvim",
@@ -157,16 +161,16 @@ The user provided the additional info about how they would like you to respond:
           alphabet = "neioarstgmluyqwfpbj",
         },
       },
-    }
+    },
   },
   {
     "chentoast/marks.nvim",
     opts = {
       mappings = {
         set_next = "mm",
-        delete_line = "M"
-      }
-    }
+        delete_line = "M",
+      },
+    },
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -228,12 +232,38 @@ The user provided the additional info about how they would like you to respond:
         inactive_winbar = {},
         extensions = {},
       })
-    end
+    end,
   },
   {
-    "kylechui/nvim-surround", opts = {}
-  }
-
+    "kylechui/nvim-surround",
+    opts = {},
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      background_colour = "#000000",
+      lsp = {
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = false,
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      { "rcarriga/nvim-notify", opts = { background_colour = "#000000" } },
+    },
+  },
 }
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -242,7 +272,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()

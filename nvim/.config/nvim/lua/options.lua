@@ -33,7 +33,7 @@ vim.opt.pumblend = 10
 vim.opt.winblend = 0
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = ""
-vim.opt.lazyredraw = true
+-- vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
 -- Command-line completion
