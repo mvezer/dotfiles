@@ -194,6 +194,13 @@ The user provided the additional info about how they would like you to respond:
 
         return "󰦪"
       end
+      local function autopairs()
+        if require("nvim-autopairs").state.disabled == true then
+          return "-"
+        end
+
+        return "󰅩"
+      end
 
       local function supermaven()
         if require("supermaven-nvim.api").is_running() then
@@ -215,7 +222,7 @@ The user provided the additional info about how they would like you to respond:
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },
           lualine_c = { filename_plus_project },
-          lualine_x = { autoformat, supermaven },
+          lualine_x = { autopairs, autoformat, supermaven },
           lualine_y = { { "filetype", icon_only = true }, { "lsp_status", icon = "󰬓" } },
           lualine_z = { "location" },
         },
@@ -263,6 +270,12 @@ The user provided the additional info about how they would like you to respond:
       "MunifTanjim/nui.nvim",
       { "rcarriga/nvim-notify", opts = { background_colour = "#000000" } },
     },
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    opts = {},
   },
 }
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
