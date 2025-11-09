@@ -135,6 +135,9 @@ The user provided the additional info about how they would like you to respond:
       "max-perf",
       winopts = { height = 1, width = 1 },
       keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } },
+      buffes = {
+        sort_lastused = false,
+      },
     },
   },
   {
@@ -148,20 +151,6 @@ The user provided the additional info about how they would like you to respond:
   {
     "lewis6991/gitsigns.nvim",
     opts = {},
-  },
-  {
-    "akinsho/bufferline.nvim",
-    opts = {
-      options = {
-        style_preset = 4,
-        show_buffer_close_icons = false,
-        color_icons = false,
-        indicator = { style = "underline" },
-        pick = {
-          alphabet = "neioarstgmluyqwfpbj",
-        },
-      },
-    },
   },
   {
     "chentoast/marks.nvim",
