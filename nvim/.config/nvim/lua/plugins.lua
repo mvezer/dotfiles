@@ -264,6 +264,10 @@ The user provided the additional info about how they would like you to respond:
     config = true,
     opts = {},
   },
+  {
+    "stevearc/overseer.nvim",
+    opts = {},
+  },
 }
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
