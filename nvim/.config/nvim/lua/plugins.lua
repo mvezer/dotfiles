@@ -1,5 +1,3 @@
-local core = require("core")
-
 local plugin_spec = {
   { "nvim-treesitter/nvim-treesitter" },
   { "nvim-lua/plenary.nvim" },
