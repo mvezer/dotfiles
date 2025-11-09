@@ -55,7 +55,18 @@ plugins.add = function(spec, name, opts)
   end
 end
 
+local function is_quickfix_open()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].buftype == "quickfix" then
+      return true
+    end
+  end
+  return false
+end
+
 return {
+  is_quickfix_open = is_quickfix_open,
   plugins = plugins,
   map_key = map_key,
   augroup = augroup,

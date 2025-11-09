@@ -27,7 +27,7 @@ core.map_key("n", "<leader>f", function()
   vim.cmd("redrawstatus")
 end)
 core.map_key("n", "<leader>c", function()
-  if vim.bo.buftype == "quickfix" then
+  if core.is_quickfix_open() then
     vim.cmd("cclose")
   else
     vim.cmd("copen")
