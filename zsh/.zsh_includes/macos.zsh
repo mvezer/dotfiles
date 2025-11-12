@@ -29,6 +29,3 @@ apps_to_enable=(
 alias "br"="HOMEBREW_NO_AUTO_UPDATE=1 brew bundle install --file=~/Brewfile --cleanup"
 alias "bru"="brew bundle install --file=~/Brewfile --cleanup && enable_apps ${apps_to_enable[*]}"
 
-funciton ts() {
-  date -r "$1" '+%d.%m.%Y:%H:%M:%S'
-}

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# gives the provided millisecond timestamp as a human-readable string in local timezone
+
+ut -p ms parse $1
