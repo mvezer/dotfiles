@@ -4,7 +4,7 @@ local plugin_spec = {
   { "MunifTanjim/nui.nvim" },
   { "nvim-tree/nvim-web-devicons" },
   { "neovim/nvim-lspconfig" },
-  { "folke/lazydev.nvim", opts = {} },
+  { "folke/lazydev.nvim",             opts = {} },
   {
     "navarasu/onedark.nvim",
     config = function()
@@ -268,6 +268,11 @@ The user provided the additional info about how they would like you to respond:
     "stevearc/overseer.nvim",
     opts = {},
   },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  }
 }
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -276,7 +281,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
