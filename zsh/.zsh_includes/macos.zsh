@@ -28,4 +28,5 @@ apps_to_enable=(
 
 alias "br"="HOMEBREW_NO_AUTO_UPDATE=1 brew bundle install --file=~/Brewfile --cleanup"
 alias "bru"="brew bundle install --file=~/Brewfile --cleanup && enable_apps ${apps_to_enable[*]}"
+alias "okular"="/Applications/okular.app/Contents/MacOS/okular > /dev/null 2>&1 &"
 
