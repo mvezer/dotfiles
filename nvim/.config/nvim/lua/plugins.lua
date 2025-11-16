@@ -280,6 +280,46 @@ The user provided the additional info about how they would like you to respond:
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require("dap")
+      local utils = require("dap.utils")
+      dap.adapters = {
+        ["pwa-node"] = {
+          type = "server",
+          port = "${port}",
+          executable = {
+            command = "js-debug-adapter",
+            args = {
+              "${port}",
+            },
+          },
+        },
+      }
+
+      dap.configurations["typescript"] = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+        {
+          type = "pwa-node",
+          request = "attach",
+          name = "Attach to process ID",
+          processId = utils.pick_process,
+          cwd = "${workspaceFolder}",
+        },
+      }
+    end,
+  },
+  {
+    "igorlfs/nvim-dap-view",
+    opts = {},
+  },
 }
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
