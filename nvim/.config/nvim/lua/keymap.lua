@@ -62,8 +62,19 @@ core.map_key("n", "<leader>gl", ":Gitsigns setqflist<CR>")
 core.map_key("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
 core.map_key({ "n", "i" }, "<S-Down>", ":cn<CR>")
 core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
+
+-- AI stuff
 core.map_key({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>")
 core.map_key({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>")
 core.map_key({ "n", "v" }, "<leader>an", ":GpChatNew<CR>")
 core.map_key({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>")
 core.map_key({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>")
+
+-- debug stuff
+core.map_key("n", "<leader>db", ":DapToggleBreakpoint<CR>")
+core.map_key("n", "<leader>dd", ":DapViewToggle<CR>")
+core.map_key("n", "<leader>dc", ":DapContinue<CR>")
+core.map_key("n", "<leader>dD", ":DapDisconnect<CR>")
+core.map_key("n", "<leader>do", ":DapStepOver<CR>")
+core.map_key("n", "<leader>dO", ":DapStepOut<CR>")
+core.map_key("n", "<leader>di", ":DapStepInto<CR>")
