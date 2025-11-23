@@ -1,0 +1,8 @@
+require("fzf-lua").setup({
+	"max-perf",
+	winopts = { height = 1, width = 1 },
+	keymap = { fzf = { ["ctrl-q"] = "select-all+accept" } },
+	buffes = {
+		sort_lastused = false,
+	},
+})
