@@ -25,8 +25,8 @@ require("blink.cmp").setup({
 		preset = "default",
 		["<Up>"] = { "select_prev", "fallback" },
 		["<Down>"] = { "select_next", "fallback" },
-		["<CR>"] = { "select_and_accept" },
-		["<Tab>"] = { "accept" },
+		["<CR>"] = { "accept", "fallback" },
+		["<Tab>"] = { "accept", "fallback" },
 	},
 	appearance = {
 		use_nvim_cmp_as_default = true,

@@ -9,6 +9,10 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "bufferline.nvim": {
+      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
+      "src": "https://github.com/akinsho/bufferline.nvim"
+    },
     "conform.nvim": {
       "rev": "afce105",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -73,6 +77,10 @@
       "rev": "7a2c97c",
       "src": "https://github.com/windwp/nvim-autopairs"
     },
+    "nvim-bqf": {
+      "rev": "a77b17e39b1b707b6feee86a36c83703c1534c08",
+      "src": "https://github.com/kevinhwang91/nvim-bqf"
+    },
     "nvim-dap": {
       "rev": "5860c7c",
       "src": "https://github.com/mfussenegger/nvim-dap"
@@ -88,6 +96,10 @@
     "nvim-recorder": {
       "rev": "5e72567",
       "src": "https://github.com/chrisgrieser/nvim-recorder"
+    },
+    "nvim-surround": {
+      "rev": "fcfa7e02323d57bfacc3a141f8a74498e1522064",
+      "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
       "rev": "42fc28ba",
