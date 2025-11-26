@@ -1,3 +1,21 @@
+require("nvim-treesitter.configs").setup({
+	sync_install = false,
+	ignore_install = { "" },
+	auto_install = true,
+	modules = {},
+	ensure_installed = {
+		"lua",
+		"typescript",
+		"markdown",
+		"json",
+		"tsx",
+		"javascript",
+		"yaml",
+		"rust",
+		"go",
+	},
+})
+
 require("nvim-treesitter-textobjects").setup({
 	select = {
 		-- Automatically jump forward to textobj, similar to targets.vim
