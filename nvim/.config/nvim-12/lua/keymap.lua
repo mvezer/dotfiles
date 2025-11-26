@@ -66,6 +66,7 @@ core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
 -- AI stuff
 core.map_key({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>")
+core.map_key({ "n", "v" }, "<leader>aA", ":GpAppend<CR>")
 core.map_key({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>")
 core.map_key({ "n", "v" }, "<leader>an", ":GpChatNew<CR>")
 core.map_key({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>")
