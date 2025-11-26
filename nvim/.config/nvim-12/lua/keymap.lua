@@ -64,6 +64,8 @@ core.map_key("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
 core.map_key({ "n", "i" }, "<S-Down>", ":cn<CR>")
 core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
+core.map_key("n", "<leader>m", ":TSJToggle<CR>")
+
 -- AI stuff
 core.map_key({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>")
 core.map_key({ "n", "v" }, "<leader>aA", ":GpAppend<CR>")
