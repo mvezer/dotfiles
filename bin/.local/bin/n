@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+if [[ -z "OS" ]]; then
+  if [[ "$OSTYPE" == "darwin"* ]]; then # macOS
+    OS="macos"
+  else # it must be linux or WSL lol
+    OS="linux"
+  fi
+fi
+
+if [[ -z "$ZK_DIR" ]]; then
+  export ZK_WORK_DIR="$HOME/work-notes"
+  export ZK_PRIVATE_DIR="$HOME/notes"
+  if [[ "$OS" == "macos" ]]; then
+    export ZK_DIR="$ZK_WORK_DIR"
+  else
+    export ZK_DIR="$ZK_PRIVATE_DIR"
+  fi
+fi
+
+zk --working-dir $ZK_DIR "$@"
+
+alias pn="zk --working-dir $ZK_PRIVATE_DIR"
+alias wn="zk --working-dir $ZK_WORK_DIR"
+alias n="zk --working-dir $ZK_DIR"

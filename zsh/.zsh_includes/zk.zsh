@@ -1,10 +1,16 @@
 #!/user/bin/env zsh
+export ZK_WORK_DIR="$HOME/work-notes"
+export ZK_PRIVATE_DIR="$HOME/notes"
+if [[ "$OS" == "macos" ]]; then
+  export ZK_DIR="$ZK_WORK_DIR"
+else
+  export ZK_DIR="$ZK_PRIVATE_DIR"
+fi
 
-export ZK_DIR="$HOME/notes"
-alias pn="zk --working-dir $HOME/notes"
-alias wn="zk --working-dir $HOME/work-notes"
+alias pn="zk --working-dir $ZK_PRIVATE_DIR"
+alias wn="zk --working-dir $ZK_WORK_DIR"
 
-alias n="pushd &> /dev/null && cd $ZK_DIR && zk edit quick-note && popd &> /dev/null"
+# alias n="pushd &> /dev/null && cd $ZK_DIR && zk edit quick-note && popd &> /dev/null"
 
 # function day() {
 #   pushd &> /dev/null
