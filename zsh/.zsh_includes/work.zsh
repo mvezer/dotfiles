@@ -5,3 +5,5 @@ alias awsdev='export AWS_PROFILE=dev && aws sso login --profile dev && aws sts g
 alias pfw='telepresence connect --context arn:aws:eks:eu-central-1:739275469289:cluster/natix-dev-eks -n driveand'
 
 alias qr='qrencode -t UTF8'
+
+alias now='UT_PRECISION=millisecond ut generate'
