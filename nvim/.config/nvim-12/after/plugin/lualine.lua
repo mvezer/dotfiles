@@ -45,7 +45,7 @@ require("lualine").setup({
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
 		lualine_c = { filename_plus_project },
-		lualine_x = { autopairs, autoformat, supermaven },
+		lualine_x = { "aerial", autopairs, autoformat, supermaven },
 		lualine_y = { { "filetype", icon_only = true }, { "lsp_status", icon = "󰬓" } },
 		lualine_z = { "location" },
 	},

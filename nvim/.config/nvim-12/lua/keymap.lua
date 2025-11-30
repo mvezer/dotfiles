@@ -47,6 +47,7 @@ core.map_key("n", "<leader>st", require("fzf-lua").live_grep)
 core.map_key("n", "<leader>sh", require("fzf-lua").helptags)
 core.map_key("n", "<leader>sd", require("fzf-lua").lsp_document_diagnostics)
 core.map_key("n", "<leader>sm", require("fzf-lua").marks)
+core.map_key("n", "<leader>sa", require("aerial").fzf_lua_picker)
 core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
 core.map_key("n", "<leader><leader>", require("fzf-lua").buffers)
 

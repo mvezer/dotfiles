@@ -4,6 +4,10 @@
       "rev": "91d8650",
       "src": "https://github.com/numToStr/Navigator.nvim"
     },
+    "aerial.nvim": {
+      "rev": "8bb8697",
+      "src": "https://github.com/stevearc/aerial.nvim"
+    },
     "blink.cmp": {
       "rev": "b19413d",
       "src": "https://github.com/saghen/blink.cmp",
