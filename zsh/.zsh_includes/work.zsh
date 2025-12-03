@@ -7,3 +7,5 @@ alias pfw='telepresence connect --context arn:aws:eks:eu-central-1:739275469289:
 alias qr='qrencode -t UTF8'
 
 alias now='UT_PRECISION=millisecond ut generate'
+
+alias rabbit-mq-dev="kubectl port-forward svc/event-mq 15672:15672 -n driveand & sleep 3 && open http://localhost:15672"
