@@ -21,6 +21,10 @@
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
+    "composite-highlighting.nvim": {
+      "rev": "7274396fe629fab53f02ae1caac145e655a4461b",
+      "src": "https://github.com/eggplannt/composite-highlighting.nvim"
+    },
     "conform.nvim": {
       "rev": "afce105",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -153,6 +157,10 @@
     "treesj": {
       "rev": "4770492",
       "src": "https://github.com/Wansmer/treesj"
+    },
+    "vim-helm": {
+      "rev": "2c8525fd98e57472769d137317bca83e477858ce",
+      "src": "https://github.com/towolf/vim-helm"
     },
     "zk-nvim": {
       "rev": "9402662",

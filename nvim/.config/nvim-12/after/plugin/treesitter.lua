@@ -44,3 +44,12 @@ require("nvim-treesitter-textobjects").setup({
 		include_surrounding_whitespace = false,
 	},
 })
+
+-- require("composite-highlighting").setup({
+-- 	-- Your configuration here
+-- 	languages = {
+-- 		{ parser = "gotmpl", extension = "yaml" },
+-- 		-- Add other template languages if needed
+-- 		-- { parser = "jinja", extension = "jinja2", injection_node = "template_data" },
+-- 	},
+-- })

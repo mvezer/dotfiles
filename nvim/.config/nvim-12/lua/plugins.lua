@@ -35,4 +35,5 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 	{ src = "https://github.com/saghen/blink.indent" },
 	{ src = "https://github.com/stevearc/aerial.nvim" },
+	{ src = "https://github.com/towolf/vim-helm" },
 })
