@@ -1,5 +1,28 @@
 local core = require("core")
 
+local function open_url_on_line()
+	local line = vim.api.nvim_get_current_line()
+	local url = line:match("https?://[%w-_%.%?%.:/%+=&]+")
+
+	if not url then
+		vim.notify("No URL found on current line", vim.log.levels.WARN)
+		return
+	end
+
+	local open_command
+	if vim.fn.has("mac") == 1 then
+		open_command = "open"
+	elseif vim.fn.has("unix") == 1 then
+		open_command = "xdg-open"
+	else
+		vim.notify("Unsupported operating system", vim.log.levels.ERROR)
+		return
+	end
+
+	vim.fn.jobstart({ open_command, url }, { detach = true })
+	vim.notify("Opening: " .. url, vim.log.levels.INFO)
+end
+
 core.map_key("v", "<", "<gv")
 core.map_key("v", ">", ">gv")
 core.map_key({ "n", "v" }, "c", '"_c')
@@ -83,6 +106,9 @@ core.map_key("n", "<leader>dD", ":DapDisconnect<CR>")
 core.map_key("n", "<leader>do", ":DapStepOver<CR>")
 core.map_key("n", "<leader>dO", ":DapStepOut<CR>")
 core.map_key("n", "<leader>di", ":DapStepInto<CR>")
+core.map_key("n", "gx", ":OpenUrlInLine<CR>")
+
+vim.keymap.set("n", "gx", open_url_on_line, { desc = "Open URL under cursor" })
 
 -- treesitter textobjects
 core.map_key({ "x", "o" }, "af", function()

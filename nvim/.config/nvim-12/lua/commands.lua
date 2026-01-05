@@ -30,6 +30,30 @@ if vim.fn.executable("rg") == 1 then
 	vim.o.findfunc = "v:lua.RgFindFiles"
 end
 
+-- Open URL in the current line
+vim.api.nvim_create_user_command("OpenUrlInLine", function()
+	local line = vim.api.nvim_get_current_line()
+	local url = line:match("https?://[%w-_%.%?%.:/%+=&]+")
+
+	if not url then
+		-- vim.notify("No URL found on current line", vim.log.levels.WARN)
+		return
+	end
+
+	local open_command
+	if vim.fn.has("mac") == 1 then
+		open_command = "open"
+	elseif vim.fn.has("unix") == 1 then
+		open_command = "xdg-open"
+	else
+		vim.notify("Unsupported operating system", vim.log.levels.ERROR)
+		return
+	end
+
+	vim.fn.jobstart({ open_command, url }, { detach = true })
+	vim.notify("Opening: " .. url, vim.log.levels.INFO)
+end, {})
+
 -- local function is_cmdline_type_find()
 --   local cmdline_cmd = vim.fn.split(vim.fn.getcmdline(), " ")[1]
 --
