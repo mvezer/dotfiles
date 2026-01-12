@@ -11,7 +11,7 @@ live_config_reload = true
 import = ["~/.config/alacritty/themes/one_dark.toml"]
 
 [window]
-startup_mode = "Maximized"
+# startup_mode = "Maximized"
 decorations = "none"
 option_as_alt = "Both"
 opacity = 0.90
