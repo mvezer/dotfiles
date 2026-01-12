@@ -36,4 +36,5 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.indent" },
 	{ src = "https://github.com/stevearc/aerial.nvim" },
 	{ src = "https://github.com/towolf/vim-helm" },
+	{ src = "https://github.com/iamcco/markdown-preview.nvim" },
 })
