@@ -23,6 +23,14 @@ local function open_url_on_line()
 	vim.notify("Opening: " .. url, vim.log.levels.INFO)
 end
 
+local function smart_dd()
+	if vim.api.nvim_get_current_line():match("^%s*$") then
+		vim.api.nvim_feedkeys('"_dd', "n", false)
+	else
+		vim.api.nvim_feedkeys("dd", "n", false)
+	end
+end
+
 core.map_key("v", "<", "<gv")
 core.map_key("v", ">", ">gv")
 core.map_key({ "n", "v" }, "c", '"_c')
@@ -45,6 +53,8 @@ core.map_key("t", "<Esc>", "<C-\\><C-n>")
 core.map_key("n", "<Tab>", ":b#<CR>")
 core.map_key("n", "<leader>e", ":Neotree toggle=true source=filesystem<CR>")
 core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
+core.map_key("n", "dd", smart_dd)
+
 core.map_key("n", "<leader>f", function()
 	vim.b.disable_autoformat = not vim.b.disable_autoformat
 	vim.cmd("redrawstatus")
