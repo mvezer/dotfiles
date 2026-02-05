@@ -37,4 +37,5 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/aerial.nvim" },
 	{ src = "https://github.com/towolf/vim-helm" },
 	{ src = "https://github.com/iamcco/markdown-preview.nvim" },
+	{ src = "https://github.com/gnsfujiwara/suda.nvim" },
 })

@@ -150,6 +150,10 @@
       "rev": "6e0e890",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
+    "suda.nvim": {
+      "rev": "8257bc70345ee22d05c5ef585822051d6a79e22a",
+      "src": "https://github.com/gnsfujiwara/suda.nvim"
+    },
     "supermaven-nvim": {
       "rev": "07d20fc",
       "src": "https://github.com/supermaven-inc/supermaven-nvim"
