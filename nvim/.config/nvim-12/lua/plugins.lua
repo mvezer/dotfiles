@@ -10,7 +10,6 @@ vim.pack.add({
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
 	{ src = "https://github.com/Robitx/gp.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
 	{ src = "https://github.com/folke/flash.nvim" },
 	{ src = "https://github.com/zk-org/zk-nvim" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
@@ -38,4 +37,6 @@ vim.pack.add({
 	{ src = "https://github.com/towolf/vim-helm" },
 	{ src = "https://github.com/iamcco/markdown-preview.nvim" },
 	{ src = "https://github.com/gnsfujiwara/suda.nvim" },
+	{ src = "https://github.com/leoluz/nvim-dap-go" },
+	{ src = "https://github.com/X3eRo0/dired.nvim" },
 })
