@@ -50,7 +50,8 @@ core.map_key("n", "<Down>", "gj")
 core.map_key("n", "<Up>", "gk")
 core.map_key("n", "<Esc>", ":noh<CR>")
 core.map_key("t", "<Esc>", "<C-\\><C-n>")
-core.map_key("n", "<Tab>", ":b#<CR>")
+core.map_key("n", "<Tab>", ":bNext<CR>")
+core.map_key("n", "<S-Tab>", ":bPrevious<CR>")
 core.map_key("n", "<leader>E", ":Dired<CR>") -- because of the vim-rooter the current buffer is the .git root
 core.map_key("n", "<leader>e", ":Dired %:p:h<CR>") -- open dired in the directory of the current buffer
 core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
