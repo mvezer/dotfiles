@@ -5,6 +5,7 @@ eval "$(starship init zsh)"
 export SECRETS="$HOME/.secrets" # TODO: use 1password cli instead
 export EDITOR="nvim"
 export PAGER="nvim -c 'Man!' -o -"
+export MANPAGER='nvim +Man!'
 export WORKSPACE="$HOME/workspace"
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # export TERM="xterm-256color"
