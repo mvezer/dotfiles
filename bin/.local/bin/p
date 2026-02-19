@@ -1,0 +1,20 @@
+#!/bin/env bash
+
+set -e
+
+# dependencies: must have fzf and awk installed
+# the project file is should be written in the following format:
+# project name  /path/to/projec
+# so it's title and path separated by double space
+
+PROJECTS_FILE=$HOME/.projects
+
+if [[ ! -f $PROJECTS_FILE ]]; then
+  echo "No projects file found at $PROJECTS_FILE"
+  exit 1
+fi
+
+target_dir=$(cat $PROJECTS_FILE | fzf --delimiter '  ' --with-nth=1 | awk -F'  ' '{print $2}')
+
+cd $target_dir && nvim .
+
