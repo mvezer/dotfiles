@@ -9,12 +9,31 @@ set -e
 
 PROJECTS_FILE=$HOME/.projects
 
+if [[ ! -z "$1" ]]; then
+  echo "Usage: p [add|edit]"
+  echo "$1"
+  if [[ "$1" == "add" ]]; then
+    read -p "Enter project name: " project_name
+    if [[ -z "$project_name" ]]; then
+      exit 0
+    fi
+    echo "$project_name  $PWD" >> $PROJECTS_FILE
+  elif [[ "$1" == "edit" ]]; then
+    $EDITOR $PROJECTS_FILE
+  fi
+  exit 0
+fi
+
 if [[ ! -f $PROJECTS_FILE ]]; then
   echo "No projects file found at $PROJECTS_FILE"
   exit 1
 fi
 
 target_dir=$(cat $PROJECTS_FILE | fzf --delimiter '  ' --with-nth=1 | awk -F'  ' '{print $2}')
+
+if [[ -z "$target_dir" ]]; then
+  exit 0
+fi
 
 cd $target_dir && nvim -c "FzfLua files"
 
