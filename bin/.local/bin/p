@@ -16,5 +16,6 @@ fi
 
 target_dir=$(cat $PROJECTS_FILE | fzf --delimiter '  ' --with-nth=1 | awk -F'  ' '{print $2}')
 
-cd $target_dir && nvim .
+cd $target_dir && nvim -c "FzfLua files"
+
 
