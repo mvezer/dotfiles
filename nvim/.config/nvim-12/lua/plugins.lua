@@ -6,6 +6,7 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/folke/lazydev.nvim" },
 	{ src = "https://github.com/navarasu/onedark.nvim" },
+	{ src = "https://github.com/tiagovla/tokyodark.nvim" },
 	{ src = "https://github.com/numToStr/Navigator.nvim" },
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
 	{ src = "https://github.com/Robitx/gp.nvim" },

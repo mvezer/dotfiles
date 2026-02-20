@@ -121,7 +121,7 @@ core.map_key("n", "<leader>dO", ":DapStepOut<CR>")
 core.map_key("n", "<leader>di", ":DapStepInto<CR>")
 core.map_key("n", "gx", ":OpenUrlInLine<CR>")
 
-vim.keymap.set("n", "gx", open_url_on_line, { desc = "Open URL under cursor" })
+-- vim.keymap.set("n", "gx", open_url_on_line, { desc = "Open URL under cursor" })
 
 -- treesitter textobjects
 core.map_key({ "x", "o" }, "af", function()
