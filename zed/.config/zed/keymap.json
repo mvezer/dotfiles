@@ -11,6 +11,7 @@
     "bindings": {
       "ctrl-t": "workspace::ToggleBottomDock",
       "ctrl-x": "pane::CloseActiveItem",
+      "super-b": "workspace::ToggleLeftDock",
     },
   },
   {
