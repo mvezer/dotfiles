@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -29,12 +29,19 @@ if [[ ! -f $PROJECTS_FILE ]]; then
   exit 1
 fi
 
-target_dir=$(cat $PROJECTS_FILE | fzf --delimiter '  ' --with-nth=1 | awk -F'  ' '{print $2}')
 
-if [[ -z "$target_dir" ]]; then
+SELECTED=$(cat $PROJECTS_FILE | fzf --delimiter '  ' --with-nth=1)
+
+if [[ -z "$SELECTED" ]]; then
   exit 0
 fi
 
-cd $target_dir && nvim -c "FzfLua files"
-
+TARGET_DIR=$(echo "$SELECTED" | awk -F'  ' '{print $2}')
+PROJECT_NAME=$(echo "$SELECTED" | awk -F'  ' '{print $1}')
+if [[ ! -z $TARGET_DIR ]]; then
+  cd $TARGET_DIR
+  if [[ ! -z $PROJECT_NAME ]]; then
+    tmux rename-session $PROJECT_NAME
+  fi
+fi
 
