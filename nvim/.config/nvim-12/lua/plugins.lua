@@ -34,10 +34,11 @@ vim.pack.add({
 	{ src = "https://github.com/igorlfs/nvim-dap-view" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 	{ src = "https://github.com/saghen/blink.indent" },
-	{ src = "https://github.com/stevearc/aerial.nvim" },
 	{ src = "https://github.com/towolf/vim-helm" },
 	{ src = "https://github.com/iamcco/markdown-preview.nvim" },
 	{ src = "https://github.com/gnsfujiwara/suda.nvim" },
 	{ src = "https://github.com/leoluz/nvim-dap-go" },
 	{ src = "https://github.com/X3eRo0/dired.nvim" },
+	{ src = "https://github.com/ahkohd/buffer-sticks.nvim" },
+	{ src = "https://github.com/hedyhli/outline.nvim" },
 })

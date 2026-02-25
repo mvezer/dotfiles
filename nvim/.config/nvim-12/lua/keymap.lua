@@ -1,28 +1,5 @@
 local core = require("core")
 
-local function open_url_on_line()
-	local line = vim.api.nvim_get_current_line()
-	local url = line:match("https?://[%w-_%.%?%.:/%+=&]+")
-
-	if not url then
-		vim.notify("No URL found on current line", vim.log.levels.WARN)
-		return
-	end
-
-	local open_command
-	if vim.fn.has("mac") == 1 then
-		open_command = "open"
-	elseif vim.fn.has("unix") == 1 then
-		open_command = "xdg-open"
-	else
-		vim.notify("Unsupported operating system", vim.log.levels.ERROR)
-		return
-	end
-
-	vim.fn.jobstart({ open_command, url }, { detach = true })
-	vim.notify("Opening: " .. url, vim.log.levels.INFO)
-end
-
 local function smart_dd()
 	if vim.api.nvim_get_current_line():match("^%s*$") then
 		vim.api.nvim_feedkeys('"_dd', "n", false)
@@ -50,8 +27,7 @@ core.map_key("n", "<Down>", "gj")
 core.map_key("n", "<Up>", "gk")
 core.map_key("n", "<Esc>", ":noh<CR>")
 core.map_key("t", "<Esc>", "<C-\\><C-n>")
-core.map_key("n", "<Tab>", ":bNext<CR>")
-core.map_key("n", "<S-Tab>", ":bPrevious<CR>")
+core.map_key("n", "<Tab>", ":b#<CR>")
 core.map_key("n", "<leader>E", ":Dired<CR>") -- because of the vim-rooter the current buffer is the .git root
 core.map_key("n", "<leader>e", ":Dired %:p:h<CR>") -- open dired in the directory of the current buffer
 core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
@@ -83,9 +59,10 @@ core.map_key("n", "<leader>sh", require("fzf-lua").helptags)
 core.map_key("n", "<leader>sd", require("fzf-lua").lsp_document_diagnostics)
 core.map_key("n", "<leader>sm", require("fzf-lua").marks)
 core.map_key("n", "<leader>sc", require("fzf-lua").colorschemes)
-core.map_key("n", "<leader>sa", require("aerial").fzf_lua_picker)
 core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
-core.map_key("n", "<leader><leader>", require("fzf-lua").buffers)
+core.map_key("n", "<leader><leader>", function()
+	require("buffer-sticks").list({ action = "open" })
+end)
 
 core.map_key("n", "gd", vim.lsp.buf.definition)
 core.map_key("n", "K", vim.lsp.buf.hover)
@@ -120,8 +97,7 @@ core.map_key("n", "<leader>do", ":DapStepOver<CR>")
 core.map_key("n", "<leader>dO", ":DapStepOut<CR>")
 core.map_key("n", "<leader>di", ":DapStepInto<CR>")
 core.map_key("n", "gx", ":OpenUrlInLine<CR>")
-
--- vim.keymap.set("n", "gx", open_url_on_line, { desc = "Open URL under cursor" })
+core.map_key("n", "<leader>o", ":Outline<CR>")
 
 -- treesitter textobjects
 core.map_key({ "x", "o" }, "af", function()
