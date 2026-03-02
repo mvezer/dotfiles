@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+## NVIDIA
+NVIDIA_SYMLINK_NAME="nvidia-gpu"
+NVIDIA_RULE_PATH="/etc/udev/rules.d/nvidia-gpu-dev-path.rules"
+NVIDIA_GPU_ID=$(lspci -d ::03xx | grep 'NVIDIA' | cut -f1 -d' ')
+NVIDIA_UDEV_RULE="$(cat <<EOF
+KERNEL=="card*", \
+KERNELS=="0000:$NVIDIA_GPU_ID", \
+SUBSYSTEM=="drm", \
+SUBSYSTEMS=="pci", \
+SYMLINK+="dri/$NVIDIA_SYMLINK_NAME"
+EOF
+)"
+
+echo "$NVIDIA_UDEV_RULE" | sudo tee "$NVIDIA_RULE_PATH"
+
+## Intel
+INTEL_SYMLINK_NAME="intel-gpu"
+INTEL_RULE_PATH="/etc/udev/rules.d/intel-gpu-dev-path.rules"
+INTEL_GPU_ID=$(lspci -d ::03xx | grep 'Intel' | cut -f1 -d' ')
+INTEL_UDEV_RULE="$(cat <<EOF
+KERNEL=="card*", \
+KERNELS=="0000:$INTEL_GPU_ID", \
+SUBSYSTEM=="drm", \
+SUBSYSTEMS=="pci", \
+SYMLINK+="dri/$INTEL_SYMLINK_NAME"
+EOF
+)"
+
+echo "$INTEL_UDEV_RULE" | sudo tee "$INTEL_RULE_PATH"
