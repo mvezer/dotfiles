@@ -61,6 +61,7 @@ core.map_key("n", "<leader>sm", require("fzf-lua").marks)
 core.map_key("n", "<leader>sc", require("fzf-lua").colorschemes)
 core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
 core.map_key("n", "<leader><leader>", function()
+	vim.cmd("OutlineClose")
 	require("buffer-sticks").list({ action = "open" })
 end)
 
