@@ -1,7 +1,11 @@
 [font]
-size = 14
+size = 12
 # normal = { family = "jetbrainsmono nerd font mono", style = "Regular" }
-normal = { family = "InconsolataGo Nerd Font Mono", style = "Regular" }
+# normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
+# normal = { family = "InconsolataGo Nerd Font Mono", style = "Regular" }
+normal = { family = "Iosevka Nerd Font Mono", style = "Light" }
+bold = { family = "Iosevka Nerd Font Mono", style = "Bold" }
+italic = { family = "Iosevka Nerd Font Mono", style = "Italic" }
 
 [cursor]
 style = { shape = "Beam" }
