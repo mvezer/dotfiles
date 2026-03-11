@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+what=$1
+target=$2
+
+if [[ -z "$what" ]]; then
+  echo "Usage: $0 <directory_directory> <target_directory>"
+  echo "Example: $0 /home/mat/Downloads/my_brand_new_series/ Series/"
+  exit 1
+fi
+
+if [[ -z "$target" ]]; then
+  echo "Usage: $0 <directory_directory> <target_directory>"
+  echo "Target must be a 'Filme/' or 'Series/'"
+  echo "Example: $0 /home/mat/Downloads/my_brand_new_series/ Series/"
+  exit 1
+fi
+
+rsync -avhP --stats $what root@192.168.178.175:/mnt/ext-hdd/$target

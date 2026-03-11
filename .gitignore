@@ -10,3 +10,5 @@ bin/.local/bin/op
 bin/.local/lib/vivaldi
 zed/.config/zed/prompts/prompts-library-db.0.mdb
 bin/.local/bin/bunx
+/bin/.local/bin/ha
+/bin/.local/bin/hctl
