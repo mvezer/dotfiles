@@ -36,7 +36,7 @@ require("lualine").setup({
 	options = {
 		always_show_tabline = true,
 		icons_enabled = true,
-		theme = "auto",
+		theme = "ayu_mirage",
 		component_separators = "",
 		section_separators = "",
 		globalstatus = true,

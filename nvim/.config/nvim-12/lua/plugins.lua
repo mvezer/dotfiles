@@ -5,8 +5,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/folke/lazydev.nvim" },
-	{ src = "https://github.com/navarasu/onedark.nvim" },
-	{ src = "https://github.com/tiagovla/tokyodark.nvim" },
 	{ src = "https://github.com/numToStr/Navigator.nvim" },
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
 	{ src = "https://github.com/Robitx/gp.nvim" },
@@ -28,7 +26,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/folke/noice.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
-	{ src = "https://github.com/stevearc/overseer.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/mfussenegger/nvim-dap" },
 	{ src = "https://github.com/igorlfs/nvim-dap-view" },
@@ -41,4 +38,5 @@ vim.pack.add({
 	{ src = "https://github.com/X3eRo0/dired.nvim" },
 	{ src = "https://github.com/ahkohd/buffer-sticks.nvim" },
 	{ src = "https://github.com/hedyhli/outline.nvim" },
+	{ src = "https://github.com/leoluz/nvim-dap-go" },
 })

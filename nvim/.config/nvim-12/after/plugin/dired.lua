@@ -1,8 +1,8 @@
 require("dired").setup({
 	path_separator = "/", -- Use '/' as the path separator
 	show_hidden = true, -- Show hidden files
-	show_icons = false, -- Show icons (patched font required)
-	show_banner = true, -- Do not show the banner
+	show_icons = true, -- Show icons (patched font required)
+	show_banner = false, -- Do not show the banner
 	hide_details = false, -- Show file details by default
 	sort_order = "name", -- Sort files by name by default
 	override_cwd = true, -- Override cwd by default

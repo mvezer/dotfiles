@@ -31,6 +31,7 @@ local function get_nestjs_pid()
 end
 
 local dap = require("dap")
+local dapgo = require("dap-go")
 
 dap.adapters = {
 	["pwa-node"] = {
@@ -55,3 +56,15 @@ dap.configurations["typescript"] = {
 		cwd = "${workspaceFolder}",
 	},
 }
+
+dap.configurations["go"] = {
+	{
+		type = "go",
+		name = "Debug",
+		request = "launch",
+		program = "${file}",
+		dlvToolPath = "/home/mat/.local/share/nvim/mason/bin/dlv",
+	},
+}
+
+dapgo.setup()
