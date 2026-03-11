@@ -38,4 +38,7 @@ require("blink.cmp").setup({
 			auto_show_delay_ms = 200,
 		},
 	},
+	enabled = function()
+		return not vim.tbl_contains({ "markdown", "log", "txt" }, vim.bo.filetype) and vim.bo.buftype ~= "prompt"
+	end,
 })
