@@ -1,9 +1,19 @@
-require("nvim-treesitter.configs").setup({
-	sync_install = false,
-	ignore_install = { "" },
-	auto_install = true,
-	modules = {},
-	ensure_installed = {
+local ensure_installed = {
+	"lua",
+	"typescript",
+	"markdown",
+	"json",
+	"tsx",
+	"javascript",
+	"yaml",
+	"rust",
+	"go",
+}
+local treesitter = require("nvim-treesitter")
+treesitter.install(ensure_installed):wait(300000)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
 		"lua",
 		"typescript",
 		"markdown",
@@ -14,6 +24,12 @@ require("nvim-treesitter.configs").setup({
 		"rust",
 		"go",
 	},
+	callback = function()
+		vim.treesitter.start()
+		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo[0][0].foldmethod = "expr"
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
 })
 
 require("nvim-treesitter-textobjects").setup({
@@ -30,7 +46,7 @@ require("nvim-treesitter-textobjects").setup({
 		selection_modes = {
 			["@parameter.outer"] = "v", -- charwise
 			["@function.outer"] = "V", -- linewise
-			["@class.outer"] = "<c-v>", -- blockwise
+			-- ["@class.outer"] = "<c-v>", -- blockwise
 		},
 		-- If you set this to `true` (default is `false`) then any textobject is
 		-- extended to include preceding or succeeding whitespace. Succeeding
