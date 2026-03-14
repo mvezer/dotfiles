@@ -1,11 +1,13 @@
 [font]
-size = 12
-# normal = { family = "jetbrainsmono nerd font mono", style = "Regular" }
+size = 11
+normal = { family = "jetbrainsmono nerd font mono", style = "Light" }
+bold = { family = "jetbrainsmono nerd font mono", style = "Bold" }
+italic = { family = "jetbrainsmono nerd font mono", style = "Italic" }
 # normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
 # normal = { family = "InconsolataGo Nerd Font Mono", style = "Regular" }
-normal = { family = "Iosevka Nerd Font Mono", style = "Light" }
-bold = { family = "Iosevka Nerd Font Mono", style = "Bold" }
-italic = { family = "Iosevka Nerd Font Mono", style = "Italic" }
+# normal = { family = "Iosevka Nerd Font Mono", style = "Light" }
+# bold = { family = "Iosevka Nerd Font Mono", style = "Bold" }
+# italic = { family = "Iosevka Nerd Font Mono", style = "Italic" }
 
 [cursor]
 style = { shape = "Beam" }
@@ -13,7 +15,7 @@ vi_mode_style = { shape = "Block" }
 
 [general]
 live_config_reload = true
-import = ["~/.config/alacritty/themes/one_dark.toml"]
+import = ["~/.config/alacritty/themes/xterm.toml"]
 
 [window]
 # startup_mode = "Maximized"
