@@ -38,4 +38,5 @@ vim.pack.add({
 	{ src = "https://github.com/X3eRo0/dired.nvim" },
 	{ src = "https://github.com/hedyhli/outline.nvim" },
 	{ src = "https://github.com/mvezer/mark-and-jump.nvim" },
+	{ src = "https://github.com/navarasu/onedark.nvim" },
 })
