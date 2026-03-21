@@ -1,5 +1,13 @@
 local core = require("core")
 
+local function smart_dd()
+	if vim.api.nvim_get_current_line():match("^%s*$") then
+		vim.api.nvim_feedkeys('"_dd', "n", false)
+	else
+		vim.api.nvim_feedkeys("dd", "n", false)
+	end
+end
+
 core.map_key("v", "<", "<gv")
 core.map_key("v", ">", ">gv")
 core.map_key({ "n", "v" }, "c", '"_c')
@@ -20,35 +28,44 @@ core.map_key("n", "<Up>", "gk")
 core.map_key("n", "<Esc>", ":noh<CR>")
 core.map_key("t", "<Esc>", "<C-\\><C-n>")
 core.map_key("n", "<Tab>", ":b#<CR>")
-core.map_key("n", "<leader>e", ":Neotree toggle=true source=filesystem<CR>")
+core.map_key("n", "<leader>E", ":Dired<CR>") -- because of the vim-rooter the current buffer is the .git root
+core.map_key("n", "<leader>e", ":Dired %:p:h<CR>") -- open dired in the directory of the current buffer
 core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
+core.map_key("n", "dd", smart_dd)
+
 core.map_key("n", "<leader>f", function()
-  vim.b.disable_autoformat = not vim.b.disable_autoformat
-  vim.cmd("redrawstatus")
+	vim.b.disable_autoformat = not vim.b.disable_autoformat
+	vim.cmd("redrawstatus")
 end)
 core.map_key("n", "<leader>c", function()
-  if core.is_quickfix_open() then
-    vim.cmd("cclose")
-  else
-    vim.cmd("copen")
-  end
+	if core.is_quickfix_open() then
+		vim.cmd("cclose")
+	else
+		vim.cmd("copen")
+	end
 end)
 core.map_key("n", "<leader>a", function()
-  require("nvim-autopairs").toggle()
+	require("nvim-autopairs").toggle()
 end, { desc = "Toggle autopairs" })
 core.map_key({ "n", "x", "o" }, "s", function()
-  require("flash").jump()
+	require("flash").jump()
 end, { desc = "Flash" })
-
-core.map_key("n", "<leader>sf", require("fzf-lua").files)
-core.map_key("n", "<leader>sw", require("fzf-lua").grep_cword)
-core.map_key("n", "<leader>sr", require("fzf-lua").oldfiles)
-core.map_key("n", "<leader>st", require("fzf-lua").live_grep)
-core.map_key("n", "<leader>sh", require("fzf-lua").helptags)
-core.map_key("n", "<leader>sd", require("fzf-lua").lsp_document_diagnostics)
-core.map_key("n", "<leader>sm", require("fzf-lua").marks)
+local fzf = require("fzf-lua")
+core.map_key("n", "<leader>sf", fzf.files)
+core.map_key("n", "<leader>sw", fzf.grep_cword)
+core.map_key("n", "<leader>sr", fzf.oldfiles)
+core.map_key("n", "<leader>st", fzf.live_grep)
+core.map_key("n", "<leader>sh", fzf.helptags)
+core.map_key("n", "<leader>sd", fzf.lsp_document_diagnostics)
+core.map_key("n", "<leader>sm", fzf.marks)
+core.map_key("n", "<leader>sc", fzf.colorschemes)
+core.map_key("n", "<leader>sb", fzf.buffers)
+core.map_key("n", "<leader><leader>", fzf.buffers)
 core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
-core.map_key("n", "<leader><leader>", require("fzf-lua").buffers)
+-- core.map_key("n", "<leader><leader>", function()
+-- 	vim.cmd("OutlineClose")
+-- 	require("buffer-sticks").list({ action = "open" })
+-- end)
 
 core.map_key("n", "gd", vim.lsp.buf.definition)
 core.map_key("n", "K", vim.lsp.buf.hover)
@@ -56,15 +73,19 @@ core.map_key("n", "gr", vim.lsp.buf.references)
 core.map_key("n", "<leader>lr", vim.lsp.buf.rename)
 core.map_key("n", "<leader>ls", ":Neotree toggle=true source=document_symbols<CR>")
 core.map_key("n", "<leader>ll", function()
-  vim.diagnostic.setqflist({ severity = { min = vim.diagnostic.severity.WARN } })
+	vim.diagnostic.setqflist({ severity = { min = vim.diagnostic.severity.WARN } })
 end)
+core.map_key("n", "<leader>ld", vim.diagnostic.open_float)
 core.map_key("n", "<leader>gl", ":Gitsigns setqflist<CR>")
 core.map_key("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
 core.map_key({ "n", "i" }, "<S-Down>", ":cn<CR>")
 core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
+core.map_key("n", "<leader>m", ":TSJToggle<CR>")
+
 -- AI stuff
 core.map_key({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>")
+core.map_key({ "n", "v" }, "<leader>aA", ":GpAppend<CR>")
 core.map_key({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>")
 core.map_key({ "n", "v" }, "<leader>an", ":GpChatNew<CR>")
 core.map_key({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>")
@@ -78,3 +99,23 @@ core.map_key("n", "<leader>dD", ":DapDisconnect<CR>")
 core.map_key("n", "<leader>do", ":DapStepOver<CR>")
 core.map_key("n", "<leader>dO", ":DapStepOut<CR>")
 core.map_key("n", "<leader>di", ":DapStepInto<CR>")
+core.map_key("n", "gx", ":OpenUrlInLine<CR>")
+core.map_key("n", "<leader>o", ":Outline<CR>")
+
+-- treesitter textobjects
+core.map_key({ "x", "o" }, "af", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+end)
+core.map_key({ "x", "o" }, "if", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+end)
+core.map_key({ "x", "o" }, "ac", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+end)
+core.map_key({ "x", "o" }, "ic", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+end)
+-- You can also use captures from other query groups like `locals.scm`
+core.map_key({ "x", "o" }, "as", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@local.scope", "locals")
+end)
