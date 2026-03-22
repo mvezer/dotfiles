@@ -18,7 +18,7 @@ core.map_key({ "n", "v", "i" }, "<c-up>", ":NavigatorUp<CR>")
 core.map_key({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>")
 core.map_key({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>")
 core.map_key("n", "<leader>bo", ":%bd|e#|bd#<CR>") -- close all buffers but the current one
-core.map_key({ "n", "v", "i" }, "<C-x>", ":bd<CR>")
+core.map_key({ "n" }, "<C-x>", ":bd<CR>")
 core.map_key("n", "<leader>by", ":let @+ = expand('%:p')")
 core.map_key("n", "Y", "y$", { desc = "Yank to end of line" })
 core.map_key("n", "<C-u>", "<C-u>zz")
