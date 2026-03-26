@@ -89,7 +89,7 @@ source $ZSH_INCLUDES/git.zsh
 source $ZSH_INCLUDES/go.zsh
 source $ZSH_INCLUDES/kubernetes.zsh
 source $ZSH_INCLUDES/rust.zsh
-source $ZSH_INCLUDES/lua.zsh
+# source $ZSH_INCLUDES/lua.zsh
 source $ZSH_INCLUDES/work.zsh
 # source $ZSH_INCLUDES/nodejs.zsh
 source $ZSH_INCLUDES/tmux.zsh
