@@ -13,6 +13,10 @@
       "rev": "9c80820ca77218a8d28e70075d6f44a1609911fe",
       "src": "https://github.com/saghen/blink.indent"
     },
+    "bufferline.nvim": {
+      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
+      "src": "https://github.com/akinsho/bufferline.nvim"
+    },
     "conform.nvim": {
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -46,8 +50,8 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mark-and-jump.nvim": {
-      "rev": "d09f696f4060c9f4cdd69fe7efeb420413506412",
-      "src": "https://github.com/mvezer/mark-and-jump.nvim"
+      "rev": "81378ac1e6cf17d65c900f1700247c90f8d87341",
+      "src": "file:///home/mat/workspace/mark-and-jump.nvim"
     },
     "markdown-preview.nvim": {
       "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
