@@ -34,6 +34,7 @@ core.map_key("n", "<leader>E", ":Dired<CR>") -- because of the vim-rooter the cu
 core.map_key("n", "<leader>e", ":Dired %:p:h<CR>") -- open dired in the directory of the current buffer
 core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
 core.map_key("n", "dd", smart_dd)
+core.map_key("n", "<leader>g", ":LazyGit<CR>") -- because of the vim-rooter the current buffer is the .git root
 
 core.map_key("n", "<leader>f", function()
 	vim.b.disable_autoformat = not vim.b.disable_autoformat
