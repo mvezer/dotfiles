@@ -1,0 +1,34 @@
+font-family = "JetBrainsMono NF Regular"
+font-family-bold = "JetBrainsMono NF Bold"
+font-family-italic = "JetBrainsMono NF Italic"
+
+keybind = unconsumed:ctrl+shift+r=reload_config
+keybind = global:alt+t=toggle_quick_terminal
+quick-terminal-size = 50%
+
+clipboard-read = allow
+copy-on-select = clipboard
+theme = Ayu
+background = #0b0e14
+foreground = #bfbdb6
+selection-background = #409fff
+selection-foreground = #0b0e14
+cursor-color = #e6b450
+cursor-text = #0b0e14
+palette = 0=#11151c
+palette = 1=#ea6c73
+palette = 2=#7fd962
+palette = 3=#f9af4f
+palette = 4=#53bdfa
+palette = 5=#cda1fa
+palette = 6=#90e1c6
+palette = 7=#c7c7c7
+palette = 8=#686868
+palette = 9=#f07178
+palette = 10=#aad94c
+palette = 11=#ffb454
+palette = 12=#59c2ff
+palette = 13=#d2a6ff
+palette = 14=#95e6cb
+palette = 15=#ffffff
+font-size = 10
