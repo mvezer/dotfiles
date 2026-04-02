@@ -7,3 +7,6 @@ require("options")
 require("plugins")
 require("commands")
 require("keymap")
+if vim.g.neovide then
+	require("neovide")
+end
