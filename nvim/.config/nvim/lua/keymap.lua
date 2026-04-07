@@ -122,3 +122,10 @@ end)
 core.map_key({ "x", "o" }, "as", function()
 	require("nvim-treesitter-textobjects.select").select_textobject("@local.scope", "locals")
 end)
+
+-- neovide
+
+if vim.g.neovide then
+	vim.keymap.set("n", "<C-=>", ":NeovideIncreaseScaleFactor<CR>")
+	vim.keymap.set("n", "<C-->", ":NeovideDecreaseScaleFactor<CR>")
+end
