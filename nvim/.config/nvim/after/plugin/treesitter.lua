@@ -22,6 +22,23 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- incremental selection (see: https://pawelgrzybek.com/nvim-incremental-selection/
+vim.keymap.set({ "x", "o" }, "an", function()
+	if vim.treesitter.get_parser(nil, nil, { error = false }) then
+		require("vim.treesitter._select").select_parent(vim.v.count1)
+	else
+		vim.lsp.buf.selection_range(vim.v.count1)
+	end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+
+vim.keymap.set({ "x", "o" }, "in", function()
+	if vim.treesitter.get_parser(nil, nil, { error = false }) then
+		require("vim.treesitter._select").select_child(vim.v.count1)
+	else
+		vim.lsp.buf.selection_range(-vim.v.count1)
+	end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
 require("nvim-treesitter-textobjects").setup({
 	select = {
 		-- Automatically jump forward to textobj, similar to targets.vim
