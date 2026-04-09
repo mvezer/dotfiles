@@ -3,7 +3,7 @@ font-family-bold = "JetBrainsMono NF Bold"
 font-family-italic = "JetBrainsMono NF Italic"
 
 keybind = unconsumed:ctrl+shift+r=reload_config
-keybind = global:alt+t=toggle_quick_terminal
+keybind = global:super+t=toggle_quick_terminal
 quick-terminal-size = 50%
 
 clipboard-read = allow
@@ -31,4 +31,4 @@ palette = 12=#59c2ff
 palette = 13=#d2a6ff
 palette = 14=#95e6cb
 palette = 15=#ffffff
-font-size = 10
+font-size = 9
