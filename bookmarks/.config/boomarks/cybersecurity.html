@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cybersecurity</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0f1117;
+        --surface: #1a1d27;
+        --border: #2a2d3a;
+        --accent: #7c8cf8;
+        --text: #e2e4f0;
+        --muted: #6b6f85;
+        --radius: 10px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 24px 80px;
+      }
+
+      header {
+        width: 100%;
+        max-width: 680px;
+        margin-bottom: 40px;
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-decoration: none;
+        margin-bottom: 28px;
+        transition: color 0.15s;
+      }
+
+      .back:hover {
+        color: var(--accent);
+      }
+
+      header h1 {
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
+
+      header p {
+        margin-top: 5px;
+        font-size: 0.84rem;
+        color: var(--muted);
+      }
+
+      .section {
+        width: 100%;
+        max-width: 680px;
+        margin-bottom: 36px;
+      }
+
+      .section-title {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .link {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 10px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
+
+      .link:hover {
+        background: var(--surface);
+      }
+
+      .link .name {
+        font-size: 0.92rem;
+        color: var(--accent);
+        white-space: nowrap;
+      }
+
+      .link .note {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      footer {
+        margin-top: 48px;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="back" href="index.html">&#8592; Back</a>
+      <h1>Cybersecurity</h1>
+      <p>CTFs, tools, research, news</p>
+    </header>
+
+    <!-- ===================== SECTION ===================== -->
+    <div class="section">
+      <div class="section-title">CTF Platforms</div>
+      <div class="list">
+        <a class="link" href="https://hackthebox.com/" target="_blank">
+          <span class="name">Hack The Box</span>
+          <span class="note">Machines, challenges and labs</span>
+        </a>
+
+        <a class="link" href="https://tryhackme.com/" target="_blank">
+          <span class="name">TryHackMe</span>
+          <span class="note">Guided rooms for all skill levels</span>
+        </a>
+
+        <!-- Add more links here -->
+      </div>
+    </div>
+
+    <!-- ===================== SECTION ===================== -->
+    <div class="section">
+      <div class="section-title">Research</div>
+      <div class="list">
+        <a class="link" href="https://www.shodan.io" target="_blank">
+          <span class="name">Shodan</span>
+          <span class="note"
+            >Search engine for IoT devices such as servers, routers,
+            webcamse</span
+          >
+        </a>
+
+        <a class="link" href="https://search.censys.io" target="_blank">
+          <span class="name">censys</span>
+          <span class="note"
+            >Search engine for hosts, websites, certificates</span
+          >
+        </a>
+
+        <a class="link" href="https://search.censys.io" target="_blank">
+          <span class="name">VirusTotal</span>
+          <span class="note"
+            >Check for viruses, upload file or enter url or serch for file
+            hashes</span
+          >
+        </a>
+        <a class="link" href="https://www.cve.org" target="_blank">
+          <span class="name">CVE</span>
+          <span class="note"
+            >Common vulnerabilities and exposures database</span
+          >
+        </a>
+        <a class="link" href="https://www.exploit-db.com/" target="_blank">
+          <span class="name">Exploit Database</span>
+          <span class="note">Exploit databases for various platforms</span>
+        </a>
+        <!-- Add more links here -->
+      </div>
+    </div>
+
+    <!-- ===================== SECTION ===================== -->
+    <div class="section">
+      <div class="section-title">Tools &amp; References</div>
+      <div class="list">
+        <a class="link" href="https://gtfobins.github.io/" target="_blank">
+          <span class="name">GTFOBins</span>
+          <span class="note">Unix binaries for privilege escalation</span>
+        </a>
+
+        <a
+          class="link"
+          href="https://lolbas-project.github.io/"
+          target="_blank"
+        >
+          <span class="name">LOLBAS</span>
+          <span class="note">Living Off The Land Binaries (Windows)</span>
+        </a>
+
+        <a class="link" href="https://www.exploit-db.com/" target="_blank">
+          <span class="name">Exploit-DB</span>
+          <span class="note">Public exploit archive</span>
+        </a>
+
+        <!-- Add more links here -->
+      </div>
+    </div>
+
+    <!-- ===================== SECTION ===================== -->
+    <div class="section">
+      <div class="section-title">News</div>
+      <div class="list">
+        <a
+          class="link"
+          href="https://www.bleepingcomputer.com/"
+          target="_blank"
+        >
+          <span class="name">BleepingComputer</span>
+          <span class="note">Security news and incident coverage</span>
+        </a>
+
+        <!-- Add more links here -->
+      </div>
+    </div>
+
+    <!-- Copy a section block above to add more groups -->
+
+    <footer>edit cybersecurity.html to add or remove links</footer>
+  </body>
+</html>

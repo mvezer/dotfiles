@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:       #0f1117;
+      --surface:  #1a1d27;
+      --border:   #2a2d3a;
+      --accent:   #7c8cf8;
+      --text:     #e2e4f0;
+      --muted:    #6b6f85;
+      --radius:   10px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px 80px;
+    }
+
+    header {
+      width: 100%;
+      max-width: 680px;
+      margin-bottom: 40px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+
+    .back:hover { color: var(--accent); }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    header p {
+      margin-top: 5px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .section {
+      width: 100%;
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .link {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .link:hover {
+      background: var(--surface);
+    }
+
+    .link .name {
+      font-size: 0.92rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .link .note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 48px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="back" href="index.html">&#8592; Back</a>
+    <h1>Coding</h1>
+    <p>Docs, references, learning resources</p>
+  </header>
+
+  <!-- ===================== SECTION ===================== -->
+  <div class="section">
+    <div class="section-title">Reference &amp; Docs</div>
+    <div class="list">
+
+      <a class="link" href="https://developer.mozilla.org/" target="_blank">
+        <span class="name">MDN Web Docs</span>
+        <span class="note">HTML, CSS, JavaScript reference</span>
+      </a>
+
+      <a class="link" href="https://devdocs.io/" target="_blank">
+        <span class="name">DevDocs</span>
+        <span class="note">Unified offline-capable docs for many languages</span>
+      </a>
+
+      <!-- Add more links here -->
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION ===================== -->
+  <div class="section">
+    <div class="section-title">Tools &amp; Utilities</div>
+    <div class="list">
+
+      <a class="link" href="https://github.com/" target="_blank">
+        <span class="name">GitHub</span>
+        <span class="note">Code hosting and collaboration</span>
+      </a>
+
+      <a class="link" href="https://regex101.com/" target="_blank">
+        <span class="name">regex101</span>
+        <span class="note">Interactive regex builder and tester</span>
+      </a>
+
+      <!-- Add more links here -->
+
+    </div>
+  </div>
+
+  <!-- ===================== SECTION ===================== -->
+  <div class="section">
+    <div class="section-title">Learning</div>
+    <div class="list">
+
+      <a class="link" href="https://roadmap.sh/" target="_blank">
+        <span class="name">roadmap.sh</span>
+        <span class="note">Developer roadmaps and learning paths</span>
+      </a>
+
+      <!-- Add more links here -->
+
+    </div>
+  </div>
+
+  <!-- Copy a section block above to add more groups -->
+
+  <footer>edit coding.html to add or remove links</footer>
+
+</body>
+</html>
