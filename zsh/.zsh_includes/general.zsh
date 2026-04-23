@@ -35,13 +35,13 @@ mkcd() {
     cd "${1}"
 }
 
-function nv() {
+function nve() {
   neovide "$@" &
   disown
 }
 
 # aliases
-# alias "nv"="neovide"
+alias "nv"="nvim"
 alias ll="eza --icons -al --time-style=long-iso --git --no-user --no-permissions"
 alias l="eza --icons -al --time-style=long-iso --git --no-user --no-permissions"
 alias tree="eza -al -T --no-time --no-user --no-permissions -I node_modules $argv"
