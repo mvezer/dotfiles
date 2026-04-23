@@ -2,6 +2,7 @@ local formatters_by_ft = {
 	lua = { "stylua" },
 	rust = { "rustfmt", lsp_format = "fallback" },
 	toml = { "taplo" },
+	gdscript = { "gdscript-formatter" },
 }
 for _, ft in ipairs({
 	"javascript ",
