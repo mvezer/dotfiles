@@ -1,242 +1,278 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bookmarks</title>
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookmarks</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    :root {
-      --bg:       #0f1117;
-      --surface:  #1a1d27;
-      --border:   #2a2d3a;
-      --accent:   #7c8cf8;
-      --text:     #e2e4f0;
-      --muted:    #6b6f85;
-      --radius:   10px;
-    }
+      :root {
+        --bg: #0f1117;
+        --surface: #1a1d27;
+        --border: #2a2d3a;
+        --accent: #7c8cf8;
+        --text: #e2e4f0;
+        --muted: #6b6f85;
+        --radius: 10px;
+      }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 24px 80px;
-    }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 24px 80px;
+      }
 
-    header {
-      text-align: center;
-      margin-bottom: 52px;
-    }
+      header {
+        text-align: center;
+        margin-bottom: 52px;
+      }
 
-    header h1 {
-      font-size: 1.6rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: var(--text);
-    }
+      header h1 {
+        font-size: 1.6rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--text);
+      }
 
-    header p {
-      margin-top: 6px;
-      font-size: 0.85rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
+      header p {
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+      }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-      width: 100%;
-      max-width: 860px;
-    }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        width: 100%;
+        max-width: 860px;
+      }
 
-    .card {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 24px 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.18s, background 0.18s;
-    }
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 24px 20px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: var(--text);
+        transition:
+          border-color 0.18s,
+          background 0.18s;
+      }
 
-    .card:hover {
-      border-color: var(--accent);
-      background: #1e2135;
-    }
+      .card:hover {
+        border-color: var(--accent);
+        background: #1e2135;
+      }
 
-    .card .icon {
-      font-size: 1.4rem;
-      line-height: 1;
-    }
+      .card .icon {
+        font-size: 1.4rem;
+        line-height: 1;
+      }
 
-    .card .label {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
+      .card .label {
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
 
-    .card .desc {
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
+      .card .desc {
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.4;
+      }
 
-    .quick {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      width: 100%;
-      max-width: 860px;
-      margin-bottom: 48px;
-    }
+      .quick {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        width: 100%;
+        max-width: 860px;
+        margin-bottom: 48px;
+      }
 
-    .quick-link {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      padding: 16px 18px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.75rem;
-      transition: border-color 0.18s, color 0.18s, background 0.18s;
-      min-width: 72px;
-    }
+      .quick-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        padding: 16px 18px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.75rem;
+        transition:
+          border-color 0.18s,
+          color 0.18s,
+          background 0.18s;
+        min-width: 72px;
+      }
 
-    .quick-link:hover {
-      border-color: var(--accent);
-      background: #1e2135;
-      color: var(--text);
-    }
+      .quick-link:hover {
+        border-color: var(--accent);
+        background: #1e2135;
+        color: var(--text);
+      }
 
-    .quick-link img {
-      width: 22px;
-      height: 22px;
-    }
+      .quick-link img {
+        width: 22px;
+        height: 22px;
+      }
 
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      width: 100%;
-      max-width: 860px;
-      margin-bottom: 12px;
-    }
+      .section-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        width: 100%;
+        max-width: 860px;
+        margin-bottom: 12px;
+      }
 
-    .categories-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      width: 100%;
-      max-width: 860px;
-      margin-bottom: 12px;
-    }
+      .categories-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        width: 100%;
+        max-width: 860px;
+        margin-bottom: 12px;
+      }
 
-    footer {
-      margin-top: 64px;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-  </style>
-</head>
-<body>
+      footer {
+        margin-top: 64px;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Bookmarks</h1>
+      <p>Pick a category</p>
+    </header>
 
-  <header>
-    <h1>Bookmarks</h1>
-    <p>Pick a category</p>
-  </header>
+    <div class="section-label">Quick Links</div>
 
-  <div class="section-label">Quick Links</div>
+    <div class="quick">
+      <a class="quick-link" href="https://mail.google.com/" target="_blank">
+        <img
+          src="https://www.google.com/s2/favicons?domain=mail.google.com&sz=32"
+          alt=""
+        />
+        Gmail
+      </a>
 
-  <div class="quick">
+      <a class="quick-link" href="https://calendar.google.com/" target="_blank">
+        <img src="https://cdn.simpleicons.org/googlecalendar" alt="" />
+        Calendar
+      </a>
 
-    <a class="quick-link" href="https://mail.google.com/" target="_blank">
-      <img src="https://www.google.com/s2/favicons?domain=mail.google.com&sz=32" alt="">
-      Gmail
-    </a>
+      <a class="quick-link" href="https://www.youtube.com/" target="_blank">
+        <img
+          src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32"
+          alt=""
+        />
+        YouTube
+      </a>
 
-    <a class="quick-link" href="https://www.youtube.com/" target="_blank">
-      <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32" alt="">
-      YouTube
-    </a>
+      <a class="quick-link" href="https://web.whatsapp.com/" target="_blank">
+        <img src="https://cdn.simpleicons.org/whatsapp" alt="" />
+        WhatsApp
+      </a>
 
-    <a class="quick-link" href="https://web.whatsapp.com/" target="_blank">
-      <img src="https://cdn.simpleicons.org/whatsapp" alt="">
-      WhatsApp
-    </a>
+      <a
+        class="quick-link"
+        href="https://news.ycombinator.com/"
+        target="_blank"
+      >
+        <img
+          src="https://www.google.com/s2/favicons?domain=news.ycombinator.com&sz=32"
+          alt=""
+        />
+        Hacker News
+      </a>
 
-    <a class="quick-link" href="https://bsky.app/" target="_blank">
-      <img src="https://www.google.com/s2/favicons?domain=bsky.app&sz=32" alt="">
-      Bluesky
-    </a>
+      <a class="quick-link" href="https://bsky.app/" target="_blank">
+        <img
+          src="https://www.google.com/s2/favicons?domain=bsky.app&sz=32"
+          alt=""
+        />
+        Bluesky
+      </a>
 
-    <a class="quick-link" href="https://www.zeit.de/" target="_blank">
-      <img src="https://www.google.com/s2/favicons?domain=zeit.de&sz=32" alt="">
-      Zeit
-    </a>
+      <a class="quick-link" href="https://www.zeit.de/" target="_blank">
+        <img
+          src="https://www.google.com/s2/favicons?domain=zeit.de&sz=32"
+          alt=""
+        />
+        Zeit
+      </a>
 
-    <a class="quick-link" href="https://telex.hu/" target="_blank">
-      <img src="https://www.google.com/s2/favicons?domain=telex.hu&sz=32" alt="">
-      Telex
-    </a>
+      <a class="quick-link" href="https://telex.hu/" target="_blank">
+        <img
+          src="https://www.google.com/s2/favicons?domain=telex.hu&sz=32"
+          alt=""
+        />
+        Telex
+      </a>
 
-    <a class="quick-link" href="https://444.hu/" target="_blank">
-      <img src="https://www.google.com/s2/favicons?domain=444.hu&sz=32" alt="">
-      444
-    </a>
+      <a class="quick-link" href="https://444.hu/" target="_blank">
+        <img
+          src="https://www.google.com/s2/favicons?domain=444.hu&sz=32"
+          alt=""
+        />
+        444
+      </a>
 
-    <!-- Add more quick links here -->
+      <!-- Add more quick links here -->
+    </div>
 
-  </div>
+    <div class="categories-label">Categories</div>
 
-  <div class="categories-label">Categories</div>
+    <div class="grid">
+      <a class="card" href="job-finding.html">
+        <span class="icon">💼</span>
+        <span class="label">Job Finding</span>
+        <span class="desc">Job boards, resume tools, interview prep</span>
+      </a>
 
-  <div class="grid">
+      <a class="card" href="coding.html">
+        <span class="icon">&#60;/&#62;</span>
+        <span class="label">Coding</span>
+        <span class="desc">Docs, references, learning resources</span>
+      </a>
 
-    <a class="card" href="job-finding.html">
-      <span class="icon">💼</span>
-      <span class="label">Job Finding</span>
-      <span class="desc">Job boards, resume tools, interview prep</span>
-    </a>
+      <a class="card" href="cybersecurity.html">
+        <span class="icon">&#128274;</span>
+        <span class="label">Cybersecurity</span>
+        <span class="desc">CTFs, tools, research, news</span>
+      </a>
 
-    <a class="card" href="coding.html">
-      <span class="icon">&#60;/&#62;</span>
-      <span class="label">Coding</span>
-      <span class="desc">Docs, references, learning resources</span>
-    </a>
+      <!-- Add more categories below. Copy a card block and update href, icon, label, desc. -->
+    </div>
 
-    <a class="card" href="cybersecurity.html">
-      <span class="icon">&#128274;</span>
-      <span class="label">Cybersecurity</span>
-      <span class="desc">CTFs, tools, research, news</span>
-    </a>
-
-    <!-- Add more categories below. Copy a card block and update href, icon, label, desc. -->
-
-  </div>
-
-  <footer>edit the .html files directly to add or remove links</footer>
-
-</body>
+    <footer>edit the .html files directly to add or remove links</footer>
+  </body>
 </html>
