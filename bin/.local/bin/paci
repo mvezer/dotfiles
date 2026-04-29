@@ -1,22 +1,51 @@
-#!/bin/bash
-#
-# paci - `pacman -Ss` wrapper
-#
+#!/usr/bin/env bash
 
-SELECTED_ITEM=$(pacman -Ss "$@" | while read package
-do
-   read description
-   line="$package - $description"
-   columns=`tput cols`
-   if [[ ${#line} -gt $((columns-3)) ]]
-   then
-      line="${line:0:$columns-3}..."
-   fi
-   echo -e "$line"
-done | fzf)
+set -euo pipefail
 
-if [[ ! -z $SELECTED_ITEM ]]; then
-   PACKAGE_NAME=$(echo $SELECTED_ITEM | awk -F ' ' '{ print $1 }')
-   echo "Installing $PACKAGE_NAME..."
-   sudo pacman -Sy --noconfirm $PACKAGE_NAME
+if [[ $# -eq 0 ]]; then
+    echo "Usage: $(basename "$0") <search-term>" >&2
+    exit 1
 fi
+
+# Parse pacman -Ss output: merge each 2-line entry into one line
+# Input format:
+#   repo/pkgname version [flags]
+#       Description text
+# Output format:
+#   repo/pkgname version — Description text
+formatted=$(pacman -Ss "$1" 2>/dev/null | awk '
+    /^[^ ]/ {
+        pkg = $0
+    }
+    /^    / {
+        desc = $0
+        sub(/^[[:space:]]+/, "", desc)
+        print pkg " \033[2m—\033[0m " desc
+    }
+')
+
+if [[ -z "$formatted" ]]; then
+    echo "No packages found for: $1" >&2
+    exit 1
+fi
+
+# Pipe into fzf; --ansi to render color codes
+selected=$(printf '%s\n' "$formatted" | fzf \
+    --ansi \
+    --prompt="Install package > " \
+    --height=40% \
+    --layout=reverse \
+    --info=inline \
+    --no-sort \
+) || {
+    # fzf exits 130 on Esc/Ctrl-C
+    exit 0
+}
+
+# Extract the full repo/pkgname (first field)
+pkg_full=$(awk '{print $1}' <<< "$selected")
+# Strip the repo/ prefix to get just the package name
+pkg_name="${pkg_full#*/}"
+
+echo "Installing: $pkg_name"
+sudo pacman -S "$pkg_name"

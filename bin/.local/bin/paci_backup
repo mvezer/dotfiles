@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# paci - `pacman -Ss` wrapper
+#
+
+SELECTED_ITEM=$(pacman -Ss "$@" | while read package
+do
+   read description
+   line="$package - $description"
+   columns=`tput cols`
+   if [[ ${#line} -gt $((columns-3)) ]]
+   then
+      line="${line:0:$columns-3}..."
+   fi
+   echo -e "$line"
+done | fzf)
+
+if [[ ! -z $SELECTED_ITEM ]]; then
+   PACKAGE_NAME=$(echo $SELECTED_ITEM | awk -F ' ' '{ print $1 }')
+   echo "Installing $PACKAGE_NAME..."
+   sudo pacman -Sy --noconfirm $PACKAGE_NAME
+fi
