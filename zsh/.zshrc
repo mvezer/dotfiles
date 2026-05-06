@@ -83,6 +83,8 @@ export PATH="$PATH:$HOME/.nvm/versions/node/v24.9.0/bin/npm"
 # source machine-specific secrets
 if [ -f $SECRETS ]; then source $SECRETS; fi # TODO: use 1password cli instead
 
+if [ -f $ZSH_INCLUDES/gh_autocomp.sh ]; then source $ZSH_INCLUDES/gh_autocomp.sh; fi
+
 source $ZSH_INCLUDES/aws.zsh
 source $ZSH_INCLUDES/general.zsh
 source $ZSH_INCLUDES/git.zsh
