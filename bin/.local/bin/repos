@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gh repo list --json name --json owner -L 100 | tee | jq -r '.[] | "\(.owner.login)/\(.name)"' | fzf
