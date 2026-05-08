@@ -1,0 +1,15 @@
+{
+  "arrowType": "chevron",
+  "byteThresholdActive": 5000,
+  "fontSizeModifier": 0.75,
+  "iconSizeModifier": 1,
+  "showNumbers": true,
+  "spacingInbetween": 0,
+  "useCustomColors": false,
+  "useCustomFont": false,
+  "customFontBold": false,
+  "customFontItalic": false,
+  "horizontalLayout": true,
+  "contentMargin": 6,
+  "customFontFamily": ""
+}
