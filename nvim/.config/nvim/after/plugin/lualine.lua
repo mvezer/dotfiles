@@ -32,6 +32,14 @@ local function supermaven()
 		return "-"
 	end
 end
+local function mark_and_jump()
+	local markIndex, markKey = require("mark-and-jump").info()
+	if markIndex == nil then
+		return ""
+	end
+	print(markIndex, markKey)
+	return string.format("[󰣉 %s]", markKey)
+end
 require("lualine").setup({
 	options = {
 		always_show_tabline = true,
@@ -44,7 +52,7 @@ require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { filename_plus_project },
+		lualine_c = { filename_plus_project, mark_and_jump },
 		lualine_x = { autopairs, autoformat, supermaven },
 		lualine_y = { { "filetype", icon_only = true }, { "lsp_status", icon = "󰬓" } },
 		lualine_z = { "location" },

@@ -54,8 +54,8 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mark-and-jump.nvim": {
-      "rev": "d09f696f4060c9f4cdd69fe7efeb420413506412",
-      "src": "https://github.com/mvezer/mark-and-jump.nvim"
+      "rev": "eb7656d339680bff4792d4a6f30104b1c01c3b5c",
+      "src": "file:///home/mat/workshop/mark-and-jump.nvim"
     },
     "markdown-preview.nvim": {
       "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",

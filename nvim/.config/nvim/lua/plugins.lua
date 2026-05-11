@@ -40,7 +40,7 @@ vim.pack.add({
 	-- { src = "https://github.com/navarasu/onedark.nvim" },
 	{ src = "https://github.com/shatur/neovim-ayu" },
 	{ src = "https://github.com/mvezer/mark-and-jump.nvim" },
-	-- { src = "file:///home/mat/workspace/mark-and-jump.nvim" },
-	{ src = "https://github.com/akinsho/bufferline.nvim" },
+	-- { src = "file:///home/mat/workshop/mark-and-jump.nvim" },
+	-- { src = "https://github.com/akinsho/bufferline.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 })
