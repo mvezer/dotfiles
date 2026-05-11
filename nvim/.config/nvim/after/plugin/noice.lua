@@ -1,3 +1,7 @@
+if vim.g.vscode then
+	-- do not load noice in vscode
+	return
+end
 require("noice").setup({
 	background_colour = "#000000",
 	lsp = {
