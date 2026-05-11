@@ -85,6 +85,7 @@ core.map_key({ "n", "i" }, "<S-Down>", ":cn<CR>")
 core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
 core.map_key("n", "<leader>m", ":TSJToggle<CR>")
+core.map_key("n", "<leader>M", ":MarkdownPreview<CR>")
 
 -- AI stuff
 core.map_key({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>")
