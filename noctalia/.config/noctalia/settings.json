@@ -81,7 +81,7 @@
                 {
                     "clockColor": "none",
                     "customFont": "",
-                    "formatHorizontal": "HH:mm, dd.MM.yyyy",
+                    "formatHorizontal": "HH:mm",
                     "formatVertical": "HH mm - dd MM",
                     "id": "Clock",
                     "tooltipFormat": "HH:mm ddd, MMM dd",
@@ -128,6 +128,14 @@
                 }
             ],
             "right": [
+                {
+                    "defaultSettings": {
+                        "activeColor": "primary",
+                        "refreshInterval": 5000,
+                        "showProfileLabel": false
+                    },
+                    "id": "plugin:monique"
+                },
                 {
                     "compactMode": true,
                     "diskPath": "/",
