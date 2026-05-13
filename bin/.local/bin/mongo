@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+MONGODB_VERSION=7.0.28
+
+if [ "$1" == "start" ] || [ "$1" == "up" ]; then
+  docker run -d --name mongodb -p 27017:27017 -v mongodb-data:/data/db ghcr.io/fenio/mongodb-no-avx:$MONGODB_VERSION
+elif [ "$1" == "stop" ] || [ "$1" == "down" ] || [ "$1" == "kill" ]; then
+  docker stop mongodb && docker rm mongodb
+elif [ "$1" == "restart" ]; then
+  docker restart mongodb
+elif [ "$1" == "status" ]; then
+  docker ps | grep mongodb
+elif [ "$1" == "install" ]; then
+  docker pull ghcr.io/fenio/mongodb-no-avx:$MONGODB_VERSION
+elif [ "$1" == "logs" ]; then
+  docker logs mongodb
+else
+  echo "Usage: mongo start|stop|restart|status|install"
+fi
