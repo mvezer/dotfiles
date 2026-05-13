@@ -12,3 +12,5 @@ zed/.config/zed/prompts/prompts-library-db.0.mdb
 bin/.local/bin/bunx
 /bin/.local/bin/ha
 /bin/.local/bin/hctl
+/hypr/.config/hypr/monitors.conf
+/hypr/.config/hypr/monitors.conf.bak
