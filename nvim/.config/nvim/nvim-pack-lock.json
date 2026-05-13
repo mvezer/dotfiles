@@ -55,7 +55,7 @@
     },
     "mark-and-jump.nvim": {
       "rev": "eb7656d339680bff4792d4a6f30104b1c01c3b5c",
-      "src": "file:///home/mat/workshop/mark-and-jump.nvim"
+      "src": "https://github.com/mvezer/mark-and-jump.nvim"
     },
     "markdown-preview.nvim": {
       "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
@@ -133,6 +133,10 @@
     "onedark.nvim": {
       "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
       "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "opencode.nvim": {
+      "rev": "a89f9b90e2709f7350743bf2d38e80bc4fd5379d",
+      "src": "https://github.com/nickjvandyke/opencode.nvim"
     },
     "outline.nvim": {
       "rev": "c293eb56db880a0539bf9d85b4a27816960b863e",

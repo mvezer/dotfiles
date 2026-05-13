@@ -43,4 +43,5 @@ vim.pack.add({
 	-- { src = "file:///home/mat/workshop/mark-and-jump.nvim" },
 	-- { src = "https://github.com/akinsho/bufferline.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
+	{ src = "https://github.com/nickjvandyke/opencode.nvim" },
 })
