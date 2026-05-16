@@ -5,6 +5,7 @@ alias cb="xclip -selection c"
 alias mixer="wiremix -v output"
 alias proxmox="ssh root@192.168.178.173"
 alias jellyfin="ssh root@192.168.178.175"
+alias bt="bluetui"
 
 function evening() {
   hctl on szekreny
