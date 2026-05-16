@@ -44,4 +44,5 @@ vim.pack.add({
 	-- { src = "https://github.com/akinsho/bufferline.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/nickjvandyke/opencode.nvim" },
+	{ src = "https://github.com/mistweaverco/kulala.nvim" },
 })
