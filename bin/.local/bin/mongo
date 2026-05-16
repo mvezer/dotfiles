@@ -4,7 +4,15 @@ set -e
 
 MONGODB_VERSION=7.0.28
 
+is_mongo_container_exists() {
+  docker container ls -a -f name=mongox --format json | wc -l
+  return $?
+}
+
 if [ "$1" == "start" ] || [ "$1" == "up" ]; then
+  if is_mongo_container_exists; then
+    docker stop mongodb && docker rm mongodb
+  fi
   docker run -d --name mongodb -p 27017:27017 -v mongodb-data:/data/db ghcr.io/fenio/mongodb-no-avx:$MONGODB_VERSION
 elif [ "$1" == "stop" ] || [ "$1" == "down" ] || [ "$1" == "kill" ]; then
   docker stop mongodb && docker rm mongodb
