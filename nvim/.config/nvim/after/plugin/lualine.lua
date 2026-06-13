@@ -54,7 +54,7 @@ require("lualine").setup({
 		lualine_c = { filename_plus_project, mark_and_jump },
 		lualine_x = { autopairs, autoformat, supermaven },
 		lualine_y = { { "filetype", icon_only = true }, { "lsp_status", icon = "󰬓" } },
-		lualine_z = { require("opencode").statusline, "location" },
+		lualine_z = { "location" },
 	},
 	inactive_sections = {
 		lualine_a = {},

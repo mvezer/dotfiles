@@ -40,46 +40,35 @@ vim.api.nvim_create_user_command("OpenUrlInLine", function()
 		return
 	end
 
-	local open_command
-	if vim.fn.has("mac") == 1 then
-		open_command = "open"
-	elseif vim.fn.has("unix") == 1 then
-		open_command = "xdg-open"
-	else
-		vim.notify("Unsupported operating system", vim.log.levels.ERROR)
-		return
-	end
-
-	vim.fn.jobstart({ open_command, url }, { detach = true })
-	vim.notify("Opening: " .. url, vim.log.levels.INFO)
+	core.open_url(url)
 end, {})
 
--- local function is_cmdline_type_find()
---   local cmdline_cmd = vim.fn.split(vim.fn.getcmdline(), " ")[1]
---
---   return cmdline_cmd == "find" or cmdline_cmd == "fin"
--- end
+local function is_cmdline_type_find()
+	local cmdline_cmd = vim.fn.split(vim.fn.getcmdline(), " ")[1]
 
--- vim.api.nvim_create_autocmd({ "CmdlineChanged", "CmdlineLeave" }, {
---   pattern = { "*" },
---   group = core.augroup,
---   callback = function(ev)
---     local function should_enable_autocomplete()
---       local cmdline_cmd = vim.fn.split(vim.fn.getcmdline(), " ")[1]
---
---       return is_cmdline_type_find() or cmdline_cmd == "help" or cmdline_cmd == "h"
---     end
---
---     if ev.event == "CmdlineChanged" and should_enable_autocomplete() then
---       vim.opt.wildmode = "noselect:lastused,full"
---       vim.fn.wildtrigger()
---     end
---
---     if ev.event == "CmdlineLeave" then
---       vim.opt.wildmode = "full"
---     end
---   end,
--- })
+	return cmdline_cmd == "find" or cmdline_cmd == "fin"
+end
+
+vim.api.nvim_create_autocmd({ "CmdlineChanged", "CmdlineLeave" }, {
+	pattern = { "*" },
+	group = core.augroup,
+	callback = function(ev)
+		local function should_enable_autocomplete()
+			local cmdline_cmd = vim.fn.split(vim.fn.getcmdline(), " ")[1]
+
+			return is_cmdline_type_find() or cmdline_cmd == "help" or cmdline_cmd == "h"
+		end
+
+		if ev.event == "CmdlineChanged" and should_enable_autocomplete() then
+			vim.opt.wildmode = "noselect:lastused,full"
+			vim.fn.wildtrigger()
+		end
+
+		if ev.event == "CmdlineLeave" then
+			vim.opt.wildmode = "full"
+		end
+	end,
+})
 
 -- Return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -113,23 +102,6 @@ vim.api.nvim_create_user_command("Config", function()
 	vim.cmd("e $MYVIMRC")
 end, {})
 
-vim.api.nvim_create_user_command("UpdatePlugins", core.plugins.fzf, {})
-vim.api.nvim_create_user_command("Plugins", core.plugins.fzf, {})
-vim.api.nvim_create_user_command("ListPlugins", function()
-	for _, plugin in ipairs(core.plugins.get_all()) do
-		print(plugin)
-	end
-end, {})
-vim.api.nvim_create_user_command("UpdateAllPlugins", function()
-	vim.pack.update(core.plugins.get_all())
-end, {})
-
-vim.api.nvim_create_user_command("NNew", function()
-	local title = vim.fn.input("Note title: ")
-	if title ~= nil or title ~= "" then
-		require("zk").new({ title = title })
-	end
-end, {})
 -- Auto-chaange root dir
 local root_names = { ".git", "Makefile", "package.json", "init.lua", "go.mod" }
 local root_cache = {}

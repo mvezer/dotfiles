@@ -37,12 +37,14 @@ vim.pack.add({
 	{ src = "https://github.com/leoluz/nvim-dap-go" },
 	{ src = "https://github.com/X3eRo0/dired.nvim" },
 	{ src = "https://github.com/hedyhli/outline.nvim" },
-	-- { src = "https://github.com/navarasu/onedark.nvim" },
 	{ src = "https://github.com/shatur/neovim-ayu" },
+	{ src = "https://github.com/kdheepak/lazygit.nvim" },
+	{ src = "https://github.com/sudo-tee/opencode.nvim" },
+	{ src = "https://github.com/mistweaverco/kulala.nvim" },
+
+	-- own plugins
+	{ src = "https://github.com/mvezer/fzf-plugin-manager.nvim" },
+	-- { src = "file:///home/mat/workshop/fzf-plugin-manager.nvim" },
 	{ src = "https://github.com/mvezer/mark-and-jump.nvim" },
 	-- { src = "file:///home/mat/workshop/mark-and-jump.nvim" },
-	-- { src = "https://github.com/akinsho/bufferline.nvim" },
-	{ src = "https://github.com/kdheepak/lazygit.nvim" },
-	{ src = "https://github.com/nickjvandyke/opencode.nvim" },
-	{ src = "https://github.com/mistweaverco/kulala.nvim" },
 })

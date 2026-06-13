@@ -22,42 +22,6 @@ plugins.get_all = function()
 	return plugin_names
 end
 
----Invokes the plugins fzf picker
-plugins.fzf = function()
-	require("fzf-lua").fzf_exec(plugins.get_all(), {
-		prompt = "Update plugins>",
-		actions = {
-			["default"] = function(selected_plugin)
-				vim.pack.update(selected_plugin)
-			end,
-			["ctrl-d"] = function(selected_plugin)
-				vim.pack.del(selected_plugin)
-			end,
-		},
-	})
-end
-
----Defines a plugin (wrapper for vim.pack.add)
----@param spec string|table - The github url of the plugin or the full spec as table (required by vim.pack.add)
----@param name string|nil - Name of the plugin (the name that's used for "require", for example "zk-nvim" or "fzf-lua")
----@param opts table|nil - plugin-specific options that's passed to the "setup" function
-plugins.add = function(spec, name, opts)
-	local normalized_spec = {}
-	if type(spec) == "table" then
-		normalized_spec = spec
-	else
-		table.insert(normalized_spec, spec)
-	end
-	vim.pack.add(normalized_spec)
-	if not name then
-		return
-	end
-	local ok, plugin_instance = pcall(require, name)
-	if ok and plugin_instance and type(plugin_instance.setup) == "function" then
-		plugin_instance.setup(opts or {})
-	end
-end
-
 local function is_quickfix_open()
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
 		local buf = vim.api.nvim_win_get_buf(win)
@@ -68,9 +32,21 @@ local function is_quickfix_open()
 	return false
 end
 
+local function open_url(url)
+	if vim.fn.has("mac") == 1 then
+		vim.fn.system({ "open", url })
+	elseif vim.fn.has("unix") == 1 then
+		vim.fn.system({ "xdg-open", url })
+	else
+		vim.notify("Unsupported operating system", vim.log.levels.ERROR)
+		return
+	end
+end
+
 return {
 	is_quickfix_open = is_quickfix_open,
 	plugins = plugins,
 	map_key = map_key,
 	augroup = augroup,
+	open_url = open_url,
 }

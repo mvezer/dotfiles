@@ -1,5 +1,6 @@
 require("render-markdown").setup({
-	file_types = { "markdown", "codecompanion" },
+	anti_conceal = { enabled = false },
+	file_types = { "markdown", "codecompanion", "opencode_output" },
 })
 
 -- Fix the codeblock background color
