@@ -1,183 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Finding</title>
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Finding</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    :root {
-      --bg:       #0f1117;
-      --surface:  #1a1d27;
-      --border:   #2a2d3a;
-      --accent:   #7c8cf8;
-      --text:     #e2e4f0;
-      --muted:    #6b6f85;
-      --radius:   10px;
-    }
+      :root {
+        --bg: #0f1117;
+        --surface: #1a1d27;
+        --border: #2a2d3a;
+        --accent: #7c8cf8;
+        --text: #e2e4f0;
+        --muted: #6b6f85;
+        --radius: 10px;
+      }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 24px 80px;
-    }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 24px 80px;
+      }
 
-    header {
-      width: 100%;
-      max-width: 680px;
-      margin-bottom: 40px;
-    }
+      header {
+        width: 100%;
+        max-width: 680px;
+        margin-bottom: 40px;
+      }
 
-    .back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-decoration: none;
-      margin-bottom: 28px;
-      transition: color 0.15s;
-    }
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-decoration: none;
+        margin-bottom: 28px;
+        transition: color 0.15s;
+      }
 
-    .back:hover { color: var(--accent); }
+      .back:hover {
+        color: var(--accent);
+      }
 
-    header h1 {
-      font-size: 1.4rem;
-      font-weight: 500;
-    }
+      header h1 {
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
 
-    header p {
-      margin-top: 5px;
-      font-size: 0.84rem;
-      color: var(--muted);
-    }
+      header p {
+        margin-top: 5px;
+        font-size: 0.84rem;
+        color: var(--muted);
+      }
 
-    .section {
-      width: 100%;
-      max-width: 680px;
-      margin-bottom: 36px;
-    }
+      .section {
+        width: 100%;
+        max-width: 680px;
+        margin-bottom: 36px;
+      }
 
-    .section-title {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
+      .section-title {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
 
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
 
-    .link {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      padding: 10px 14px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
+      .link {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 10px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
 
-    .link:hover {
-      background: var(--surface);
-    }
+      .link:hover {
+        background: var(--surface);
+      }
 
-    .link .name {
-      font-size: 0.92rem;
-      color: var(--accent);
-      white-space: nowrap;
-    }
+      .link .name {
+        font-size: 0.92rem;
+        color: var(--accent);
+        white-space: nowrap;
+      }
 
-    .link .note {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
+      .link .note {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
 
-    footer {
-      margin-top: 48px;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-  </style>
-</head>
-<body>
+      footer {
+        margin-top: 48px;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="back" href="index.html">&#8592; Back</a>
+      <h1>Job Finding</h1>
+      <p>Job boards, resume tools, interview prep</p>
+    </header>
 
-  <header>
-    <a class="back" href="index.html">&#8592; Back</a>
-    <h1>Job Finding</h1>
-    <p>Job boards, resume tools, interview prep</p>
-  </header>
+    <!-- ===================== SECTION ===================== -->
+    <div class="section">
+      <div class="section-title">Job Boards</div>
+      <div class="list">
+        <a class="link" href="https://www.linkedin.com/jobs/">
+          <span class="name">LinkedIn Jobs</span>
+          <span class="note">Professional network job listings</span>
+        </a>
 
-  <!-- ===================== SECTION ===================== -->
-  <div class="section">
-    <div class="section-title">Job Boards</div>
-    <div class="list">
+        <a class="link" href="https://www.indeed.com/">
+          <span class="name">Indeed</span>
+          <span class="note">Large aggregator of job postings</span>
+        </a>
 
-      <a class="link" href="https://www.linkedin.com/jobs/" target="_blank">
-        <span class="name">LinkedIn Jobs</span>
-        <span class="note">Professional network job listings</span>
-      </a>
-
-      <a class="link" href="https://www.indeed.com/" target="_blank">
-        <span class="name">Indeed</span>
-        <span class="note">Large aggregator of job postings</span>
-      </a>
-
-      <!-- Add more links here -->
-
+        <!-- Add more links here -->
+      </div>
     </div>
-  </div>
 
-  <!-- ===================== SECTION ===================== -->
-  <div class="section">
-    <div class="section-title">Resume &amp; Portfolio</div>
-    <div class="list">
+    <!-- ===================== SECTION ===================== -->
+    <div class="section">
+      <div class="section-title">Resume &amp; Portfolio</div>
+      <div class="list">
+        <a class="link" href="https://www.overleaf.com/">
+          <span class="name">Overleaf</span>
+          <span class="note">Online LaTeX editor, great for clean resumes</span>
+        </a>
 
-      <a class="link" href="https://www.overleaf.com/" target="_blank">
-        <span class="name">Overleaf</span>
-        <span class="note">Online LaTeX editor, great for clean resumes</span>
-      </a>
-
-      <!-- Add more links here -->
-
+        <!-- Add more links here -->
+      </div>
     </div>
-  </div>
 
-  <!-- ===================== SECTION ===================== -->
-  <div class="section">
-    <div class="section-title">Interview Prep</div>
-    <div class="list">
+    <!-- ===================== SECTION ===================== -->
+    <div class="section">
+      <div class="section-title">Interview Prep</div>
+      <div class="list">
+        <a class="link" href="https://leetcode.com/">
+          <span class="name">LeetCode</span>
+          <span class="note">Coding challenges for technical interviews</span>
+        </a>
 
-      <a class="link" href="https://leetcode.com/" target="_blank">
-        <span class="name">LeetCode</span>
-        <span class="note">Coding challenges for technical interviews</span>
-      </a>
-
-      <!-- Add more links here -->
-
+        <!-- Add more links here -->
+      </div>
     </div>
-  </div>
 
-  <!-- Copy a section block above to add more groups -->
+    <!-- Copy a section block above to add more groups -->
 
-  <footer>edit job-finding.html to add or remove links</footer>
-
-</body>
+    <footer>edit job-finding.html to add or remove links</footer>
+  </body>
 </html>
