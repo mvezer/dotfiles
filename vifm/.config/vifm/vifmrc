@@ -32,10 +32,10 @@
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
-if executable('vim')
-    set vicmd=vim
-elseif executable('nvim')
+if executable('nvim')
     set vicmd=nvim
+elseif executable('vim')
+    set vicmd=vim
 elseif executable('elvis')
     set vicmd=elvis\ -G\ termcap
 elseif executable('vile')
@@ -361,8 +361,8 @@ filextype {*.sh3d}
         \ {Open in Sweet Home 3D}
         \ sweethome3d %c:p,
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-        \ {View in sxiv}
-        \ sxiv %f,
+        \ {View in nsxiv}
+        \ nsxiv %f,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
@@ -529,7 +529,7 @@ nnoremap S :sort<cr>
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
-if $DISPLAY != '' && executable('gvim')
+if $DISPLAY != '' && executable('nvim')
     " Open file in existing instance of gvim
     nnoremap o :!gvim --remote-tab-silent %f<cr>
     " Open file in new instance of gvim
