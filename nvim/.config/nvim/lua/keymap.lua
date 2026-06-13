@@ -66,10 +66,6 @@ core.map_key("n", "<leader>sb", fzf.buffers)
 core.map_key("n", "<leader>sa", ":GpChatFinder<CR>")
 core.map_key("n", "<leader><leader>", fzf.buffers)
 core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
--- core.map_key("n", "<leader><leader>", function()
--- 	vim.cmd("OutlineClose")
--- 	require("buffer-sticks").list({ action = "open" })
--- end)
 
 core.map_key("n", "gd", vim.lsp.buf.definition)
 core.map_key("n", "K", vim.lsp.buf.hover)
@@ -87,37 +83,6 @@ core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
 core.map_key("n", "<leader>m", ":TSJToggle<CR>")
 core.map_key("n", "<leader>M", ":MarkdownPreview<CR>")
-
--- AI stuff
--- core.map_key({ "n", "v" }, "<leader>aa", ":GpRewrite<CR>")
--- core.map_key({ "n", "v" }, "<leader>aA", ":GpAppend<CR>")
--- core.map_key({ "n", "v" }, "<leader>ac", ":GpChatToggle<CR>")
--- core.map_key({ "n", "v" }, "<leader>an", ":GpChatNew<CR>")
--- core.map_key({ "n", "v" }, "<leader>ad", ":GpChatDelete<CR>")
--- core.map_key({ "n", "v" }, "<leader>af", ":GpChatFinder<CR>")
--- core.map_key({ "n", "x" }, "<leader>aa", function()
--- 	require("opencode").ask()
--- end)
--- core.map_key({ "n", "x" }, "<leader>ax", function()
--- 	require("opencode").select()
--- end)
--- core.map_key({ "n", "t" }, "<leader>at", function()
--- 	require("opencode").toggle()
--- end)
-
-core.map_key({ "n", "x" }, "go", function()
-	require("opencode").operator("@this ")
-end)
-core.map_key("n", "goo", function()
-	return require("opencode").operator("@this ") .. "_"
-end)
-
-core.map_key("n", "<S-C-u>", function()
-	require("opencode").command("session.half.page.up")
-end)
-core.map_key("n", "<S-C-d>", function()
-	require("opencode").command("session.half.page.down")
-end)
 
 -- debug stuff
 core.map_key("n", "<leader>db", ":DapToggleBreakpoint<CR>")
@@ -147,10 +112,3 @@ end)
 core.map_key({ "x", "o" }, "as", function()
 	require("nvim-treesitter-textobjects.select").select_textobject("@local.scope", "locals")
 end)
-
--- neovide
-
-if vim.g.neovide then
-	vim.keymap.set("n", "<C-=>", ":NeovideIncreaseScaleFactor<CR>")
-	vim.keymap.set("n", "<C-->", ":NeovideDecreaseScaleFactor<CR>")
-end

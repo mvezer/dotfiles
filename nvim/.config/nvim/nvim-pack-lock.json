@@ -13,6 +13,10 @@
       "rev": "5cb5ea0f942f17d6182fdad064a17d67f71b9375",
       "src": "https://github.com/saghen/blink.indent"
     },
+    "bufferize.vim": {
+      "rev": "ec7c4445a97f19e5784a6fb6ad3c3d4a8ff505ac",
+      "src": "https://github.com/AndrewRadev/bufferize.vim"
+    },
     "bufferline.nvim": {
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
       "src": "https://github.com/akinsho/bufferline.nvim"
@@ -34,8 +38,8 @@
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "fzf-plugin-manager.nvim": {
-      "rev": "e1f15c91642b87be6f9f14672c1efa26681ab215",
-      "src": "file:///home/mat/workshop/fzf-plugin-manager.nvim"
+      "rev": "e506ac6baee24de4ea57af08c3a19952bd99d979",
+      "src": "https://github.com/mvezer/fzf-plugin-manager.nvim"
     },
     "gitsigns.nvim": {
       "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
@@ -93,10 +97,6 @@
       "rev": "e5a9f0fa2918d6b5f57c21b3ac014314ee5e41c8",
       "src": "https://github.com/shatur/neovim-ayu"
     },
-    "noice.nvim": {
-      "rev": "7bfd942",
-      "src": "https://github.com/folke/noice.nvim"
-    },
     "nui.nvim": {
       "rev": "de74099",
       "src": "https://github.com/MunifTanjim/nui.nvim"
@@ -137,10 +137,6 @@
     "nvim-web-devicons": {
       "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
-    },
-    "onedark.nvim": {
-      "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
-      "src": "https://github.com/navarasu/onedark.nvim"
     },
     "opencode.nvim": {
       "rev": "d83f986c478fbf3e1343f2c8d7cb5c7f455b1414",

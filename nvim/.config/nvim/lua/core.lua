@@ -5,23 +5,6 @@ end
 
 local augroup = vim.api.nvim_create_augroup("mat.cfg", {})
 
-local plugins = {}
-
----------------------------------------------------------------------------------
---- Plugin management functions and commands
----------------------------------------------------------------------------------
----
----Gets all the names of the installed plugins
----@return string[] Plugin names
-plugins.get_all = function()
-	local plugin_info = vim.pack.get()
-	local plugin_names = {}
-	for _, plugin in ipairs(plugin_info) do
-		table.insert(plugin_names, plugin.spec.name)
-	end
-	return plugin_names
-end
-
 local function is_quickfix_open()
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
 		local buf = vim.api.nvim_win_get_buf(win)
@@ -45,7 +28,6 @@ end
 
 return {
 	is_quickfix_open = is_quickfix_open,
-	plugins = plugins,
 	map_key = map_key,
 	augroup = augroup,
 	open_url = open_url,
