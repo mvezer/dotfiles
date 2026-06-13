@@ -14,3 +14,5 @@ bin/.local/bin/bunx
 /bin/.local/bin/hctl
 /hypr/.config/hypr/monitors.conf
 /hypr/.config/hypr/monitors.conf.bak
+/hypr/.config/hypr/monitors.lua
+/hypr/.config/hypr/monitors.lua.bak
