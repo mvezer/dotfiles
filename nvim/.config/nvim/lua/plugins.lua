@@ -52,6 +52,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/iamcco/markdown-preview.nvim" },
 	{ src = "https://github.com/shatur/neovim-ayu" },
+	{ src = "https://github.com/folke/snacks.nvim" },
 
 	-- own plugins
 	{ src = "https://github.com/mvezer/fzf-plugin-manager.nvim" },
