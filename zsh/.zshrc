@@ -8,7 +8,7 @@ export PAGER="nvim -c 'Man!' -o -"
 export MANPAGER='nvim +Man!'
 export WORKSPACE="$HOME/workspace"
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-# export TERM="xterm-256color"
+export TERM="screen-256color"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH=/home/mat/.opencode/bin:$PATH
 
