@@ -108,20 +108,5 @@ core.map_key("n", "<leader>di", ":DapStepInto<CR>")
 core.map_key("n", "gx", ":OpenUrlInLine<CR>")
 core.map_key("n", "<leader>o", ":Outline<CR>")
 
--- treesitter textobjects
-core.map_key({ "x", "o" }, "af", function()
-	require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
-end)
-core.map_key({ "x", "o" }, "if", function()
-	require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
-end)
-core.map_key({ "x", "o" }, "ac", function()
-	require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
-end)
-core.map_key({ "x", "o" }, "ic", function()
-	require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
-end)
--- You can also use captures from other query groups like `locals.scm`
-core.map_key({ "x", "o" }, "as", function()
-	require("nvim-treesitter-textobjects.select").select_textobject("@local.scope", "locals")
-end)
+-- rest.nvim
+core.map_key("n", "<leader>rr", ":Rest run<cr>")

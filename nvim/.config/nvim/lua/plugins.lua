@@ -1,12 +1,12 @@
 vim.pack.add({
 	-- core deps
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/folke/lazydev.nvim" },
+	{ src = "https://github.com/MunifTanjim/nui.nvim" },
 
 	-- AI
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
@@ -37,11 +37,11 @@ vim.pack.add({
 	{ src = "https://github.com/hedyhli/outline.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
-	{ src = "https://github.com/mistweaverco/kulala.nvim" },
-	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/emfussenegger/nvim-dap" },
 	{ src = "https://github.com/igorlfs/nvim-dap-view" },
 	{ src = "https://github.com/leoluz/nvim-dap-go" },
 	{ src = "https://github.com/AndrewRadev/bufferize.vim" },
+	{ src = "https://github.com/mistweaverco/kulala.nvim" },
 
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },
@@ -54,6 +54,9 @@ vim.pack.add({
 	{ src = "https://github.com/shatur/neovim-ayu" },
 	{ src = "https://github.com/folke/snacks.nvim" },
 	{ src = "https://github.com/j-morano/buffer_manager.nvim" },
+	{ src = "https://github.com/j-hui/fidget.nvim" },
+	{ src = "https://github.com/rcarriga/nvim-notify" },
+	{ src = "https://github.com/folke/noice.nvim" },
 
 	-- own plugins
 	{ src = "https://github.com/mvezer/fzf-plugin-manager.nvim" },

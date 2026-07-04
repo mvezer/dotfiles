@@ -3,6 +3,7 @@ vim.opt.relativenumber = false
 vim.opt.cursorline = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 10
+vim.opt.laststatus = 2
 vim.opt.sidescrolloff = 8
 
 -- Indentation
