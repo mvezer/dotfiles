@@ -13,6 +13,10 @@
       "rev": "5cb5ea0f942f17d6182fdad064a17d67f71b9375",
       "src": "https://github.com/saghen/blink.indent"
     },
+    "buffer_manager.nvim": {
+      "rev": "a0ac2db39c8bd4a2b6ca897f38c88770f90d9323",
+      "src": "https://github.com/j-morano/buffer_manager.nvim"
+    },
     "bufferize.vim": {
       "rev": "ec7c4445a97f19e5784a6fb6ad3c3d4a8ff505ac",
       "src": "https://github.com/AndrewRadev/bufferize.vim"

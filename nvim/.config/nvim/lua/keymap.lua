@@ -17,8 +17,25 @@ core.map_key({ "n", "v", "i" }, "<c-down>", ":NavigatorDown<CR>")
 core.map_key({ "n", "v", "i" }, "<c-up>", ":NavigatorUp<CR>")
 core.map_key({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>")
 core.map_key({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>")
+
+--- buffer management
+local buffer_manager = require("buffer_manager.ui")
+core.map_key("n", "<leader><leader>", function()
+	buffer_manager.toggle_quick_menu()
+end)
 core.map_key("n", "<leader>bo", ":%bd|e#|bd#<CR>") -- close all buffers but the current one
-core.map_key({ "n" }, "<C-x>", ":bd<CR>")
+core.map_key("n", "<leader>bs", function()
+	buffer_manager.save_menu_to_file(vim.fn.stdpath("data") .. "/buffers")
+	vim.notify("saved buffer list")
+end) -- save buffer list to file
+core.map_key("n", "<leader>bl", function()
+	buffer_manager.load_menu_from_file(vim.fn.stdpath("data") .. "/buffers")
+	vim.notify("loaded buffer list")
+end) -- load buffer list from file
+core.map_key("n", "<Tab>", buffer_manager.nav_next) -- next buffer
+core.map_key("n", "<S-Tab>", buffer_manager.nav_prev) -- prev buffer
+core.map_key({ "n" }, "<C-x>", ":bd<CR>") --- delete buffer
+
 core.map_key("n", "<leader>by", ":let @+ = expand('%:p')")
 core.map_key("n", "Y", "y$", { desc = "Yank to end of line" })
 core.map_key("n", "<C-u>", "<C-u>zz")
@@ -27,14 +44,11 @@ core.map_key("n", "<Down>", "gj")
 core.map_key("n", "<Up>", "gk")
 core.map_key("n", "<Esc>", ":noh<CR>")
 core.map_key("t", "<Esc>", "<C-\\><C-n>")
--- core.map_key("n", "<Tab>", ":b#<CR>")
-core.map_key("n", "<Tab>", ":bnext<CR>")
-core.map_key("n", "<S-Tab>", ":bprevious<CR>")
 core.map_key("n", "<leader>E", ":Dired<CR>") -- because of the vim-rooter the current buffer is the .git root
 core.map_key("n", "<leader>e", ":Dired %:p:h<CR>") -- open dired in the directory of the current buffer
 core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
 core.map_key("n", "dd", smart_dd)
-core.map_key("n", "<leader>g", ":LazyGit<CR>") -- because of the vim-rooter the current buffer is the .git root
+-- core.map_key("n", "<leader>g", ":LazyGit<CR>") -- because of the vim-rooter the current buffer is the .git root
 
 core.map_key("n", "<leader>f", function()
 	vim.b.disable_autoformat = not vim.b.disable_autoformat
@@ -64,7 +78,6 @@ core.map_key("n", "<leader>sm", fzf.marks)
 core.map_key("n", "<leader>sc", fzf.colorschemes)
 core.map_key("n", "<leader>sb", fzf.buffers)
 core.map_key("n", "<leader>sa", ":GpChatFinder<CR>")
-core.map_key("n", "<leader><leader>", fzf.buffers)
 core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
 
 core.map_key("n", "gd", vim.lsp.buf.definition)
