@@ -40,15 +40,14 @@ function nve() {
   disown
 }
 
+functio gho() {
+  gh repo view $(repos) --web
+}
+
 # aliases
 alias "nv"="nvim"
 alias ll="eza --icons -al --time-style=long-iso --git --no-user --no-permissions"
 alias l="eza --icons -al --time-style=long-iso --git --no-user --no-permissions"
 alias tree="eza -al -T --no-time --no-user --no-permissions -I node_modules $argv"
-alias ws="cd $WORKSPACE"
 alias zsrc="source ~/.zshrc"
-alias p="source ~/.local/bin/project-selector"
-alias cal="gcalcli calw --monday"
-alias calm="gcalcli calm --monday"
-alias agenda="gcalcli agenda --details=all"
 alias z="zeditor"
