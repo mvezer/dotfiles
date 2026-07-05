@@ -448,16 +448,16 @@
     "idle": {
         "customCommands": "[]",
         "enabled": true,
-        "fadeDuration": 3,
+        "fadeDuration": 1,
         "lockCommand": "",
         "lockTimeout": 0,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
-        "screenOffTimeout": 0,
+        "screenOffTimeout": 10000,
         "suspendCommand": "",
-        "suspendTimeout": 3600
+        "suspendTimeout": 7200
     },
     "location": {
         "analogClockInCalendar": false,
