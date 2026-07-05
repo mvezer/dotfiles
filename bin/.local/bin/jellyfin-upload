@@ -16,4 +16,4 @@ if [[ -z "$target" ]]; then
   exit 1
 fi
 
-rsync -asvhP --stats "$what" "root@192.168.178.175:/mnt/ext-hdd/$target"
+rsync -asvhP --stats "$what" "root@jellyfin.fritz.box:/mnt/ext-hdd/$target"
