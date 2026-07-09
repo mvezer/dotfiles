@@ -33,7 +33,7 @@ vim.pack.add({
 	-- utility
 	{ src = "https://github.com/zk-org/zk-nvim" },
 	{ src = "https://github.com/gnsfujiwara/suda.nvim" },
-	{ src = "https://github.com/X3eRo0/dired.nvim" },
+	-- { src = "https://github.com/X3eRo0/dired.nvim" },
 	{ src = "https://github.com/hedyhli/outline.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
@@ -42,6 +42,7 @@ vim.pack.add({
 	{ src = "https://github.com/leoluz/nvim-dap-go" },
 	{ src = "https://github.com/AndrewRadev/bufferize.vim" },
 	{ src = "https://github.com/mistweaverco/kulala.nvim" },
+  { src = "https://github.com/stevearc/oil.nvim" },
 
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },
