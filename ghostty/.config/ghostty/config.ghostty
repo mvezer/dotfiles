@@ -1,0 +1,14 @@
+font-family = "BlexMono Nerd Font Mono"
+font-style = "BlexMono Nerd Font Mono ExtraLight"
+font-style-bold = "BlexMono Nerd Font Mono Bold"
+font-style-italic = "BlexMono Nerd Font Mono Italic"
+font-style-bold-italic = "BlexMono Nerd Font Mono Bold Italic"
+font-size = 12
+
+theme = Ayu
+
+background-opacity = 0.85
+
+command = /bin/sh -c "tmux attach || tmux"
+
+
