@@ -4,4 +4,5 @@ require("snacks").setup({
 	-- },
 	terminal = {},
 	input = {},
+	image = {},
 })
