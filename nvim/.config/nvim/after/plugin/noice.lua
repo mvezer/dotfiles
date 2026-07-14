@@ -1,6 +1,7 @@
 require("notify").setup({
 	background_colour = "#000000",
 	stages = "slide",
+	timeout = 1000,
 })
 require("noice").setup({
 	lsp = {

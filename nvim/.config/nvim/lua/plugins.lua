@@ -31,7 +31,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.indent" },
 
 	-- utility
-	-- { src = "https://github.com/zk-org/zk-nvim" },
+	{ src = "https://github.com/zk-org/zk-nvim" },
 	{ src = "https://github.com/gnsfujiwara/suda.nvim" },
 	{ src = "https://github.com/hedyhli/outline.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
@@ -42,7 +42,6 @@ vim.pack.add({
 	{ src = "https://github.com/AndrewRadev/bufferize.vim" },
 	{ src = "https://github.com/mistweaverco/kulala.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/obsidian-nvim/obsidian.nvim" },
 
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },
