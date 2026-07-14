@@ -5,16 +5,6 @@ zk.setup({
 	picker = "fzf_lua",
 })
 
-local selected_text = function()
-	local mode = vim.api.nvim_get_mode().mode
-	local opts = {}
-	-- \22 is an escaped version of <c-v>
-	if mode == "v" or mode == "V" or mode == "\22" then
-		opts.type = mode
-	end
-	return vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), opts)
-end
-
 local function get_note_title()
 	local title = vim.fn.input("Note title: ")
 	if title == "" or title == nil then
@@ -41,9 +31,13 @@ vim.api.nvim_create_user_command("AddQuickNote", function()
 	end)
 end, {})
 
-vim.api.nvim_create_user_command("AddNoteFromSelection", function()
-	local content = selected_text()
-	if content == nil or selected_text == "" then
+vim.api.nvim_create_user_command("AddNoteFromSelection", function(opts)
+	local content
+	if opts.range > 0 then
+		local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
+		content = table.concat(lines, "\n")
+	end
+	if content == nil or #content == 0 then
 		return
 	end
 	local title = get_note_title()
@@ -52,4 +46,4 @@ vim.api.nvim_create_user_command("AddNoteFromSelection", function()
 	end
 
 	zk.new({ title = title, content = content })
-end, {})
+end, { range = true })
