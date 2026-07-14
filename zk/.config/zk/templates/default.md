@@ -1,7 +1,7 @@
 ---
 title: {{title}}
 id: {{id}}
-date: {{format-date now}}
+date: {{format-date now "%d.%m.%Y"}}
 tags: []
 ---
 # {{title}}

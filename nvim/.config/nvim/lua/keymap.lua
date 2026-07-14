@@ -106,11 +106,10 @@ core.map_key("n", "<leader>di", ":DapStepInto<CR>")
 core.map_key("n", "gx", ":OpenUrlInLine<CR>")
 core.map_key("n", "<leader>o", ":Outline<CR>")
 
--- rest.nvim
-core.map_key("n", "<leader>rr", ":Rest run<cr>")
-
 -- notes
 core.map_key("n", "<leader>na", ":AddNote<CR>")
 core.map_key("n", "<leader>nq", ":AddQuickNote<CR>")
 core.map_key("n", "<leader>nn", ":ZkNotes<CR>")
 core.map_key("n", "<leader>nt", ":ZkTags<CR>")
+core.map_key("n", "<leader>nl", ":ZkInsertLink<CR>")
+core.map_key("n", "<leader>ni", ":ZkIndex<CR>")
