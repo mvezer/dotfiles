@@ -1,6 +1,6 @@
 [font]
 size = 11
-normal = { family = "BlexMono Nerd Font", style = "Light" }
+normal = { family = "BlexMono Nerd Font", style = "Regular" }
 bold = { family = "BlexMono Nerd Font", style = "Bold" }
 italic = { family = "BlexMono Nerd Font", style = "Italic" }
 # normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
