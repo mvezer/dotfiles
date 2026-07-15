@@ -1,5 +1,4 @@
 local zk = require("zk")
-local zk_api = require("zk.api")
 
 zk.setup({
 	picker = "fzf_lua",
@@ -22,13 +21,10 @@ vim.api.nvim_create_user_command("AddNote", function()
 end, {})
 
 vim.api.nvim_create_user_command("AddQuickNote", function()
-	zk_api.list(nil, { select = { "absPath", "title" }, tags = { "quick-note" } }, function(err, notes)
-		if err ~= nil or notes == nil or #notes == 0 then
-			zk.new({ title = "Quick note" })
-		else
-			vim.cmd("e " .. notes[1].absPath)
-		end
-	end)
+	local quick_node_path = vim.fn.environ()["ZK_QUICK_NOTE"]
+	if quick_node_path ~= nil then
+		vim.cmd("e " .. quick_node_path)
+	end
 end, {})
 
 vim.api.nvim_create_user_command("AddNoteFromSelection", function(opts)
