@@ -110,7 +110,7 @@ preset = 'qwerty'
 
 # Open/focus apps using keybinds
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-alt-enter = 'exec-and-forget open -n -a "Alacritty.app" --args -o font.size=14'
+alt-enter = 'exec-and-forget open -n -a "Alacritty.app"'
 alt-b = 'exec-and-forget open -a "Brave Browser.app"'
 # alt-q = 'close'
 
@@ -209,8 +209,8 @@ alt-shift-g = 'move-node-to-workspace 9'
 # Enter service mode
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-alt-ctrl-shift-q = [
-    'mode service'
-    # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=true',
+  'mode service',
+  # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=true',
 ]
 
 # 'service' binding mode declaration
@@ -236,29 +236,29 @@ shift-up = 'resize smart +50'
 # Reset layout
 # See: https://nikitabobko.github.io/AeroSpace/commands#flatten-workspace-tree
 r = [
-    'flatten-workspace-tree',
-    'mode main'
-    # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+  'flatten-workspace-tree',
+  'mode main',
+  # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
 
 # Reload config
 # See: https://nikitabobko.github.io/AeroSpace/commands#reload-config
 c = [
-    'reload-config',
-    'mode main'
-    # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+  'reload-config',
+  'mode main',
+  # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
 
 # Close all windows on focused workspace
 # See: https://nikitabobko.github.io/AeroSpace/commands#close-all-windows-but-current
 backspace = [
-    'close-all-windows-but-current',
-    'mode main'
-    # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+  'close-all-windows-but-current',
+  'mode main',
+  # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
 # Back to 'main' mode
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 esc = [
-    'mode main'
-    # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false'
+  'mode main',
+  # 'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false'
 ]

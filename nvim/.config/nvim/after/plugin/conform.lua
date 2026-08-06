@@ -1,3 +1,10 @@
+local disabled_ft = {
+	"help",
+	"man",
+	"markdown",
+	"kotlin",
+}
+
 local formatters_by_ft = {
 	lua = { "stylua" },
 	rust = { "rustfmt", lsp_format = "fallback" },
@@ -18,6 +25,10 @@ for _, ft in ipairs({
 end
 require("conform").setup({
 	format_on_save = function(bufnr)
+		local ft = vim.bo[bufnr].filetype
+		if vim.tbl_contains(disabled_ft, ft) then
+			return
+		end
 		local enable_autoformat = not vim.g.disable_autoformat and not vim.b[bufnr].disable_autoformat
 		return enable_autoformat and { timeout_ms = 500, lsp_format = "fallback" } or nil
 	end,

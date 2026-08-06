@@ -19,21 +19,24 @@ core.map_key({ "n", "v", "i" }, "<c-right>", ":NavigatorRight<CR>")
 core.map_key({ "n", "v", "i" }, "<c-left>", ":NavigatorLeft<CR>")
 
 --- buffer management
-local buffer_manager = require("buffer_manager.ui")
-core.map_key("n", "<leader><leader>", function()
-	buffer_manager.toggle_quick_menu()
-end)
+-- local buffer_manager = require("buffer_manager.ui")
+-- core.map_key("n", "<leader><leader>", buffer_manager.toggle_quick_menu)
+
+core.map_key("n", "<leader><leader>", "<Cmd>FzfLua buffers<CR>")
 core.map_key("n", "<leader>bo", ":%bd|e#|bd#<CR>") -- close all buffers but the current one
-core.map_key("n", "<leader>bs", function()
-	buffer_manager.save_menu_to_file(vim.fn.stdpath("data") .. "/buffers")
-	vim.notify("saved buffer list")
-end) -- save buffer list to file
-core.map_key("n", "<leader>bl", function()
-	buffer_manager.load_menu_from_file(vim.fn.stdpath("data") .. "/buffers")
-	vim.notify("loaded buffer list")
-end) -- load buffer list from file
-core.map_key("n", "<Tab>", buffer_manager.nav_next) -- next buffer
-core.map_key("n", "<S-Tab>", buffer_manager.nav_prev) -- prev buffer
+-- core.map_key("n", "<leader>bs", function()
+-- 	buffer_manager.save_menu_to_file(vim.fn.stdpath("data") .. "/buffers")
+-- 	vim.notify("saved buffer list")
+-- end) -- save buffer list to file
+-- core.map_key("n", "<leader>bl", function()
+-- 	buffer_manager.load_menu_from_file(vim.fn.stdpath("data") .. "/buffers")
+-- 	vim.notify("loaded buffer list")
+-- end) -- load buffer list from file
+-- core.map_key("n", "<Tab>", buffer_manager.nav_next) -- next buffer
+-- core.map_key("n", "<S-Tab>", buffer_manager.nav_prev) -- prev buffer
+
+core.map_key("n", "<Tab>", "<Cmd>bNext<CR>") -- next buffer
+core.map_key("n", "<S-Tab>", "<Cmd>bPrev<CR>") -- prev buffer
 core.map_key({ "n" }, "<C-x>", ":bd<CR>") --- delete buffer
 
 core.map_key("n", "<leader>by", ":let @+ = expand('%:p')")
@@ -44,7 +47,15 @@ core.map_key("n", "<Down>", "gj")
 core.map_key("n", "<Up>", "gk")
 core.map_key("n", "<Esc>", ":noh<CR>")
 core.map_key("t", "<Esc>", "<C-\\><C-n>")
-core.map_key("n", "<leader>e", ":Oil<CR>")
+core.map_key("n", "<leader>E", ":Oil<CR>")
+core.map_key("n", "<leader>e", function()
+	require("nvim-tree.api").tree.toggle({
+		path = "<args>",
+		find_file = false,
+		update_root = false,
+		focus = true,
+	})
+end)
 core.map_key("n", "<leader>s", ":SupermavenToggle<CR>:redrawstatus<CR>")
 core.map_key("n", "dd", smart_dd)
 

@@ -87,15 +87,22 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Create directories when saving files
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = core.augroup,
-	callback = function()
-		local dir = vim.fn.expand("<afile>:p:h")
-		if vim.fn.isdirectory(dir) == 0 then
-			vim.fn.mkdir(dir, "p")
-		end
-	end,
-})
+-- TODO: fix the residual folder problem with oil
+
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	group = core.augroup,
+-- 	callback = function()
+--    -- fix for oil
+-- 		local file = vim.uv.fs_realpath(event.match)
+-- 		if not file then
+-- 			return
+-- 		end
+-- 		local dir = vim.fn.expand("<afile>:p:h")
+-- 		if vim.fn.isdirectory(dir) == 0 then
+-- 			vim.fn.mkdir(dir, "p")
+-- 		end
+-- 	end,
+-- })
 
 -- Cd the directory of the current file
 vim.api.nvim_create_user_command("Cdc", function()

@@ -10,7 +10,8 @@ vim.pack.add({
 
 	-- AI
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
-	{ src = "https://github.com/sudo-tee/opencode.nvim" },
+	-- { src = "https://github.com/sudo-tee/opencode.nvim" },
+	{ src = "https://github.com/coder/claudecode.nvim" },
 	{ src = "https://github.com/Robitx/gp.nvim" },
 
 	-- LSP & formatting
@@ -42,6 +43,7 @@ vim.pack.add({
 	{ src = "https://github.com/AndrewRadev/bufferize.vim" },
 	{ src = "https://github.com/mistweaverco/kulala.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
 
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },

@@ -2,7 +2,7 @@ if [[ ":$FPATH:" != *":/$HOME/.zsh/completions:"* ]]; then export FPATH="/$HOME/
 eval "$(starship init zsh)"
 
 # env vars
-export SECRETS="$HOME/.secrets" # TODO: use 1password cli instead
+export SECRETS="$HOME/.secrets"
 export EDITOR="nvim"
 export PAGER="nvim -c 'Man!' -o -"
 export MANPAGER='nvim +Man!'
