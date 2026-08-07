@@ -2,7 +2,7 @@ local disabled_ft = {
 	"help",
 	"man",
 	"markdown",
-	"kotlin",
+	-- "kotlin",
 }
 
 local formatters_by_ft = {
@@ -10,6 +10,7 @@ local formatters_by_ft = {
 	rust = { "rustfmt", lsp_format = "fallback" },
 	toml = { "taplo" },
 	gdscript = { "gdscript-formatter" },
+	kotlin = { "ktfmt" },
 }
 for _, ft in ipairs({
 	"javascript ",
@@ -34,3 +35,9 @@ require("conform").setup({
 	end,
 	formatters_by_ft = formatters_by_ft,
 })
+
+require("conform").formatters.ktfmt = {
+	append_args = function(self, ctx)
+		return { "--kotlinlang-style" }
+	end,
+}
