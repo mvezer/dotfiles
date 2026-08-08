@@ -9,7 +9,7 @@ local config = {
 		group_empty = true,
 	},
 	filters = {
-		dotfiles = true,
+		dotfiles = false,
 	},
 	-- on_attach = function(bufnr)
 	-- 	local function opts(desc)
