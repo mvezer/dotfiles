@@ -13,10 +13,10 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 # Run SketchyBar and JankyBorders together with AeroSpace.
-# after-startup-command = [
-#     'exec-and-forget sketchybar',
-#     'exec-and-forget borders'
-# ]
+after-startup-command = [
+  'exec-and-forget sketchybar',
+  # 'exec-and-forget borders'
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -50,11 +50,11 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # AEROSPACE_FOCUSED_WORKSPACE - the workspace user switched to
 # AEROSPACE_PREV_WORKSPACE - the workspace user switched from
 # Notify Sketchybar about workspace change
-# exec-on-workspace-change = [
-#     '/bin/bash',
-#     '-c',
-#     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-# ]
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -69,7 +69,7 @@ automatically-unhide-macos-hidden-apps = false
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-outer.top = [{ monitor.'built-in.*' = 0 }, 0]
+outer.top = [{ monitor.'built-in.*' = 0 }, 24]
 outer.right = 0
 outer.bottom = 0
 outer.left = 0
