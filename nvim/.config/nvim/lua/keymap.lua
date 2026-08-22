@@ -125,3 +125,9 @@ core.map_key("n", "<leader>nt", ":ZkTags<CR>")
 core.map_key("n", "<leader>nl", ":ZkInsertLink<CR>")
 core.map_key("n", "<leader>ni", ":ZkIndex<CR>")
 core.map_key("", "<leader>ns", ":AddNoteFromSelection<CR>")
+
+-- Claude code
+core.map_key("n", "<leader>aa", ":ClaudeCode<CR>")
+
+-- laravel.nvim
+core.map_key("n", "<leader>la", ":Laravel<CR>")

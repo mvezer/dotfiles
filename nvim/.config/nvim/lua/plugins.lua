@@ -7,6 +7,7 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/folke/lazydev.nvim" },
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
+	{ src = "https://github.com/nvim-neotest/nvim-nio" },
 
 	-- AI
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
@@ -21,6 +22,7 @@ vim.pack.add({
 	{ src = "https://github.com/jay-babu/mason-nvim-dap.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/towolf/vim-helm" },
+	{ src = "https://github.com/adalessa/laravel.nvim" },
 
 	-- editing
 	{ src = "https://github.com/folke/flash.nvim" },
