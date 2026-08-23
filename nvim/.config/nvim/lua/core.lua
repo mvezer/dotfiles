@@ -1,3 +1,5 @@
+local HOME_HOST_NAME = "good-old-lenny"
+
 local default_map_opts = { silent = true }
 local map_key = function(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, opts or default_map_opts)
@@ -26,9 +28,14 @@ local function open_url(url)
 	end
 end
 
+local function is_home()
+	return vim.env.HOST == HOME_HOST_NAME
+end
+
 return {
 	is_quickfix_open = is_quickfix_open,
 	map_key = map_key,
 	augroup = augroup,
 	open_url = open_url,
+	is_home = is_home,
 }

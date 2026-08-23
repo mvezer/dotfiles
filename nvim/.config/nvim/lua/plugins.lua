@@ -1,4 +1,5 @@
-vim.pack.add({
+local core = require("core")
+local plugins = {
 	-- core deps
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
@@ -11,8 +12,6 @@ vim.pack.add({
 
 	-- AI
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
-	-- { src = "https://github.com/sudo-tee/opencode.nvim" },
-	{ src = "https://github.com/coder/claudecode.nvim" },
 	{ src = "https://github.com/Robitx/gp.nvim" },
 
 	-- LSP & formatting
@@ -67,4 +66,13 @@ vim.pack.add({
 	-- { src = "file:///home/mat/workshop/fzf-plugin-manager.nvim" },
 	{ src = "https://github.com/mvezer/mark-and-jump.nvim" },
 	-- { src = "file:///home/mat/workshop/mark-and-jump.nvim" },
-})
+}
+if core.is_home() then
+	-- use opencode at home
+	table.insert(plugins, { src = "https://github.com/sudo-tee/opencode.nvim" })
+else
+	-- claude code at work...
+	table.insert(plugins, { src = "https://github.com/coder/claudecode.nvim" })
+end
+
+vim.pack.add(plugins)
