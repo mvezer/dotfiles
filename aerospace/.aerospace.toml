@@ -70,7 +70,7 @@ automatically-unhide-macos-hidden-apps = false
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-outer.top = [{ monitor.'built-in.*' = 0 }, 24]
+outer.top = [{ monitor.'built-in.*' = 0 }, 28]
 outer.right = 4
 outer.bottom = 4
 outer.left = 4
@@ -116,7 +116,7 @@ preset = 'qwerty'
 # Open/focus apps using keybinds
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 alt-enter = 'exec-and-forget open -n -a "Alacritty.app"'
-# alt-b = 'exec-and-forget open -a "Brave Browser.app"'
+alt-b = 'exec-and-forget open -a "Brave Browser.app"'
 # alt-q = 'close'
 
 # Switch between layouts
@@ -235,10 +235,10 @@ o = 'join-with right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 # Resize windows
-left = 'resize width -50'
-down = 'resize height -50'
-up = 'resize height +50'
-right = 'resize width +50'
+left = 'resize width +50'
+down = 'resize height +50'
+up = 'resize height -50'
+right = 'resize width -50'
 shift-down = 'resize smart -50'
 shift-up = 'resize smart +50'
 
