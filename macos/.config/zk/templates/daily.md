@@ -6,4 +6,10 @@ tags: [daily]
 ---
 # {{format-date now "%d.%m.%Y"}}
 
-{{content}}
+## Meetings & co.
+- Daily
+
+## Work log
+-
+
+## TODOs

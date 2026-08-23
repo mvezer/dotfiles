@@ -1,5 +1,5 @@
 [notebook]
-dir = "/home/mat/notes/"
+dir = "/Users/mat/OneDrive - Bikeleasing-Service GmbH & Co.KG/zk"
 
 [format.markdown]
 link-format = "markdown"
@@ -18,22 +18,27 @@ dead-link = "error"
 template = "default.md"
 
 [group.daily]
-paths = ["daily"]
+paths = ["dailies"]
 
 [group.daily.note]
 filename = "{{format-date now '%Y-%m-%d'}}"
 template = "daily.md"
 
+[group.ticket]
+paths = ["tickets"]
+
+[group.ticket.note]
+filename = "{{extra.ticket_number}}_{{slug title}}"
+template = "ticket.md"
+
 [alias]
-daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/daily"'
-# log = 'zk new --no-input "$ZK_NOTEBOOK_DIR/daily"'
-today = 'zk new --no-input "$ZK_NOTEBOOK_DIR/daily"'
-l = "zk edit -i"
-# t = "zk tag"
-# a = "zk new --title=$1"
-# add = "zk new --title=$1"
-n = 'zk new --title "$(printf "Title: " && read t && printf "%s" "$t")"'
-new = 'zk new --title "$(printf "Title: " && read t && printf "%s" "$t")"'
-# q = "zk edit --tag quick-note"
-# quick = "zk edit --tag quick-note"
-conf = '$EDITOR "$ZK_NOTEBOOK_DIR/.zk/config.toml"'
+today = 'zk new --no-input "$ZK_NOTEBOOK_DIR/dailies"'
+ticket = 'zk new "$ZK_NOTEBOOK_DIR/tickets" --title "$(printf "Title: " >&2 && read t && printf "%s" "$t")" --extra ticket_number="$(printf "Ticket number: " >&2 && read t && printf "%s" "$t")"'
+note = 'zk new --title "$(printf "Title: " >&2 && read t && printf "%s" "$t")"'
+l = 'zk edit -i --tag "NOT daily" --tag "NOT ticket"'
+ls = 'zk edit -i --tag "NOT daily" --tag "NOT ticket"'
+notes = 'zk edit -i --tag "NOT daily" --tag "NOT ticket"'
+t = "zk edit -i --tag ticket"
+tickets = "zk edit -i --tag ticket"
+d = "zk edit -i --tag daily --sort created-"
+dailies = "zk edit -i --tag daily --sort created-"

@@ -1,6 +1,4 @@
 #!/user/bin/env zsh
-export ZK_NOTEBOOK_DIR="$HOME/notes"
-export ZK_QUICK_NOTE="$ZK_NOTEBOOK_DIR/6njn-quick-note.md"
 
 
 # alias n="pushd &> /dev/null && cd $ZK_DIR && zk edit quick-note && popd &> /dev/null"
