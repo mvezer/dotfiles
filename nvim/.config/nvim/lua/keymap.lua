@@ -47,8 +47,8 @@ core.map_key("n", "<Down>", "gj")
 core.map_key("n", "<Up>", "gk")
 core.map_key("n", "<Esc>", ":noh<CR>")
 core.map_key("t", "<Esc>", "<C-\\><C-n>")
-core.map_key("n", "<leader>E", ":Oil<CR>")
-core.map_key("n", "<leader>e", function()
+core.map_key("n", "<leader>e", ":Oil<CR>")
+core.map_key("n", "<leader>E", function()
 	require("nvim-tree.api").tree.toggle({
 		path = "<args>",
 		find_file = false,
