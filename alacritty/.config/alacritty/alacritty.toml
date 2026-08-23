@@ -1,21 +1,14 @@
-[font]
-size = 13
-normal = { family = "BlexMono Nerd Font", style = "Regular" }
-bold = { family = "BlexMono Nerd Font", style = "Bold" }
-italic = { family = "BlexMono Nerd Font", style = "Italic" }
-# normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
-# normal = { family = "InconsolataGo Nerd Font Mono", style = "Regular" }
-# normal = { family = "Iosevka Nerd Font Mono", style = "Light" }
-# bold = { family = "Iosevka Nerd Font Mono", style = "Bold" }
-# italic = { family = "Iosevka Nerd Font Mono", style = "Italic" }
+[general]
+live_config_reload = true
+import = [
+  "~/.config/alacritty/themes/ayu_dark.toml",
+  "~/.config/macos/alacritty/alacritty.macos.toml",
+  "~/.config/linux/alacritty/alacritty.linux.toml",
+]
 
 [cursor]
 style = { shape = "Beam" }
 vi_mode_style = { shape = "Block" }
-
-[general]
-live_config_reload = true
-import = ["~/.config/alacritty/themes/ayu_dark.toml"]
 
 [window]
 startup_mode = "Maximized"
@@ -23,22 +16,3 @@ decorations = "none"
 option_as_alt = "Both"
 opacity = 0.9
 blur = false
-
-[terminal.shell]
-program = "tmux"
-
-# [terminal.shell]
-# program = "/bin/zsh"
-# args = [
-#   "--login",
-#   "-c",
-#   "tmux attach || tmux new-session -s default"
-# ]
-
-# [keyboard]
-# bindings = [
-#   # passthrough for ctrl+tab and ctrl+shift+tab
-#   { key = "Tab", mods = "Control", chars = "\u001b[27;5;9~" },
-#   { key = "Tab", mods = "Control|Shift", chars = "\u001b[27;6;9~" },
-# ]
-#
