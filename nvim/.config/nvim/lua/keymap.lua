@@ -127,7 +127,8 @@ core.map_key("n", "<leader>ni", ":ZkIndex<CR>")
 core.map_key("", "<leader>ns", ":AddNoteFromSelection<CR>")
 
 -- Claude code
-core.map_key("n", "<leader>aa", ":ClaudeCode<CR>")
+core.map_key({ "n", "t" }, "<c-a>", "<Cmd>ClaudeCode<CR>") -- next buffer
+core.map_key("v", "<c-a>", "<Cmd>ClaudeCodeSend<CR>") -- next buffer
 
 -- laravel.nvim
 core.map_key("n", "<leader>la", ":Laravel<CR>")
