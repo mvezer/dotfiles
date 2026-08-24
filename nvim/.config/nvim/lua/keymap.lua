@@ -13,10 +13,10 @@ core.map_key("v", ">", ">gv")
 core.map_key({ "n", "v" }, "c", '"_c')
 core.map_key({ "n", "v" }, "C", '"_C')
 core.map_key("v", "p", "P")
-core.map_key({ "n", "t" }, "<c-down>", "<CMD>NavigatorDown<CR>")
-core.map_key({ "n", "t" }, "<c-up>", "<CMD>NavigatorUp<CR>")
-core.map_key({ "n", "t" }, "<c-right>", "<CMD>NavigatorRight<CR>")
-core.map_key({ "n", "t" }, "<c-left>", "<CMD>NavigatorLeft<CR>")
+core.map_key({ "n", "i", "t" }, "<c-down>", "<CMD>NavigatorDown<CR>")
+core.map_key({ "n", "i", "t" }, "<c-up>", "<CMD>NavigatorUp<CR>")
+core.map_key({ "n", "i", "t" }, "<c-right>", "<CMD>NavigatorRight<CR>")
+core.map_key({ "n", "i", "t" }, "<c-left>", "<CMD>NavigatorLeft<CR>")
 
 --- buffer management
 -- local buffer_manager = require("buffer_manager.ui")
@@ -91,19 +91,19 @@ core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
 
 core.map_key("n", "gd", vim.lsp.buf.definition)
 core.map_key("n", "K", vim.lsp.buf.hover)
-core.map_key("n", "gr", function()
-	require("fzf-lua").lsp_references(
-		--    {
-		-- 	ignore_current_line = true,
-		-- 	jump_to_single_result = true,
-		-- }
-	)
-end)
+core.map_key("n", "gr", require("fzf-lua").lsp_references)
 
 core.map_key("n", "<leader>lr", vim.lsp.buf.rename)
 core.map_key("n", "<leader>ls", ":Neotree toggle=true source=document_symbols<CR>")
 core.map_key("n", "<leader>ll", function()
 	vim.diagnostic.setqflist({ severity = { min = vim.diagnostic.severity.WARN } })
+end)
+-- kotlin specific lsp stuff
+core.map_key("n", "<leader>lkc", function()
+	require("kotlin_fqn").copy()
+end)
+core.map_key("n", "<leader>lkC", function()
+	require("kotlin_fqn").copy({ binary = true })
 end)
 core.map_key("n", "<leader>ld", vim.diagnostic.open_float)
 core.map_key("n", "<leader>gl", ":Gitsigns setqflist<CR>")
@@ -113,6 +113,9 @@ core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
 core.map_key("n", "<leader>m", ":TSJToggle<CR>")
 core.map_key("n", "<leader>M", ":MarkdownPreview<CR>")
+
+-- Autosession
+core.map_key("n", "<leader>as", ":Autosession save<CR>")
 
 -- debug stuff
 core.map_key("n", "<leader>db", ":DapToggleBreakpoint<CR>")
