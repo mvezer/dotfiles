@@ -35,8 +35,8 @@ core.map_key("n", "<leader>bo", ":%bd|e#|bd#<CR>") -- close all buffers but the 
 -- core.map_key("n", "<Tab>", buffer_manager.nav_next) -- next buffer
 -- core.map_key("n", "<S-Tab>", buffer_manager.nav_prev) -- prev buffer
 
-core.map_key("n", "<Tab>", "<Cmd>bNext<CR>") -- next buffer
-core.map_key("n", "<S-Tab>", "<Cmd>bPrev<CR>") -- prev buffer
+core.map_key("n", "<Tab>", "<Cmd>bnext<CR>") -- next buffer
+core.map_key("n", "<S-Tab>", "<Cmd>bprevious<CR>") -- prev buffer
 core.map_key({ "n" }, "<C-x>", ":bd<CR>") --- delete buffer
 
 core.map_key("n", "<leader>by", ":let @+ = expand('%:p')")
@@ -91,7 +91,15 @@ core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
 
 core.map_key("n", "gd", vim.lsp.buf.definition)
 core.map_key("n", "K", vim.lsp.buf.hover)
-core.map_key("n", "gr", vim.lsp.buf.references)
+core.map_key("n", "gr", function()
+	require("fzf-lua").lsp_references(
+		--    {
+		-- 	ignore_current_line = true,
+		-- 	jump_to_single_result = true,
+		-- }
+	)
+end)
+
 core.map_key("n", "<leader>lr", vim.lsp.buf.rename)
 core.map_key("n", "<leader>ls", ":Neotree toggle=true source=document_symbols<CR>")
 core.map_key("n", "<leader>ll", function()
