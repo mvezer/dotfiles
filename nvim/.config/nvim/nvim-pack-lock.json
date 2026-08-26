@@ -93,6 +93,10 @@
       "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
       "src": "https://github.com/iamcco/markdown-preview.nvim"
     },
+    "markdown-toggle.nvim": {
+      "rev": "86235e1c5f7ff12174dbb33bdeb091040a8cbe63",
+      "src": "https://github.com/roodolv/markdown-toggle.nvim"
+    },
     "marks.nvim": {
       "rev": "f353e8c",
       "src": "https://github.com/chentoast/marks.nvim"

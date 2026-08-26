@@ -46,6 +46,7 @@ local plugins = {
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
 	{ src = "https://github.com/rmagatti/auto-session" },
+	{ src = "https://github.com/roodolv/markdown-toggle.nvim" },
 
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },

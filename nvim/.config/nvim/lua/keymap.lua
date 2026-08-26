@@ -150,3 +150,12 @@ end
 
 -- laravel.nvim
 core.map_key("n", "<leader>la", ":Laravel<CR>")
+
+-- markdown-toggle
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		local toggle = require("markdown-toggle")
+		core.map_key("n", "<CR>", toggle.checkbox)
+	end,
+})
