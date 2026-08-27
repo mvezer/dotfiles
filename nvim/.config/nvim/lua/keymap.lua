@@ -115,7 +115,7 @@ core.map_key("n", "<leader>m", ":TSJToggle<CR>")
 core.map_key("n", "<leader>M", ":MarkdownPreview<CR>")
 
 -- Autosession
-core.map_key("n", "<leader>as", ":Autosession save<CR>")
+core.map_key("n", "<leader>S", ":AutoSession save<CR>")
 
 -- debug stuff
 core.map_key("n", "<leader>db", ":DapToggleBreakpoint<CR>")
