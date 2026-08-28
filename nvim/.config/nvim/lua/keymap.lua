@@ -159,3 +159,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		core.map_key("n", "<CR>", toggle.checkbox)
 	end,
 })
+
+-- neotest
+core.map_key("n", "<leader>tt", function()
+	require("neotest").run.run()
+end)

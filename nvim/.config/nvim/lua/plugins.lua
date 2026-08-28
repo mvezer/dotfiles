@@ -48,6 +48,11 @@ local plugins = {
 	{ src = "https://github.com/rmagatti/auto-session" },
 	{ src = "https://github.com/roodolv/markdown-toggle.nvim" },
 
+	-- neotest
+	{ src = "https://github.com/nvim-neotest/neotest" },
+	{ src = "https://github.com/weilbith/neotest-gradle" },
+	{ src = "https://github.com/codymikol/neotest-kotlin" },
+
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
