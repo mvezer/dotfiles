@@ -1,0 +1,14 @@
+[[language]]
+name = "kotlin"
+language-servers = ["kmp-lsp"]
+
+[language-server.kmp-lsp]
+command = "kmp-lsp"
+args = ["--smart"]
+
+[[language]]
+name = "java"
+language-servers = ["kmp-lsp"]
+
+
+

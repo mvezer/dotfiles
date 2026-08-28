@@ -1,0 +1,83 @@
+theme = "gruvbox_dark_hard"
+
+[editor]
+clipboard-provider = "pasteboard"
+default-yank-register = "+"
+auto-save = false
+auto-format = true
+color-modes = true
+completion-replace = true
+cursorcolumn = false
+cursorline = true
+true-color = true
+
+[keys.normal]
+p = ":clipboard-paste-after"
+P = ":clipboard-paste-before"
+y = ":clipboard-yank-join"
+Y = ":clipboard-yank"
+R = ":clipboard-paste-replace"
+d = [":clipboard-yank-join", "delete_selection"]
+tab = [":buffer-next"]
+S-tab = [":buffer-previous"]
+
+[keys.select]
+p = ":clipboard-paste-after"
+P = ":clipboard-paste-before"
+y = ":clipboard-yank-join"
+Y = ":clipboard-yank"
+R = ":clipboard-paste-replace"
+d = [":clipboard-yank-join", "delete_selection"]
+
+[editor.statusline]
+left = [
+  "mode",
+  "spacer",
+  "version-control",
+  "spacer",
+  "separator",
+  "file-name",
+  "function-name",
+  "file-modification-indicator"
+]
+right = [
+  "spinner",
+  "spacer",
+  "workspace-diagnostics",
+  "separator",
+  "spacer",
+  "diagnostics",
+  "position",
+  "file-encoding",
+  "file-line-ending",
+  "file-type"
+]
+separator = "|"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cmdline]
+# noice-style command line
+# https://github.com/gj1118/helix/#noicenvim-like-command-line-cmdline 
+style = "popup"
+
+# Customize command icons
+[editor.cmdline.icons]
+search = "🔍 "    # For search commands (/,?)
+command = "⚙ "    # For command mode (:)
+shell = "⚡"      # For shell commands (!)
+general = "💬 "   # For other prompts
+
+[editor.notifications]
+# noice-style notifications
+# https://github.com/gj1118/helix/#noicenvim-like-command-line-cmdline
+enable = true              # Enable notification system
+style = "popup"            # "popup" (noice-style) or "statusline" (traditional)
+position = "top-right"     # Position: "top-right", "top-left", "bottom-right", "bottom-left"
+max-width = 60             # Maximum width for notification popups
+max-height = 10            # Maximum height for notification popups
+default-timeout = 5000     # Default timeout in milliseconds (0 = no timeout)
+show-icons = true          # Show notification type icons
+show-emojis = true         # Show notification type emojis
+max-history = 100          # Maximum notifications to keep in history
