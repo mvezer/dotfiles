@@ -8,6 +8,7 @@ alias jellyfin="ssh root@jellyfin.fritz.box"
 alias bt="bluetui"
 alias b='bun --cwd "$HOME/workshop/bookmarks" start'
 alias rustbook="qutebrowser -s zoom.default 130 https://doc.rust-lang.org/book/ & disown"
+alias "hx"="helix"
 
 function evening() {
   hctl on szekreny
