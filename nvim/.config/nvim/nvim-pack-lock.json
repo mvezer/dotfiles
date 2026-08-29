@@ -17,18 +17,6 @@
       "rev": "8b69b9262891fe81fe728fe6a52fa2a84dd5d5e0",
       "src": "https://github.com/saghen/blink.indent"
     },
-    "buffer_manager.nvim": {
-      "rev": "a0ac2db39c8bd4a2b6ca897f38c88770f90d9323",
-      "src": "https://github.com/j-morano/buffer_manager.nvim"
-    },
-    "bufferize.vim": {
-      "rev": "ec7c4445a97f19e5784a6fb6ad3c3d4a8ff505ac",
-      "src": "https://github.com/AndrewRadev/bufferize.vim"
-    },
-    "bufferline.nvim": {
-      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
-      "src": "https://github.com/akinsho/bufferline.nvim"
-    },
     "claudecode.nvim": {
       "rev": "2390c6e45c4789072c293ac69de051d169668b29",
       "src": "https://github.com/coder/claudecode.nvim"
@@ -36,10 +24,6 @@
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
-    },
-    "dired.nvim": {
-      "rev": "7cf5ceb69a6bbea547f97397fa5310b1571eb03a",
-      "src": "https://github.com/X3eRo0/dired.nvim"
     },
     "fidget.nvim": {
       "rev": "6f793b2bcd2d35e201c09520f698bb763220908a",
@@ -60,14 +44,6 @@
     "gitsigns.nvim": {
       "rev": "eb60cc7b94c46005237fd34170d76f3a089a90aa",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
-    },
-    "gp.nvim": {
-      "rev": "c37f154",
-      "src": "https://github.com/Robitx/gp.nvim"
-    },
-    "kulala.nvim": {
-      "rev": "5a2883ce52bc5feb6eb1f0ddd19de06bb4033144",
-      "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "laravel.nvim": {
       "rev": "c0b171c8f9f0b5914f12b197711b93aa2c4047d3",
@@ -116,18 +92,6 @@
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/mason-org/mason.nvim"
-    },
-    "neotest": {
-      "rev": "27bf921498043f7ecd821d6db68d05de244bbd02",
-      "src": "https://github.com/nvim-neotest/neotest"
-    },
-    "neotest-gradle": {
-      "rev": "88b7bde8416c14bc094cc4b6a900d13c6ea6bd3c",
-      "src": "https://github.com/weilbith/neotest-gradle"
-    },
-    "neotest-kotlin": {
-      "rev": "01808ea8ec7cf40952d57faceca00a154d5053a7",
-      "src": "https://github.com/codymikol/neotest-kotlin"
     },
     "neovim-ayu": {
       "rev": "e5a9f0fa2918d6b5f57c21b3ac014314ee5e41c8",
@@ -193,10 +157,6 @@
     "nvim-web-devicons": {
       "rev": "dad71387de386a946b123079d0e53f23028f3abd",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
-    },
-    "obsidian.nvim": {
-      "rev": "c87a43286bc19dca5362be39c5fb5c8e7c59aed1",
-      "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",

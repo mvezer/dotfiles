@@ -86,7 +86,6 @@ core.map_key("n", "<leader>sd", fzf.lsp_document_diagnostics)
 core.map_key("n", "<leader>sm", fzf.marks)
 core.map_key("n", "<leader>sc", fzf.colorschemes)
 core.map_key("n", "<leader>sb", fzf.buffers)
-core.map_key("n", "<leader>sa", ":GpChatFinder<CR>")
 core.map_key("n", "<leader>sn", ":ZkNotes<CR>")
 
 core.map_key("n", "gd", vim.lsp.buf.definition)

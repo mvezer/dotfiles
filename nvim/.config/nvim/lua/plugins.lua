@@ -12,7 +12,6 @@ local plugins = {
 
 	-- AI
 	{ src = "https://github.com/supermaven-inc/supermaven-nvim" },
-	{ src = "https://github.com/Robitx/gp.nvim" },
 
 	-- LSP & formatting
 	{ src = "https://github.com/mason-org/mason.nvim" },
@@ -37,21 +36,13 @@ local plugins = {
 	{ src = "https://github.com/gnsfujiwara/suda.nvim" },
 	{ src = "https://github.com/hedyhli/outline.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
-	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/emfussenegger/nvim-dap" },
 	{ src = "https://github.com/igorlfs/nvim-dap-view" },
 	{ src = "https://github.com/leoluz/nvim-dap-go" },
-	{ src = "https://github.com/AndrewRadev/bufferize.vim" },
-	{ src = "https://github.com/mistweaverco/kulala.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
 	{ src = "https://github.com/rmagatti/auto-session" },
 	{ src = "https://github.com/roodolv/markdown-toggle.nvim" },
-
-	-- neotest
-	{ src = "https://github.com/nvim-neotest/neotest" },
-	{ src = "https://github.com/weilbith/neotest-gradle" },
-	{ src = "https://github.com/codymikol/neotest-kotlin" },
 
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },
@@ -63,7 +54,6 @@ local plugins = {
 	{ src = "https://github.com/iamcco/markdown-preview.nvim" },
 	{ src = "https://github.com/shatur/neovim-ayu" },
 	{ src = "https://github.com/folke/snacks.nvim" },
-	{ src = "https://github.com/j-morano/buffer_manager.nvim" },
 	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/rcarriga/nvim-notify" },
 	{ src = "https://github.com/folke/noice.nvim" },
