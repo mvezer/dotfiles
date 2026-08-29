@@ -99,12 +99,6 @@ core.map_key("n", "<leader>ll", function()
 	vim.diagnostic.setqflist({ severity = { min = vim.diagnostic.severity.WARN } })
 end)
 -- kotlin specific lsp stuff
-core.map_key("n", "<leader>lkc", function()
-	require("kotlin_fqn").copy()
-end)
-core.map_key("n", "<leader>lkC", function()
-	require("kotlin_fqn").copy({ binary = true })
-end)
 core.map_key("n", "<leader>ld", vim.diagnostic.open_float)
 core.map_key("n", "<leader>gl", ":Gitsigns setqflist<CR>")
 core.map_key("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
@@ -157,6 +151,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		local toggle = require("markdown-toggle")
 		core.map_key("n", "<CR>", toggle.checkbox)
+	end,
+})
+
+-- kotlin copy fq class name
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "kotlin",
+	callback = function()
+		core.map_key("n", "<leader>lkc", ":CopyKotlinFQClassName<CR>")
+		core.map_key("n", "<leader>lkC", ":CopyJVMBinaryName<CR>")
 	end,
 })
 
