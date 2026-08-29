@@ -57,6 +57,7 @@ local plugins = {
 	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/rcarriga/nvim-notify" },
 	{ src = "https://github.com/folke/noice.nvim" },
+	{ src = "https://github.com/mong8se/buffish.nvim" },
 
 	-- own plugins
 	{ src = "https://github.com/mvezer/fzf-plugin-manager.nvim" },
