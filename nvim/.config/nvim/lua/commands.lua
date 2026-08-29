@@ -43,10 +43,6 @@ vim.api.nvim_create_user_command("OpenUrlInLine", function()
 	core.open_url(url)
 end, {})
 
-vim.api.nvim_create_user_command("Msg", function()
-	vim.cmd("Bufferize messages")
-end, {})
-
 local function is_cmdline_type_find()
 	local cmdline_cmd = vim.fn.split(vim.fn.getcmdline(), " ")[1]
 
