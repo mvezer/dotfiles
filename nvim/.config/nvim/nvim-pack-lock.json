@@ -210,6 +210,10 @@
       "rev": "2c8525fd98e57472769d137317bca83e477858ce",
       "src": "https://github.com/towolf/vim-helm"
     },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
+    },
     "zk-nvim": {
       "rev": "e6b32dfc220a73b4b6e2ca042f641d088784cb9f",
       "src": "https://github.com/zk-org/zk-nvim"

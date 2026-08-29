@@ -39,7 +39,8 @@ vim.opt.synmaxcol = 300
 
 -- Command-line completion
 vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
+vim.opt.wildmode = "noselect:lastused,full"
+vim.opt.wildoptions = "pum,fuzzy"
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 
 -- File handling
