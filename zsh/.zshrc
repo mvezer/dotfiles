@@ -10,6 +10,8 @@ export WORKSPACE="$HOME/workspace"
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 export TERM="screen-256color"
 export PATH="$PATH:$HOME/.local/bin"
+# doom emacs
+export PATH="$PATH:$HOME/.config/emacs/bin"
 export PATH=/home/mat/.opencode/bin:$PATH
 export HOST="$HOST"
 
