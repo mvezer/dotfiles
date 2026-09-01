@@ -17,3 +17,5 @@ bin/.local/bin/bunx
 /hypr/.config/hypr/monitors.lua
 /hypr/.config/hypr/monitors.lua.bak
 /bin/.local/bin/herdr
+/bin/.local/bin/kmp-jar-indexer
+/bin/.local/bin/kmp-lsp
