@@ -21,9 +21,7 @@ core.map_key({ "n", "i", "t" }, "<c-left>", "<CMD>NavigatorLeft<CR>")
 --- buffer management
 -- local buffer_manager = require("buffer_manager.ui")
 -- core.map_key("n", "<leader><leader>", buffer_manager.toggle_quick_menu)
--- core.map_key("n", "<leader><leader>", "<Cmd>FzfLua buffers<CR>")
-core.map_key("n", "<leader><leader>", ":Buffish<CR>")
-
+core.map_key("n", "<leader><leader>", "<Cmd>FzfLua buffers<CR>")
 core.map_key("n", "<leader>bo", ":%bd|e#|bd#<CR>") -- close all buffers but the current one
 -- core.map_key("n", "<leader>bs", function()
 -- 	buffer_manager.save_menu_to_file(vim.fn.stdpath("data") .. "/buffers")

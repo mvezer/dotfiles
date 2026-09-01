@@ -17,10 +17,6 @@
       "rev": "8b69b9262891fe81fe728fe6a52fa2a84dd5d5e0",
       "src": "https://github.com/saghen/blink.indent"
     },
-    "buffish.nvim": {
-      "rev": "31f4844253c5b0575aa1eae21a1124f340c96983",
-      "src": "https://github.com/mong8se/buffish.nvim"
-    },
     "claudecode.nvim": {
       "rev": "2390c6e45c4789072c293ac69de051d169668b29",
       "src": "https://github.com/coder/claudecode.nvim"
