@@ -8,6 +8,8 @@ local ensure_installed = {
 	"yaml",
 	"rust",
 	"go",
+	"php",
+	"kotlin",
 }
 local treesitter = require("nvim-treesitter")
 treesitter.install(ensure_installed):wait(300000)
