@@ -18,6 +18,7 @@ local menu = "qs -c noctalia-shell ipc call launcher toggle"
 local controlCenter = "qs -c noctalia-shell ipc call controlCenter toggle"
 local browser = "vivaldi-stable"
 local screenshot = "hyprshot -m region --clipboard-only"
+local screenshot_screen = "hyprshot -m active -m output -o ~/Pictures/steam_screeshots"
 
 --------------------
 ---- AUTOSTART ----
@@ -156,7 +157,7 @@ hl.config({
 hl.device({ name = "at-translated-set-2-keyboard", kb_layout = "de" })
 hl.device({ name = "ferris-bling-lp-keyboard", kb_layout = "us" })
 hl.device({ name = "hoksi-technology-durgod-taurus-k320", kb_layout = "gb" })
-hl.device({ name = "epic-mouse-v1", sensitivity = -0.5 })
+hl.device({ name = "epic-mouse-v1", sensitivity = -0.1 })
 
 -- 3-finger horizontal swipe to switch workspaces
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
@@ -221,7 +222,8 @@ hl.bind(super .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(super .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Screenshot
-hl.bind(super .. " + p", hl.dsp.exec_cmd(screenshot))
+hl.bind(super .. " + SHIFT + p", hl.dsp.exec_cmd(screenshot))
+hl.bind(super .. " + p", hl.dsp.exec_cmd(screenshot_screen))
 
 -- Volume & brightness (bindel equivalent: locked + repeating)
 hl.bind(
