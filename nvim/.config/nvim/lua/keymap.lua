@@ -101,6 +101,7 @@ core.map_key("n", "<leader>ld", vim.diagnostic.open_float)
 core.map_key("n", "<leader>gl", ":Gitsigns setqflist<CR>")
 core.map_key("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
 core.map_key("n", "<leader>gb", ":BlameToggle<CR>")
+core.map_key("n", "<leader>gs", ":FzfLua git_status<CR>")
 core.map_key({ "n", "i" }, "<S-Down>", ":cn<CR>")
 core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
