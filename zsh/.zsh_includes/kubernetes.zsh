@@ -7,9 +7,11 @@ alias kgd="kubectl get deployments"
 function ks () {
   echo "context: $(kubectx -c), namespace: $(kubens -c)"
 }
+
 function klogs () {
-  stern --timestamps $(kubectl get deployments -oname | awk -F '/' '{ print $2 }' | fzf)
+  stern --timestamps $(kubectl get deployments -oname  "$@" | awk -F '/' '{ print $2 }' | fzf) "$@"
 }
+
 function nuke-rapp () {
   kubectl delete ingresses -l prunable=true,reviewAppId="$1" -n nxt
   kubectl delete all -l prunable=true,reviewAppId="$1" -n nxt
