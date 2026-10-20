@@ -44,6 +44,7 @@ local plugins = {
 	{ src = "https://github.com/rmagatti/auto-session" },
 	{ src = "https://github.com/roodolv/markdown-toggle.nvim" },
 	{ src = "https://github.com/FabijanZulj/blame.nvim" },
+	-- { src = "https://github.com/obsidian-nvim/obsidian.nvim" },
 
 	-- UI
 	{ src = "https://github.com/numToStr/Navigator.nvim" },

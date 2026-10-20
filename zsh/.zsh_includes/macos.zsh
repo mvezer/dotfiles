@@ -5,6 +5,9 @@ alias cb="pbcopy"
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export HOMEBREW_BREWFILE="$HOME/.brew/Brewfile"
+export WORK_NOTES_DIR="$HOME/OneDrive - Bikeleasing-Service GmbH & Co.KG/work-notes"
+export NOTES_DIR="$HOME/Documents/notes"
+export ZK_NOTEBOOK_DIR="$HOME/OneDrive - Bikeleasing-Service GmbH & Co.KG/zk"
 
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
