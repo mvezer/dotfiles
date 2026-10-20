@@ -1,4 +1,26 @@
 require("mason").setup()
+
+-- vue_ls runs in "hybrid mode": it only handles template/CSS and forwards
+-- TypeScript requests to a ts_ls client attached to the same buffer. ts_ls
+-- doesn't open .vue files by default, so we extend its filetypes and load
+-- the @vue/typescript-plugin that vue-language-server ships.
+-- https://github.com/vuejs/language-tools/wiki/Neovim
+local vue_language_server_path = vim.fn.stdpath("data")
+	.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+vim.lsp.config("ts_ls", {
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = vue_language_server_path,
+				languages = { "vue" },
+			},
+		},
+	},
+})
+
 require("mason-lspconfig").setup()
 require("mason-nvim-dap").setup()
 require("mason-tool-installer").setup({
@@ -7,6 +29,7 @@ require("mason-tool-installer").setup({
 		"stylua",
 		"eslint_d",
 		"ts_ls",
+		"vue_ls",
 		"prettier",
 		"prettierd",
 		"eslint",
