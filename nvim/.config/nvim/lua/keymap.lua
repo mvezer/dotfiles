@@ -1,5 +1,27 @@
 local core = require("core")
 
+local function send_to_claude(with_lines)
+	local ref = "@" .. vim.fn.expand("%:.")
+	if with_lines then
+		local a, b = vim.fn.line("v"), vim.fn.line(".")
+		if a > b then
+			a, b = b, a
+		end
+		ref = ref .. (a == b and ("#L" .. a) or ("#L" .. a .. "-" .. b))
+	end
+	local panes = vim.fn.systemlist("tmux list-panes -s -F '#{pane_id} #{pane_current_command}'")
+	for _, p in ipairs(panes) do
+		local id, cmd = p:match("^(%S+) (.+)$")
+		-- shortcut: matches the claude binary name; native installs may show a version like "2.1.3"
+		if cmd == "claude" or cmd:match("^%d+%.%d+%.%d+$") then
+			vim.fn.system({ "tmux", "send-keys", "-t", id, "-l", ref .. " " })
+			return
+		end
+	end
+	vim.fn.setreg("+", ref) -- no claude pane found: put it on the clipboard instead
+	vim.notify("no claude pane, copied " .. ref)
+end
+
 local function smart_dd()
 	if vim.api.nvim_get_current_line():match("^%s*$") then
 		vim.api.nvim_feedkeys('"_dd', "n", false)
@@ -139,8 +161,14 @@ if core.is_home() then
 	core.map_key("v", "<c-a>", opencode_api.add_visual_selection) -- send selected text to opencode
 else
 	-- Claude code
-	core.map_key({ "n", "t" }, "<c-a>", "<Cmd>ClaudeCode<CR>") -- toggle claude code split
-	core.map_key("v", "<c-a>", "<Cmd>ClaudeCodeSend<CR>") -- send selected text range to claude
+	-- core.map_key({ "n", "t" }, "<c-a>", "<Cmd>ClaudeCode<CR>") -- toggle claude code split
+	-- core.map_key("v", "<c-a>", "<Cmd>ClaudeCodeSend<CR>") -- send selected text range to claude
+	core.map_key("n", "<c-a>", function()
+		send_to_claude(false)
+	end) -- send file
+	core.map_key("v", "<c-a>", function()
+		send_to_claude(true)
+	end) -- send file and lines
 end
 
 -- laravel.nvim

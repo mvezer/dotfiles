@@ -69,9 +69,9 @@ local plugins = {
 if core.is_home() then
 	-- use opencode at home
 	table.insert(plugins, { src = "https://github.com/sudo-tee/opencode.nvim" })
-else
+	-- else
 	-- claude code at work...
-	table.insert(plugins, { src = "https://github.com/coder/claudecode.nvim" })
+	-- table.insert(plugins, { src = "https://github.com/coder/claudecode.nvim" })
 end
 
 vim.pack.add(plugins)
