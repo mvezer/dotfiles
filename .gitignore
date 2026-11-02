@@ -19,3 +19,4 @@ bin/.local/bin/bunx
 /bin/.local/bin/herdr
 /bin/.local/bin/kmp-jar-indexer
 /bin/.local/bin/kmp-lsp
+/bin/.local/bin/claude
