@@ -4,6 +4,14 @@
 # (environment variable XDG_CONFIG_HOME fallbacks to ~/.config if the variable
 # is not presented)
 
+# Config version for compatibility and deprecations
+# See: https://nikitabobko.github.io/AeroSpace/guide#config-version
+config-version = 2
+
+# Workspaces that stay alive even when empty. v1 inferred these from the
+# bindings (1-9); v2 defaults to [], so list them to keep the old behavior.
+persistent-workspaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
@@ -60,7 +68,7 @@ exec-on-workspace-change = [
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -117,6 +125,8 @@ preset = 'qwerty'
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 alt-enter = 'exec-and-forget open -n -a "Alacritty.app"'
 alt-b = 'exec-and-forget open -a "Brave Browser.app"'
+# Swallow cmd-m so macOS never minimizes windows
+cmd-m = 'exec-and-forget true'
 # alt-q = 'close'
 
 # Switch between layouts
