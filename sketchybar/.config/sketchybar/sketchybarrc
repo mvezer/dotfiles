@@ -5,6 +5,9 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 sketchybar --add event aerospace_workspace_change
 sketchybar --add event aerospace_service_mode_enabled_changed
 
+# Bar is no longer drawn by default since sketchybar 2.24.x, so turn it on explicitly
+sketchybar --bar drawing=on
+
 default=(
   background.color="0x00000000"
   label.font="helvetica"
