@@ -9,6 +9,20 @@ local function send_to_claude(with_lines)
 		end
 		ref = ref .. (a == b and ("#L" .. a) or ("#L" .. a .. "-" .. b))
 	end
+	if vim.env.HERDR_PANE_ID then
+		-- first claude agent herdr knows about, preferring this workspace
+		local ok, res = pcall(vim.json.decode, vim.fn.system({ "herdr", "agent", "list" }))
+		local target
+		for _, a in ipairs(ok and res.result and res.result.agents or {}) do
+			if a.agent == "claude" and (not target or a.workspace_id == vim.env.HERDR_WORKSPACE_ID) then
+				target = a
+			end
+		end
+		if target then
+			vim.fn.system({ "herdr", "pane", "send-text", target.pane_id, ref .. " " })
+			return
+		end
+	end
 	local panes = vim.fn.systemlist("tmux list-panes -s -F '#{pane_id} #{pane_current_command}'")
 	for _, p in ipairs(panes) do
 		local id, cmd = p:match("^(%S+) (.+)$")
@@ -35,10 +49,23 @@ core.map_key("v", ">", ">gv")
 core.map_key({ "n", "v" }, "c", '"_c')
 core.map_key({ "n", "v" }, "C", '"_C')
 core.map_key("v", "p", "P")
-core.map_key({ "n", "i", "t" }, "<c-down>", "<CMD>NavigatorDown<CR>")
-core.map_key({ "n", "i", "t" }, "<c-up>", "<CMD>NavigatorUp<CR>")
-core.map_key({ "n", "i", "t" }, "<c-right>", "<CMD>NavigatorRight<CR>")
-core.map_key({ "n", "i", "t" }, "<c-left>", "<CMD>NavigatorLeft<CR>")
+-- in herdr: move between nvim splits, then hand over to herdr at the edge; otherwise Navigator (tmux)
+local function navigate(dir, wincmd, navigator)
+	return function()
+		if not vim.env.HERDR_PANE_ID then
+			return vim.cmd(navigator)
+		end
+		local win = vim.api.nvim_get_current_win()
+		vim.cmd.wincmd(wincmd)
+		if win == vim.api.nvim_get_current_win() then
+			vim.system({ "herdr", "pane", "focus", "--direction", dir, "--current" })
+		end
+	end
+end
+core.map_key({ "n", "i", "t" }, "<c-down>", navigate("down", "j", "NavigatorDown"))
+core.map_key({ "n", "i", "t" }, "<c-up>", navigate("up", "k", "NavigatorUp"))
+core.map_key({ "n", "i", "t" }, "<c-right>", navigate("right", "l", "NavigatorRight"))
+core.map_key({ "n", "i", "t" }, "<c-left>", navigate("left", "h", "NavigatorLeft"))
 
 --- buffer management
 -- local buffer_manager = require("buffer_manager.ui")
