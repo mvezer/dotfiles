@@ -10,7 +10,7 @@ onboarding = false
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
-name = "one-dark"
+name = "gruvbox"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
@@ -71,16 +71,16 @@ prefix = "ctrl+space"
 # help = "prefix+?"
 # settings = "prefix+s"
 # detach = "prefix+q"
-# reload_config = "prefix+shift+r"
+reload_config = "prefix+r"                # tmux: prefix r
 # open_notification_target = "prefix+o"
-workspace_picker = "prefix+w"
+workspace_picker = "prefix+w"             # tmux used prefix+C-Space, but herdr reserves prefix-twice
 goto = "prefix+shift+g"
-new_workspace = "prefix+enter"
+new_workspace = "alt+q"                   # tmux: M-q new-session
 # new_worktree = "prefix+shift+g"
 # open_worktree = ""    # optional, unset by default
 # remove_worktree = ""  # optional, unset by default; opens confirmation
 rename_workspace = "prefix+$"
-close_workspace = "prefix+shift+d"
+close_workspace = "alt+shift+q"           # tmux: M-S-q kill-session
 previous_workspace = "alt+up"      # optional, unset by default
 next_workspace = "alt+down"        # optional, unset by default
 # previous_agent = ""     # optional, unset by default
@@ -88,33 +88,30 @@ next_workspace = "alt+down"        # optional, unset by default
 # focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
 # remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
 new_tab = "alt+w"
-rename_tab = "prefix+shift+t"
+rename_tab = "prefix+t"
 previous_tab = "alt+left"
 next_tab = "alt+right"
 # move_tab_previous = ""   # optional, e.g. "alt+shift+left" moves the tab toward the front
 # move_tab_next = ""       # optional, e.g. "alt+shift+right" moves the tab toward the back
 # switch_tab = "prefix+1..9"
 # switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
-# close_tab = "prefix+shift+x"
+close_tab = "alt+shift+w"                 # tmux: M-W kill-window
 # rename_pane = "prefix+shift+p"
-# edit_scrollback = "prefix+e"
-focus_pane_left = "ctrl+left"
-focus_pane_down = "ctrl+down"
-focus_pane_up = "ctrl+up"
-focus_pane_right = "ctrl+right"
+edit_scrollback = "ctrl+s"                # tmux: C-s scrollback in nvim
+# focus_pane_* stay on their prefix defaults; ctrl+arrows go through nav.sh (see keys.command)
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
 split_vertical = "alt+p"
 split_horizontal = "alt+h"
-# close_pane = "prefix+x"
-# zoom = "prefix+z"       # legacy alias: fullscreen
-# resize_mode = "prefix+r"
-# resize_pane_left = ""   # optional, e.g. "ctrl+shift+alt+left" resizes without entering resize mode
+close_pane = "alt+shift+p"                # tmux: M-P kill-pane
+zoom = "alt+m"                            # tmux: M-m resize-pane -Z
+resize_mode = "prefix+shift+r"            # prefix+r is reload, like tmux
+resize_pane_left = "alt+shift+left"       # tmux: M-S-Left
 # resize_pane_down = ""   # optional, e.g. "ctrl+shift+alt+down"
 # resize_pane_up = ""     # optional, e.g. "ctrl+shift+alt+up"
-# resize_pane_right = ""  # optional, e.g. "ctrl+shift+alt+right"
-toggle_sidebar = "prefix+space"
+resize_pane_right = "alt+shift+right"     # tmux: M-S-Right
+toggle_sidebar = "prefix+b"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
@@ -137,6 +134,44 @@ type = "popup"
 command = "lazygit"
 width = "95%"
 height = "95%"
+
+# ctrl+arrows: move between herdr panes, or let nvim handle them (like tmux is_nvim)
+[[keys.command]]
+key = "ctrl+left"
+type = "shell"
+command = 'sh "$HOME/.config/herdr/nav.sh" left'
+
+[[keys.command]]
+key = "ctrl+right"
+type = "shell"
+command = 'sh "$HOME/.config/herdr/nav.sh" right'
+
+[[keys.command]]
+key = "ctrl+up"
+type = "shell"
+command = 'sh "$HOME/.config/herdr/nav.sh" up'
+
+[[keys.command]]
+key = "ctrl+down"
+type = "shell"
+command = 'sh "$HOME/.config/herdr/nav.sh" down'
+
+# jump to (or create) the "notes" workspace; from inside it, jump back to
+# whichever workspace was previously active (like tmux prefix n)
+[[keys.command]]
+key = "prefix+n"
+type = "shell"
+command = '''
+ws=$(herdr workspace list)
+last="$HOME/.config/herdr/notes-last-workspace"
+if [ "$(echo "$ws" | jq -r '.result.workspaces[] | select(.focused) | .label')" = notes ]; then
+  [ -f "$last" ] && herdr workspace focus "$(cat "$last")"
+else
+  echo "$ws" | jq -r '.result.workspaces[] | select(.focused) | .workspace_id' > "$last"
+  id=$(echo "$ws" | jq -r '.result.workspaces[] | select(.label == "notes") | .workspace_id' | head -n1)
+  if [ -n "$id" ]; then herdr workspace focus "$id"; else herdr workspace create --label notes --cwd "$HOME" --focus; fi
+fi
+'''
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
@@ -168,7 +203,7 @@ height = "95%"
 sidebar_start_collapsed = true
 
 # Collapsed sidebar presentation: "compact" keeps the narrow status rail, "hidden" uses zero width.
-# sidebar_collapsed_mode = "compact"
+sidebar_collapsed_mode = "hidden"
 
 # Terminal width at or below which Herdr uses the mobile single-column layout.
 # Increase this for foldables, tablets, or wide phone terminals.
@@ -209,7 +244,7 @@ sidebar_start_collapsed = true
 # prompt_new_tab_name = true
 
 # Ask for a workspace name before interactive creation.
-# prompt_new_workspace_name = false
+prompt_new_workspace_name = true
 
 # Draw borders around split panes.
 # pane_borders = true
