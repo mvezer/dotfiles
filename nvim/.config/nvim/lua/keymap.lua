@@ -49,16 +49,21 @@ core.map_key("v", ">", ">gv")
 core.map_key({ "n", "v" }, "c", '"_c')
 core.map_key({ "n", "v" }, "C", '"_C')
 core.map_key("v", "p", "P")
--- in herdr: move between nvim splits, then hand over to herdr at the edge; otherwise Navigator (tmux)
+-- in herdr (TUI: HERDR_PANE_ID, GUI app: HC_TERMINAL_ID): move between nvim splits, then hand
+-- over to herdr at the edge; otherwise Navigator (tmux)
 local function navigate(dir, wincmd, navigator)
 	return function()
-		if not vim.env.HERDR_PANE_ID then
+		if not (vim.env.HERDR_PANE_ID or vim.env.HC_TERMINAL_ID) then
 			return vim.cmd(navigator)
 		end
 		local win = vim.api.nvim_get_current_win()
 		vim.cmd.wincmd(wincmd)
 		if win == vim.api.nvim_get_current_win() then
-			vim.system({ "herdr", "pane", "focus", "--direction", dir, "--current" })
+			if vim.env.HERDR_PANE_ID then
+				vim.system({ "herdr", "pane", "focus", "--direction", dir, "--current" })
+			else
+				vim.system({ "herdr-app", "do", "pane.go:" .. dir })
+			end
 		end
 	end
 end

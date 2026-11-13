@@ -20,3 +20,6 @@ bin/.local/bin/bunx
 /bin/.local/bin/kmp-jar-indexer
 /bin/.local/bin/kmp-lsp
 /bin/.local/bin/claude
+herdr/.config/herdr-app/mods/*/gpui-kit.d.ts
+herdr/.config/herdr-app/mods/*/herdr.d.ts
+herdr/.config/herdr-app/mods/*/jsconfig.json
