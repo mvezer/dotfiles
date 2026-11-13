@@ -22,7 +22,7 @@ vim.lsp.config("ts_ls", {
 })
 
 require("mason-lspconfig").setup()
-require("mason-nvim-dap").setup()
+-- require("mason-nvim-dap").setup()
 require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua_ls",
@@ -38,7 +38,7 @@ require("mason-tool-installer").setup({
 		"bashls",
 		"jsonls",
 		"yamlls",
-		"js-debug-adapter",
+		-- "js-debug-adapter",
 	},
 })
 require("blink.cmp").setup({

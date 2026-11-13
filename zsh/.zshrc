@@ -54,7 +54,6 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
-eval "$(fnm env --use-on-cd)"
 autoload -Uz compinit && compinit
 
 zmodload zsh/zprof
@@ -100,3 +99,5 @@ source $ZSH_INCLUDES/work.zsh
 # source $ZSH_INCLUDES/nodejs.zsh
 source $ZSH_INCLUDES/tmux.zsh
 source $ZSH_INCLUDES/zk.zsh
+
+eval "$(fnm env --use-on-cd)"

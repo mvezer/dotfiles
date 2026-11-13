@@ -6,7 +6,6 @@
 #######################################
 
 KBT_PID_LOCK="$HOME/.local/state/kbt.pid"
-
 if [ -f "$KBT_PID_LOCK" ] && kill -9 $(cat "$KBT_PID_LOCK") >/dev/null 2>&1; then
   echo "Laptop keyboard is ENABLED"
   notify-send "Laptop keyboard ENABLED"
