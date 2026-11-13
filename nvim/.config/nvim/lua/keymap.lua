@@ -161,7 +161,16 @@ core.map_key({ "n", "i" }, "<S-Down>", ":cn<CR>")
 core.map_key({ "n", "i" }, "<S-Up>", ":cp<CR>")
 
 core.map_key("n", "<leader>m", ":TSJToggle<CR>")
-core.map_key("n", "<leader>M", ":MarkdownPreview<CR>")
+-- in the herdr GUI: render the file in a pane to the right (herdr-app md-preview mod, updates on
+-- save) and stay in nvim; elsewhere the browser preview
+core.map_key("n", "<leader>M", function()
+	if not vim.env.HC_TERMINAL_ID then
+		return vim.cmd("MarkdownPreview")
+	end
+	local args = vim.json.encode({ direction = "right", mod = "md-preview", props = { file = vim.fn.expand("%:p") } })
+	vim.system({ "herdr-app", "do", "pane.split", args }):wait() -- the split takes focus; take it back
+	vim.system({ "herdr-app", "do", "pane.focus", "--terminal", vim.env.HC_TERMINAL_ID })
+end)
 
 -- Autosession
 core.map_key("n", "<leader>S", ":AutoSession save<CR>")
