@@ -4,9 +4,14 @@ normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
 
+# [terminal.shell]
+# program = "/bin/zsh"
+# args = ["--login", "-c", "tmux attach || tmux new-session -s default"]
+
+# plain `herdr` attaches to the running session or starts one; login shell for the homebrew PATH
 [terminal.shell]
 program = "/bin/zsh"
-args = ["--login", "-c", "tmux attach || tmux new-session -s default"]
+args = ["--login", "-c", "herdr"]
 
 # claude shift+enter passthrough
 [[keyboard.bindings]]
