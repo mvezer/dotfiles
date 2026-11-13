@@ -1,6 +1,6 @@
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex, ScrollHandle } from "gpui-base";
-import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings } from "herdr";
+import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings, readTextFile, home } from "herdr";
 
 function find(node, id) {
   if (node?.id === id) return node;
@@ -12,10 +12,30 @@ function find(node, id) {
 }
 
 export default class Tabs extends View {
-  init() {
+  init(_props, cx) {
     this.pressed = null;
     this.scroll = ScrollHandle.new();
     this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}");
+    // Claude plan usage, saved by ~/.config/herdr-app/claude-statusline.sh (Claude Code's statusLine)
+    this.usage = null;
+    this.loadUsage(cx);
+    cx.timer.every(60000, (cx) => this.loadUsage(cx));
+  }
+
+  loadUsage(cx) {
+    cx.spawn(async (cx) => {
+      try { this.usage = JSON.parse(await readTextFile(`${home()}/.cache/claude-usage.json`) ?? "null"); }
+      catch { this.usage = null; }
+      cx.notify();
+    });
+  }
+
+  // "5h 23% · 7d 41%"; a window past its reset counts as 0%, one never reported as "–"
+  usageText() {
+    const u = this.usage;
+    if (!u) return null;
+    const pct = (w) => !w ? "–" : w.resets_at * 1000 < Date.now() ? "0%" : `${Math.round(w.used_percentage)}%`;
+    return `5h ${pct(u.five_hour)} · 7d ${pct(u.seven_day)}`;
   }
 
   // The side panel is remembered per space: switching shows that space's choice
@@ -106,6 +126,7 @@ export default class Tabs extends View {
         .on_size_change((_size, cx) => { if (active >= 0) { this.scroll.scroll_to_item(active); cx.notify(); } })
         .children(shown.map(item)))
       // with the sidebar hidden, show which space this is (the TUI's tab_bar_right workspace label)
+      .when(this.usageText(), el => el.child(div().flex_none().px(8).text_size(12).text_color(t.dim).child(this.usageText())))
       .when(sidebar?.hidden && space, el => el.child(div().flex_none().px(8).text_size(12).font_semibold().text_color(t.muted).child(space.name)))
       .child(button("tab-new", "+",() => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 })))
       .when(enabled.includes("files"), el => el.child(panelButton("files", "Files", "mods/files/file.svg")))
