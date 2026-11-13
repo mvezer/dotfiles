@@ -23,3 +23,6 @@ bin/.local/bin/bunx
 herdr/.config/herdr-app/mods/*/gpui-kit.d.ts
 herdr/.config/herdr-app/mods/*/herdr.d.ts
 herdr/.config/herdr-app/mods/*/jsconfig.json
+/bin/.local/bin/hc
+/bin/.local/bin/herdr-app
+/bin/.local/bin/herdr-core
