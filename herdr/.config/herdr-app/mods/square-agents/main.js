@@ -2,7 +2,12 @@
 
 import { View, div, image, svg } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
-import { agents, terminals, panes, focused, spaces, run, theme, shared, setShared, setAgentOrder, openOverlay, closeOverlay, props, window, layout } from "herdr";
+import { agents, terminals, panes, focused, spaces, run, theme, shared, setShared, setAgentOrder, openOverlay, closeOverlay, props, window, layout, home, readTextFile } from "herdr";
+
+// Claude sessions' context, saved per terminal by ~/.config/herdr-app/claude-statusline.sh
+// (Claude Code's statusLine) as ~/.cache/claude-usage/<terminal>.json. Local terminals only.
+const isClaude = (a) => (a.app === "claude-code" || a.program?.key === "claude") && !a.address.includes("/");
+const severity = (t, used) => (used >= 85 ? t.ansi1 : used >= 60 ? t.ansi3 : t.ansi2);
 
 function find(node, id) {
   if (node?.id === id) return node;
@@ -84,7 +89,40 @@ export default class Agents extends View {
     this.pendingPins = JSON.parse(localStorage.getItem("pins") ?? "[]");
     if (!this.pendingPins.length) localStorage.removeItem("pins");
     this.migratingPins = new Set();
-    cx.timer.every(30000, (cx) => cx.notify());
+    this.context = {};
+    this.loadContext(cx);
+    cx.timer.every(30000, (cx) => this.loadContext(cx));
+  }
+
+  loadContext(cx) {
+    cx.spawn(async (cx) => {
+      const context = {};
+      for (const a of agents().filter(isClaude)) {
+        try { context[a.address] = JSON.parse((await readTextFile(`${home()}/.cache/claude-usage/${a.address}.json`)) ?? "null"); }
+        catch { context[a.address] = null; }
+      }
+      this.context = context;
+      cx.notify();
+    });
+  }
+
+  // A second line under the name: a thin context meter, then the model.
+  contextBar(t, a) {
+    const c = this.context?.[a.address];
+    if (!isClaude(a) || c?.context == null) return null;
+    const pct = Math.max(0, Math.min(100, c.context));
+    return h_flex()
+      .id(`ctx-${a.address}`)
+      .absolute()
+      .left(33)
+      .right(8)
+      .bottom(5)
+      .h(12)
+      .gap(6)
+      .items_center()
+      .tooltip(`${c.model ? `${c.model} · ` : ""}context ${Math.round(pct)}%`)
+      .child(div().flex_1().min_w(0).h(2).bg(t.raised).child(div().h_full().w(`${pct}%`).bg(severity(t, pct))))
+      .when(Boolean(c.model), (el) => el.child(div().flex_none().text_size(10.5).text_color(t.dim).child(c.model)));
   }
 
   // Stamps agents whose state changed. Done and idle count as one: looking at a
@@ -332,10 +370,14 @@ export default class Agents extends View {
       // Without a space header above (priority, pinned) the row names its space.
       const full = byPriority || isPinned;
       const name = full ? a.space_name || label(a) : more ?? (/^\d+$/.test(label(a)) ? a.program?.name || label(a) : label(a));
+      const ctx = this.contextBar(t, a);
       return h_flex()
         .id(`ag-${a.address}`)
+        .relative()
         .px(8)
-        .h(30)
+        // Room for the context line under the name; the name stays in the top 30px.
+        .h(ctx ? 42 : 30)
+        .when(Boolean(ctx), (el) => el.pb(12))
         .flex_none()
         .rounded(0)
         .items_center()
@@ -362,7 +404,8 @@ export default class Agents extends View {
         .when(subs.length > 0, el => el.child(fold(a, subs)))
         .when(this.hovered === a.address, el => el.child(pin))
         .when(this.hovered !== a.address && Boolean(when), el => el.child(div().flex_none().text_size(11).text_color(t.dim).child(duration(now - when))))
-        .child(this.status(t, a, byPriority && !isPinned));
+        .child(this.status(t, a, byPriority && !isPinned))
+        .when(Boolean(ctx), (el) => el.child(ctx));
     };
 
     // Groups in list order: spaces (grouped) or priority sections. Agents of a

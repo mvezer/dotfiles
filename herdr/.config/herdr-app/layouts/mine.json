@@ -46,6 +46,17 @@
                 "weight": 1
               },
               "min": 90
+            },
+            {
+              "id": "claude-usage",
+              "type": "block",
+              "content": {
+                "mod": "claude-usage"
+              },
+              "size": {
+                "px": 78
+              },
+              "min": 40
             }
           ]
         },
@@ -179,11 +190,6 @@
     "width": 1,
     "color": "border"
   },
-  "titlebar": "none",
-  "traffic_lights": [
-    12,
-    16
-  ],
   "floating": [
     {
       "id": "nav",
@@ -193,5 +199,10 @@
       "edge": "bottom",
       "align": "end"
     }
+  ],
+  "titlebar": "none",
+  "traffic_lights": [
+    12,
+    16
   ]
 }
