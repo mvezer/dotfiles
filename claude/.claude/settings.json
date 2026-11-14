@@ -1,10 +1,11 @@
 {
-  "theme": "dark",
-  "enabledPlugins": {
-    "lua-lsp@claude-plugins-official": true
-  },
   "statusLine": {
     "type": "command",
     "command": "sh ~/.config/herdr-app/claude-statusline.sh"
-  }
+  },
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "theme": "dark"
 }
