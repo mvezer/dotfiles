@@ -62,7 +62,7 @@ local function navigate(dir, wincmd, navigator)
 			if vim.env.HERDR_PANE_ID then
 				vim.system({ "herdr", "pane", "focus", "--direction", dir, "--current" })
 			else
-				vim.system({ "herdr-app", "do", "pane.go:" .. dir })
+				vim.system({ "herdr-app", "do", "nav.edge-" .. dir }) -- nav mod: pane, else tab at left/right
 			end
 		end
 	end
