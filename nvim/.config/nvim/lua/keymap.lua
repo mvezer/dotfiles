@@ -195,22 +195,13 @@ core.map_key("n", "<leader>nl", ":ZkInsertLink<CR>")
 core.map_key("n", "<leader>ni", ":ZkIndex<CR>")
 core.map_key("", "<leader>ns", ":AddNoteFromSelection<CR>")
 
-if core.is_home() then
-	-- opencode
-	local opencode_api = require("opencode.api")
-	core.map_key({ "n", "t" }, "<c-a>", opencode_api.toggle) -- toggle opencode code split
-	core.map_key("v", "<c-a>", opencode_api.add_visual_selection) -- send selected text to opencode
-else
-	-- Claude code
-	-- core.map_key({ "n", "t" }, "<c-a>", "<Cmd>ClaudeCode<CR>") -- toggle claude code split
-	-- core.map_key("v", "<c-a>", "<Cmd>ClaudeCodeSend<CR>") -- send selected text range to claude
-	core.map_key("n", "<c-a>", function()
-		send_to_claude(false)
-	end) -- send file
-	core.map_key("v", "<c-a>", function()
-		send_to_claude(true)
-	end) -- send file and lines
-end
+-- Claude code (send file/line refs to a claude pane via herdr or tmux)
+core.map_key("n", "<c-a>", function()
+	send_to_claude(false)
+end) -- send file
+core.map_key("v", "<c-a>", function()
+	send_to_claude(true)
+end) -- send file and lines
 
 -- laravel.nvim
 core.map_key("n", "<leader>la", ":Laravel<CR>")

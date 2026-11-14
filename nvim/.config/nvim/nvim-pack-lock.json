@@ -149,10 +149,6 @@
       "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
     },
-    "opencode.nvim": {
-      "rev": "0dbd52d84e85023742ea999456b8804a987cac43",
-      "src": "https://github.com/sudo-tee/opencode.nvim"
-    },
     "outline.nvim": {
       "rev": "03ce1482222dc2bf1f781559508301f05382936d",
       "src": "https://github.com/hedyhli/outline.nvim"

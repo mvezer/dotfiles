@@ -1,4 +1,3 @@
-local core = require("core")
 local plugins = {
 	-- core deps
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -66,12 +65,14 @@ local plugins = {
 	{ src = "https://github.com/mvezer/mark-and-jump.nvim" },
 	-- { src = "file:///home/mat/workshop/mark-and-jump.nvim" },
 }
-if core.is_home() then
-	-- use opencode at home
-	table.insert(plugins, { src = "https://github.com/sudo-tee/opencode.nvim" })
-	-- else
-	-- claude code at work...
-	-- table.insert(plugins, { src = "https://github.com/coder/claudecode.nvim" })
-end
+-- build hooks (vim.pack doesn't run build steps by itself)
+vim.api.nvim_create_autocmd("PackChanged", {
+	callback = function(ev)
+		local spec = ev.data.spec
+		if spec.name == "markdown-preview.nvim" and (ev.data.kind == "install" or ev.data.kind == "update") then
+			vim.system({ "./install.sh" }, { cwd = ev.data.path .. "/app" })
+		end
+	end,
+})
 
 vim.pack.add(plugins)
