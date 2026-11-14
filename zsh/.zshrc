@@ -57,7 +57,6 @@ zinit snippet OMZP::command-not-found
 autoload -Uz compinit && compinit
 
 zmodload zsh/zprof
-eval "$(zoxide init --cmd cd zsh)"
 
 # find out the OS
 if [[ "$OSTYPE" == "darwin"* ]]; then # macOS
@@ -101,3 +100,6 @@ source $ZSH_INCLUDES/tmux.zsh
 source $ZSH_INCLUDES/zk.zsh
 
 eval "$(fnm env --use-on-cd)"
+
+# zoxide must be initialized last
+eval "$(zoxide init --cmd cd zsh)"
