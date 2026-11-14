@@ -26,3 +26,37 @@ herdr/.config/herdr-app/mods/*/jsconfig.json
 /bin/.local/bin/hc
 /bin/.local/bin/herdr-app
 /bin/.local/bin/herdr-core
+
+# herdr-app: machine-local state and Herdr-shipped files (replaced on update)
+herdr/.config/herdr-app/AGENTS.md
+herdr/.config/herdr-app/*.d.ts
+herdr/.config/herdr-app/data/
+herdr/.config/herdr-app/frame/
+herdr/.config/herdr-app/icons/
+herdr/.config/herdr-app/telemetry/
+herdr/.config/herdr-app/themes/
+herdr/.config/herdr-app/update-notes-media/
+herdr/.config/herdr-app/update-notes.json
+herdr/.config/herdr-app/installed.json
+herdr/.config/herdr-app/seen.json
+herdr/.config/herdr-app/settings.json
+herdr/.config/herdr-app/shared.json
+herdr/.config/herdr-app/view.json
+herdr/.config/herdr-app/window.json
+herdr/.config/herdr-app/*.error
+herdr/.config/herdr-app/*.reset-*
+herdr/.config/herdr-app/layouts/.state/
+herdr/.config/herdr-app/layouts/main.json
+herdr/.config/herdr-app/layouts/terminals.json
+herdr/.config/herdr-app/layouts/win98.*
+herdr/.config/herdr-app/layouts/*.error
+# mods: Herdr ships many; only custom ones are tracked (add new ones here)
+herdr/.config/herdr-app/mods/*
+!herdr/.config/herdr-app/mods/md-preview/
+!herdr/.config/herdr-app/mods/nav/
+!herdr/.config/herdr-app/mods/new-space/
+!herdr/.config/herdr-app/mods/new-tab/
+!herdr/.config/herdr-app/mods/notes/
+!herdr/.config/herdr-app/mods/square-agents/
+!herdr/.config/herdr-app/mods/square-spaces/
+!herdr/.config/herdr-app/mods/square-tabs/
