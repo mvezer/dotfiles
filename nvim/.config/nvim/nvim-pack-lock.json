@@ -53,6 +53,10 @@
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
     },
+    "live-preview.nvim": {
+      "rev": "dad92ae9599f9b19a7dffe7d597d3376c110b818",
+      "src": "https://github.com/brianhuster/live-preview.nvim"
+    },
     "lualine.nvim": {
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -60,10 +64,6 @@
     "mark-and-jump.nvim": {
       "rev": "eb7656d339680bff4792d4a6f30104b1c01c3b5c",
       "src": "https://github.com/mvezer/mark-and-jump.nvim"
-    },
-    "markdown-preview.nvim": {
-      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
-      "src": "https://github.com/iamcco/markdown-preview.nvim"
     },
     "markdown-toggle.nvim": {
       "rev": "86235e1c5f7ff12174dbb33bdeb091040a8cbe63",

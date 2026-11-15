@@ -52,7 +52,7 @@ local plugins = {
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
-	{ src = "https://github.com/iamcco/markdown-preview.nvim" },
+	{ src = "https://github.com/brianhuster/live-preview.nvim" },
 	{ src = "https://github.com/shatur/neovim-ayu" },
 	{ src = "https://github.com/folke/snacks.nvim" },
 	{ src = "https://github.com/j-hui/fidget.nvim" },
@@ -65,14 +65,4 @@ local plugins = {
 	{ src = "https://github.com/mvezer/mark-and-jump.nvim" },
 	-- { src = "file:///home/mat/workshop/mark-and-jump.nvim" },
 }
--- build hooks (vim.pack doesn't run build steps by itself)
-vim.api.nvim_create_autocmd("PackChanged", {
-	callback = function(ev)
-		local spec = ev.data.spec
-		if spec.name == "markdown-preview.nvim" and (ev.data.kind == "install" or ev.data.kind == "update") then
-			vim.system({ "./install.sh" }, { cwd = ev.data.path .. "/app" })
-		end
-	end,
-})
-
 vim.pack.add(plugins)
