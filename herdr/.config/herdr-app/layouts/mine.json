@@ -198,6 +198,14 @@
       },
       "edge": "bottom",
       "align": "end"
+    },
+    {
+      "id": "popup",
+      "content": {
+        "mod": "popup"
+      },
+      "edge": "bottom",
+      "align": "start"
     }
   ],
   "titlebar": "none",

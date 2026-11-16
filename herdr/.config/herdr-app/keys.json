@@ -47,7 +47,9 @@
     "ctrl-right": "nav.right",
     "ctrl-up": "nav.up",
     "ctrl-down": "nav.down",
-    "ctrl-space n": "mod.open:notes"
+    "ctrl-space n": "mod.open:notes",
+    "ctrl-space g": "popup.lazygit",
+    "ctrl-space d": "popup.lazydocker"
   },
   "terminal": {
     "cmd-f": "terminal.search",

@@ -53,6 +53,7 @@ herdr/.config/herdr-app/layouts/*.error
 # mods: Herdr ships many; only custom ones are tracked (add new ones here)
 herdr/.config/herdr-app/mods/*
 !herdr/.config/herdr-app/mods/claude-usage/
+!herdr/.config/herdr-app/mods/popup/
 !herdr/.config/herdr-app/mods/nav/
 !herdr/.config/herdr-app/mods/new-space/
 !herdr/.config/herdr-app/mods/new-tab/
