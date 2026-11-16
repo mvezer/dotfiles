@@ -51,3 +51,6 @@ alias l="eza --icons -al --time-style=long-iso --git --no-user --no-permissions"
 alias tree="eza -al -T --no-time --no-user --no-permissions -I node_modules $argv"
 alias zsrc="source ~/.zshrc"
 alias z="zeditor"
+
+# prevent gh to use the token alreeady set
+alias gh='env -u GITHUB_TOKEN gh'
