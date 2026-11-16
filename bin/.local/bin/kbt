@@ -3,16 +3,46 @@
 #######################################
 # Enables or disables laptop keyboard #
 # for Wayland                         #
+# The keyboard is re-enabled when the #
+# screen locks, so the password can   #
+# be typed on the laptop keyboard.    #
 #######################################
 
-KBT_PID_LOCK="$HOME/.local/state/kbt.pid"
-if [ -f "$KBT_PID_LOCK" ] && kill -9 $(cat "$KBT_PID_LOCK") >/dev/null 2>&1; then
+KBT_PID_LOCK="$HOME/.local/state/kbt.pid" # holds the evtest pid (read by the plasmoid)
+KBT_DEVICE="/dev/input/event3"
+
+enabled() {
   echo "Laptop keyboard is ENABLED"
   notify-send "Laptop keyboard ENABLED"
+}
+
+# Internal: holds the grab until the screen locks, then releases it.
+# Runs in its own process group so everything can be killed at once.
+if [ "$1" = "__watch" ]; then
+  evtest --grab "$KBT_DEVICE" >/dev/null 2>&1 &
+  echo $! >"$KBT_PID_LOCK"
+  session=$(loginctl show-seat seat0 -p ActiveSession --value)
+  while kill -0 "$(cat "$KBT_PID_LOCK" 2>/dev/null)" 2>/dev/null; do
+    if [ "$(loginctl show-session "$session" -p LockedHint --value)" = "yes" ]; then
+      rm -f "$KBT_PID_LOCK"
+      enabled
+      kill 0 # evtest and this watcher
+    fi
+    sleep 1
+  done
   exit 0
 fi
 
-evtest --grab /dev/input/event3 > /dev/null &
-echo $! > "$KBT_PID_LOCK" # store the pid
+# Toggle off: kill the process group of the running evtest
+if [ -f "$KBT_PID_LOCK" ]; then
+  pgid=$(ps -o pgid= -p "$(cat "$KBT_PID_LOCK")" 2>/dev/null | tr -d ' ')
+  rm -f "$KBT_PID_LOCK"
+  if [ -n "$pgid" ] && kill -- -"$pgid" >/dev/null 2>&1; then
+    enabled
+    exit 0
+  fi
+fi
+
+setsid -f "$0" __watch >/dev/null 2>&1
 echo "Laptop keyboard is DISABLED"
 notify-send "Laptop keyboard DISABLED"
