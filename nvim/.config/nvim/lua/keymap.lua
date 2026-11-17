@@ -23,6 +23,39 @@ local function send_to_claude(with_lines)
 			return
 		end
 	end
+	if vim.env.HC_TERMINAL_ID then
+		-- Herdr app: first local claude agent, preferring this space (hc's `where` is "space / tab")
+		local ok, res = pcall(vim.json.decode, vim.fn.system({ "hc", "ls", "--json" }))
+		local terms = ok and res.terminals or {}
+		local function space(t)
+			return (t.where or ""):match("^(.-) / ")
+		end
+		local here
+		for _, t in ipairs(terms) do
+			if t.address == vim.env.HC_TERMINAL_ID then
+				here = space(t)
+			end
+		end
+		local target
+		for _, t in ipairs(terms) do
+			if t.agent == "claude-code" and not t.address:find("/") and (not target or space(t) == here) then
+				target = t
+			end
+		end
+		if target then
+			-- hc can only type text followed by Enter, so paste through the app and restore the clipboard
+			local function app(cmd, args)
+				vim.system({ "herdr-app", "do", cmd, args and vim.json.encode(args) or nil }):wait()
+			end
+			local clip = vim.fn.getreg("+")
+			vim.fn.setreg("+", ref .. " ")
+			app("pane.focus", { terminal = target.address })
+			app("terminal.paste")
+			app("pane.focus", { terminal = vim.env.HC_TERMINAL_ID })
+			vim.fn.setreg("+", clip)
+			return
+		end
+	end
 	local panes = vim.fn.systemlist("tmux list-panes -s -F '#{pane_id} #{pane_current_command}'")
 	for _, p in ipairs(panes) do
 		local id, cmd = p:match("^(%S+) (.+)$")
