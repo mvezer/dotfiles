@@ -74,6 +74,7 @@ if [[ "$OS" == "macos" ]]; then
   source $ZSH_INCLUDES/work.zsh
 elif [[ "$OS" =~ "linux" ]]; then
   source $ZSH_INCLUDES/linux.zsh
+  source $ZSH_INCLUDES/home_assistant.zsh
   if [[ "$OS" == "void-linux" ]]; then 
     source $ZSH_INCLUDES/void-linux.zsh
   fi
@@ -98,7 +99,6 @@ source $ZSH_INCLUDES/work.zsh
 # source $ZSH_INCLUDES/nodejs.zsh
 source $ZSH_INCLUDES/tmux.zsh
 source $ZSH_INCLUDES/zk.zsh
-source $ZSH_INCLUDES/home_assistant.zsh
 
 eval "$(fnm env --use-on-cd)"
 
