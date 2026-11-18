@@ -75,6 +75,7 @@ if [[ "$OS" == "macos" ]]; then
 elif [[ "$OS" =~ "linux" ]]; then
   source $ZSH_INCLUDES/linux.zsh
   source $ZSH_INCLUDES/home_assistant.zsh
+  source $ZSH_INCLUDES/gitea_cli.zsh
   if [[ "$OS" == "void-linux" ]]; then 
     source $ZSH_INCLUDES/void-linux.zsh
   fi
