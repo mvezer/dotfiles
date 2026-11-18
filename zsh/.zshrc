@@ -98,6 +98,7 @@ source $ZSH_INCLUDES/work.zsh
 # source $ZSH_INCLUDES/nodejs.zsh
 source $ZSH_INCLUDES/tmux.zsh
 source $ZSH_INCLUDES/zk.zsh
+source $ZSH_INCLUDES/home_assistant.zsh
 
 eval "$(fnm env --use-on-cd)"
 
