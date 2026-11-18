@@ -26,6 +26,7 @@ herdr/.config/herdr-app/mods/*/jsconfig.json
 /bin/.local/bin/hc
 /bin/.local/bin/herdr-app
 /bin/.local/bin/herdr-core
+/bin/.local/bin/hass-cli
 
 # herdr-app: machine-local state and Herdr-shipped files (replaced on update)
 herdr/.config/herdr-app/AGENTS.md
@@ -37,6 +38,7 @@ herdr/.config/herdr-app/telemetry/
 herdr/.config/herdr-app/themes/
 herdr/.config/herdr-app/update-notes-media/
 herdr/.config/herdr-app/update-notes.json
+herdr/.config/herdr-app/update-notes-cache.md
 herdr/.config/herdr-app/installed.json
 herdr/.config/herdr-app/seen.json
 herdr/.config/herdr-app/settings.json
